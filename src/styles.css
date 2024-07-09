@@ -15,8 +15,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af);
-  color: #fff; /* Changer la couleur de texte pour le contraste */
+  background-color: #f5f5f5;
+  color: #000; /* Texte noir pour le contraste */
 }
 
 #app {
@@ -66,14 +66,14 @@ body {
 #content {
   width: 100%;
   max-width: 600px;
-  margin: 10px auto; /* Réduire la marge en haut */
+  margin: 20px auto; 
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
   text-align: left;
-  overflow-y: auto; /* Ajout d'un défilement vertical si nécessaire */
+  overflow-y: auto; 
 }
 
 #content h2 {
@@ -85,13 +85,14 @@ body {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 10px;
+  color: #000; 
 }
 
 #content img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 10px 0; /* Ajuster la marge pour espacer correctement les images */
+  margin: 10px 0; 
   border-radius: 8px;
 }
 
@@ -158,7 +159,7 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
-  border: 2px solid #fff; /* Bordure blanche pour contraste */
+  border: 2px solid #4CAF50; /* Bordure verte pour contraste */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden; /* Clip the video */
   position: relative;
@@ -187,7 +188,7 @@ body {
   width: 20px; /* Increase the size of corners */
   height: 20px; /* Increase the size of corners */
   position: absolute;
-  border: 2px solid #fff; /* Couleur blanche pour les coins */
+  border: 2px solid #4CAF50; /* Couleur verte pour les coins */
   z-index: 3; /* Ensure corners are above the video */
 }
 
@@ -275,13 +276,13 @@ body {
 
 /* Styles pour les cartes */
 .card {
-  background-color: #2c3e50;
+  background-color: white; /* Arrière-plan blanc */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
-  color: #fff; /* Texte blanc */
+  color: #000; /* Texte noir */
 }
 
 .card:hover {
