@@ -181,7 +181,7 @@ function getLabelsHTML(labels_tags) {
     <div class="labels">
       <p><strong>Labels:</strong></p>
       <ul>
-        ${labels_tags.map(tag => `<li>${tag}</li>`).join('')}
+        ${labels_tags.map(tag => `<li class="label-item">${tag}</li>`).join('')}
       </ul>
     </div>
   `;

@@ -276,12 +276,13 @@ body {
 
 /* Styles pour les cartes */
 .card {
-  background-color: white;
+  background-color: #2c3e50;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
+  color: #fff; /* Texte blanc */
 }
 
 .card:hover {
@@ -316,24 +317,6 @@ body {
   font-size: 16px;
 }
 
-/* Styles pour la section Nutri-Score */
-.nutriscore {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.nutriscore img {
-  margin-right: 10px;
-  height: 50px;
-}
-
-/* Section pour les labels et catégories */
-.labels,
-.categories {
-  margin-top: 20px;
-}
-
 .labels ul,
 .categories ul {
   display: flex;
@@ -349,6 +332,16 @@ body {
   margin-right: 10px;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+/* Ajoutons des animations de transition */
+.card, .bubble-title, .nutriscore, .nutrition-facts, .labels, .categories {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Ajoutons des effets de survol */
+.card:hover, .bubble-title:hover {
+  transform: scale(1.05);
 }
 
 /* Media Queries pour les petits écrans */
