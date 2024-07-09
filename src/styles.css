@@ -15,7 +15,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  color: #fff; /* Changer la couleur de texte pour le contraste */
 }
 
 #app {
@@ -65,7 +66,7 @@ body {
 #content {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 10px auto; /* Réduire la marge en haut */
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -152,16 +153,15 @@ body {
 
 /* Style pour le conteneur du scanner */
 #scannerFrame {
-  position: relative; /* Use relative positioning */
-  width: 80%; /* Adjust to your needs */
-  height: 80%; /* Adjust to your needs */
+  width: 80%;
+  height: 50vh; /* Augmenter la hauteur pour une meilleure visibilité */
   margin: 0 auto;
   box-sizing: border-box;
-  z-index: 2;
-  border-radius: 20px;
-  border: 2px solid #4CAF50;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  border: 2px solid #fff; /* Bordure blanche pour contraste */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden; /* Clip the video */
+  position: relative;
 }
 
 /* Style pour le conteneur de la vidéo */
@@ -187,34 +187,34 @@ body {
   width: 20px; /* Increase the size of corners */
   height: 20px; /* Increase the size of corners */
   position: absolute;
-  border: 2px solid #4CAF50;
+  border: 2px solid #fff; /* Couleur blanche pour les coins */
   z-index: 3; /* Ensure corners are above the video */
 }
 
 .corner.top-left {
-  top: -10px;
-  left: -10px;
+  top: 0;
+  left: 0;
   border-right: none;
   border-bottom: none;
 }
 
 .corner.top-right {
-  top: -10px;
-  right: -10px;
+  top: 0;
+  right: 0;
   border-left: none;
   border-bottom: none;
 }
 
 .corner.bottom-left {
-  bottom: -10px;
-  left: -10px;
+  bottom: 0;
+  left: 0;
   border-right: none;
   border-top: none;
 }
 
 .corner.bottom-right {
-  bottom: -10px;
-  right: -10px;
+  bottom: 0;
+  right: 0;
   border-left: none;
   border-top: none;
 }
@@ -240,7 +240,6 @@ body {
   }
 }
 
-/* Style pour le bouton de scan */
 .start-scan-btn {
   background-color: #4CAF50;
   color: white;
