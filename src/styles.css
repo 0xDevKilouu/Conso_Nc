@@ -1,0 +1,367 @@
+/* Reset des styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styles généraux du corps du document */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+#app {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  z-index: 1000; /* Assure que les boutons sont au-dessus du contenu */
+}
+
+.navbar button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 10px;
+  flex: 1; /* Chaque bouton prendra une part égale de l'espace disponible */
+  border-radius: 8px; /* Bordure des boutons */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  outline: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar button:hover {
+  background-color: #45a049;
+}
+
+/* Contenu principal */
+#content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  overflow-y: auto; /* Ajout d'un défilement vertical si nécessaire */
+}
+
+#content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#content p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+#content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0; /* Ajuster la marge pour espacer correctement les images */
+  border-radius: 8px;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+}
+
+.nutriscore {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.nutriscore img {
+  margin-right: 10px;
+  height: 50px;
+}
+
+.nutriscore-reference {
+  margin-top: 10px;
+}
+
+.nutriscore-reference img {
+  max-width: 100px; /* Ajustez selon vos besoins */
+  height: auto;
+}
+
+/* Product info styles */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.product-info img {
+  max-width: 100%;
+  height: auto; /* Assure que les images ne soient pas coupées */
+  margin: 10px 0; /* Ajuster la marge pour espacer correctement les images */
+  border-radius: 8px;
+  object-fit: contain; /* Contenir l'image sans découpage */
+}
+
+.product-info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.product-info li {
+  margin-bottom: 5px;
+}
+
+.categories,
+.labels,
+.nutrition-facts {
+  margin-top: 10px;
+}
+
+/* Style pour le conteneur du scanner */
+#scannerFrame {
+  position: relative; /* Use relative positioning */
+  width: 80%; /* Adjust to your needs */
+  height: 80%; /* Adjust to your needs */
+  margin: 0 auto;
+  box-sizing: border-box;
+  z-index: 2;
+  border-radius: 20px;
+  border: 2px solid #4CAF50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Clip the video */
+}
+
+/* Style pour le conteneur de la vidéo */
+#video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Fill the scannerFrame */
+  height: 100%; /* Fill the scannerFrame */
+  z-index: 1; /* Ensure video is behind the scan line and corners */
+  overflow: hidden;
+}
+
+/* Style pour la vidéo à l'intérieur du conteneur */
+#video {
+  width: 100%; /* Fill the container */
+  height: 100%; /* Fill the container */
+  object-fit: cover; /* Cover the entire container without distortion */
+}
+
+/* Style pour les coins du scanner */
+.corner {
+  width: 20px; /* Increase the size of corners */
+  height: 20px; /* Increase the size of corners */
+  position: absolute;
+  border: 2px solid #4CAF50;
+  z-index: 3; /* Ensure corners are above the video */
+}
+
+.corner.top-left {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner.top-right {
+  top: -10px;
+  right: -10px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner.bottom-left {
+  bottom: -10px;
+  left: -10px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Animation de la ligne de balayage */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
+  animation: scan 2s linear infinite;
+  z-index: 3; /* Ensure scan line is above the video */
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Style pour le bouton de scan */
+.start-scan-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px; /* Réduire le padding du bouton */
+  font-size: 16px;
+  margin: 20px 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.start-scan-btn:hover {
+  background-color: #45a049;
+}
+
+/* Styles pour les titres en forme de bulle */
+.bubble-title {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  display: inline-block;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.bubble-title:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour les cartes */
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Styles pour la section Nutri-Score */
+.nutriscore {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.nutriscore img {
+  margin-right: 10px;
+  height: 50px;
+}
+
+/* Section pour les labels et catégories */
+.labels,
+.categories {
+  margin-top: 20px;
+}
+
+.labels ul,
+.categories ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.labels li,
+.categories li {
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Media Queries pour les petits écrans */
+@media only screen and (max-width: 600px) {
+  #scannerFrame {
+    height: 20vh; /* Réduire la hauteur du scanner sur les petits écrans */
+  }
+}
+
+/* Media Queries pour iPhone avec barre de navigation en bas */
+@media only screen and (min-height: 812px) and (max-width: 768px) {
+  .navbar {
+    bottom: constant(safe-area-inset-bottom); /* Pour iPhone avec barre de navigation en bas */
+    bottom: env(safe-area-inset-bottom); /* Pour iPhone avec barre de navigation en bas */
+  }
+}
