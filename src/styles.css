@@ -1,22 +1,31 @@
-/* Reset des styles de base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+html {
+  font-size: 62.5%;
 }
 
-/* Styles généraux du corps du document */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
+* {
   padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg-default: #222327;
+  --primary-white: #ffffff;
+  --primary-red: #ff3c41;
+}
+
+body {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start; /* Changer center à flex-start pour permettre le défilement */
   min-height: 100vh;
-  background-color: #f5f5f5;
-  color: #000; /* Texte noir pour le contraste */
+  background: var(--bg-default);
+  color: #000;
 }
 
 #app {
@@ -24,51 +33,145 @@ body {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  flex: 1; 
+  flex: 1;
 }
 
 .center-content {
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
   justify-content: center;
   height: 100vh;
-} 
+}
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-around;
+.navigation {
   width: 100%;
+  max-width: 360px;
+  height: 70px;
+  background: var(--primary-white);
   position: fixed;
   bottom: 0;
-  left: 0;
-  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
-  z-index: 1000; /* Assure que les boutons sont au-dessus du contenu */
+  z-index: 1000;
 }
 
-.navbar button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 15px;
-  text-align: center;
+.listWrap {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.list {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.list a {
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 0 10px;
-  flex: 1; /* Chaque bouton prendra une part égale de l'espace disponible */
-  border-radius: 8px; /* Bordure des boutons */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: none;
-  outline: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-weight: 500;
+  width: 100%;
 }
 
-.navbar button:hover {
-  background-color: #45a049;
+.list a:hover {
+  text-decoration: none;
+}
+
+.icon {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  text-align: center;
+  transition: 0.5s;
+  color: var(--bg-default);
+}
+
+.icon ion-icon {
+  font-size: 2.2rem;
+}
+
+.text {
+  position: absolute;
+  color: var(--bg-default);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  transform: translateY(20px);
+  opacity: 0;
+  z-index: 1;
+}
+
+.list.active a .icon {
+  color: var(--primary-white);
+  transform: translateY(-32px);
+}
+
+.list.active a .text {
+  opacity: 1;
+  transform: translateY(10px);
+}
+
+.indicator {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: -50%;
+  border-radius: 50%;
+  border: 6px solid var(--bg-default);
+  background: var(--primary-red);
+  transition: 0.3s;
+  z-index: 0;
+}
+
+.indicator:before,
+.indicator:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+}
+
+.indicator:after {
+  right: -22px;
+  box-shadow: -1px -10px 0 0 var(--bg-default);
+  border-top-left-radius: 20px;
+}
+
+.indicator:before {
+  left: -22px;
+  box-shadow: 1px -10px 0 0 var(--bg-default);
+  border-top-right-radius: 20px;
+}
+
+.list:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+
+.list:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1 + (6px * 2)));
+}
+
+.list:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2 + (6px * 4) + 1px));
+}
+
+.list:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3 + (6px * 6) + 2px));
 }
 
 /* Contenu principal */

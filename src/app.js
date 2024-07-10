@@ -5,7 +5,6 @@ import Promo from './views/Promo';
 import Compare from './views/Compare';
 import Account from './views/Account';
 
-// Routes configuration
 const routes = {
   home: Home,
   scanner: Scanner,
@@ -14,7 +13,6 @@ const routes = {
   account: Account,
 };
 
-// Function to load a specific view
 const loadView = (view) => {
   document.getElementById('content').innerHTML = routes[view]();
   if (view === 'scanner') {
@@ -22,17 +20,14 @@ const loadView = (view) => {
   }
 };
 
-// Function to setup the navbar
 const setupNavbar = () => {
   document.getElementById('navbar').innerHTML = Navbar();
 
-  // Add event listeners to navbar buttons
   document.getElementById('homeButton').addEventListener('click', () => loadView('home'));
   document.getElementById('scanButton').addEventListener('click', () => loadView('scanner'));
   document.getElementById('promoButton').addEventListener('click', () => loadView('promo'));
   document.getElementById('accountButton').addEventListener('click', () => loadView('account'));
 
-  // Activate the correct navbar item
   const listItems = document.querySelectorAll('.list');
   function activateLink() {
     listItems.forEach(item => item.classList.remove('active'));
@@ -41,13 +36,11 @@ const setupNavbar = () => {
   listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
-// Initialize the app
 const initApp = () => {
   setupNavbar();
   loadView('home'); // Load the home view initially
 };
 
-// Wait for the DOM to load before initializing the app
 document.addEventListener('DOMContentLoaded', () => {
   // Load Ionicons
   const script1 = document.createElement('script');
