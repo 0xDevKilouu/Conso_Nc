@@ -376,6 +376,7 @@ body {
   border-radius: 30px;
   font-size: 18px;
   display: inline-block;
+  text-align: center;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
