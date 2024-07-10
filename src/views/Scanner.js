@@ -28,7 +28,6 @@ const Scanner = () => {
   `;
 };
 
-
 export const initializeScanner = () => {
   videoElement = document.getElementById('video');
   scannerFrame = document.getElementById('scannerFrame');
@@ -131,7 +130,7 @@ function fetchProductInfo(barcode) {
 function displayProductInfo(product) {
   const content = document.getElementById('content');
   const nutriScoreHTML = getNutriScoreHTML(product.nutrition_grade_fr);
-  const labelsHTML = getLabelsHTML(product.labels);
+  const labelsHTML = getLabelsHTML(product.labels_tags);
   const nutritionFactsHTML = getNutritionFactsHTML(product.nutriments);
 
   content.innerHTML = `
@@ -173,7 +172,7 @@ function getNutriScoreHTML(nutrition_grade_fr) {
 }
 
 function getLabelsHTML(labels_tags) {
-  if (!labels_tags || labels_tags.length === 0) {
+  if (!labels_tags || !Array.isArray(labels_tags)) {
     return '';
   }
 
@@ -181,7 +180,7 @@ function getLabelsHTML(labels_tags) {
     <div class="labels">
       <p><strong>Labels:</strong></p>
       <ul>
-        ${labels_tags.map(tag => `<li class="label-item">${tag}</li>`).join('')}
+        ${labels_tags.map(tag => `<li>${tag}</li>`).join('')}
       </ul>
     </div>
   `;
@@ -207,6 +206,11 @@ function getNutritionFactsHTML(nutriments) {
       </ul>
     </div>
   `;
+}
+
+function displayErrorMessage(message) {
+  const content = document.getElementById('content');
+  content.innerHTML = `<p class="error">${message}</p>`;
 }
 
 export default Scanner;
