@@ -173,7 +173,7 @@ function getNutriScoreHTML(nutrition_grade_fr) {
 
 function getLabelsHTML(labels_old) {
   if (!labels_old || !Array.isArray(labels_old)) {
-    return '';
+    return '<p>Aucun label disponible pour ce produit.</p>';
   }
 
   return `
