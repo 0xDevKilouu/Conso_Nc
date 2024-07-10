@@ -130,7 +130,7 @@ function fetchProductInfo(barcode) {
 function displayProductInfo(product) {
   const content = document.getElementById('content');
   const nutriScoreHTML = getNutriScoreHTML(product.nutrition_grade_fr);
-  const labelsHTML = getLabelsHTML(product.labels_tags);
+  const labelsHTML = getLabelsHTML(product.labels_old);
   const nutritionFactsHTML = getNutritionFactsHTML(product.nutriments);
 
   content.innerHTML = `
@@ -171,8 +171,8 @@ function getNutriScoreHTML(nutrition_grade_fr) {
   `;
 }
 
-function getLabelsHTML(labels_tags) {
-  if (!labels_tags || !Array.isArray(labels_tags)) {
+function getLabelsHTML(labels_old) {
+  if (!labels_old || !Array.isArray(labels_old)) {
     return '';
   }
 
@@ -180,7 +180,7 @@ function getLabelsHTML(labels_tags) {
     <div class="labels">
       <p><strong>Labels:</strong></p>
       <ul>
-        ${labels_tags.map(tag => `<li>${tag}</li>`).join('')}
+        ${labels_old.map(tag => `<li>${tag}</li>`).join('')}
       </ul>
     </div>
   `;
