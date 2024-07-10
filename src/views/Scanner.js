@@ -131,7 +131,7 @@ function fetchProductInfo(barcode) {
 function displayProductInfo(product) {
   const content = document.getElementById('content');
   const nutriScoreHTML = getNutriScoreHTML(product.nutrition_grade_fr);
-  const labelsHTML = getLabelsHTML(product.labels_tags);
+  const labelsHTML = getLabelsHTML(product.labels);
   const nutritionFactsHTML = getNutritionFactsHTML(product.nutriments);
 
   content.innerHTML = `
