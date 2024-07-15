@@ -1,3 +1,5 @@
+//* Logique pour les PROMO + page PROMO *//
+
 const Promo = () => {
     return `
       <div id="promo">

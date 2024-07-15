@@ -1,3 +1,5 @@
+//*Navbar.js *//
+
 const Navbar = () => {
   return `
     <div class="navigation">

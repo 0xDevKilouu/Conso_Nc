@@ -194,3 +194,30 @@ function App() {
 
 export default App;
 '
+
+
+
+
+
+
+
+
+
+
+
+
+# Procédure / Logiques / Dépendances / HELP 
+
+Fichiers :
+  - app.js => fichier .main
+  - Scanner.js => Fonctions du Scanner
+  - Promo.js => Fonctions des Promo
+  - Home.js => Page d'acceuil 
+  - Account.js => Fonctions et page Compte
+  - Navbar.js => Fonctions et affichage NavigationBar
+  - index.html =>
+  - styles.css => Logique et affichage du l'Apps
+  - manifest.json => Information + Identitée de l'Apps
+
+
+  

@@ -229,7 +229,7 @@ body {
 }
 
 .nutriscore-reference img {
-  max-width: 100px; /* Ajustez selon vos besoins */
+  max-width: 100px;
   height: auto;
 }
 
@@ -266,13 +266,13 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 80%;
-  height: 50vh; /* Augmenter la hauteur pour une meilleure visibilité */
+  height: 50vh; /* Hauteur pour une meilleur visibilité du scannerFrame */
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
   border: 2px solid #4CAF50; /* Bordure verte pour contraste */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Clip the video */
+  overflow: hidden; /* Clip de la video */
   position: relative;
 }
 
@@ -281,26 +281,26 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Fill the scannerFrame */
-  height: 100%; /* Fill the scannerFrame */
-  z-index: 1; /* Ensure video is behind the scan line and corners */
+  width: 100%; /* largeur du scanner */
+  height: 100%; /* hauteur scanenr */
+  z-index: 1; /* La vidéo sera dans le champdu scanner */
   overflow: hidden;
 }
 
 /* Style pour la vidéo à l'intérieur du conteneur */
 #video {
-  width: 100%; /* Fill the container */
-  height: 100%; /* Fill the container */
-  object-fit: cover; /* Cover the entire container without distortion */
+  width: 100%; /* largeur du container vidéo */
+  height: 100%; /* hauteur du container vidoé */
+  object-fit: cover; /* couvrire tous le champ */
 }
 
 /* Style pour les coins du scanner */
 .corner {
-  width: 20px; /* Increase the size of corners */
-  height: 20px; /* Increase the size of corners */
+  width: 20px; /* Taille pour les coin du scanner */
+  height: 20px; /* Taille pour les coin du scanner */
   position: absolute;
   border: 2px solid #4CAF50; /* Couleur verte pour les coins */
-  z-index: 3; /* Ensure corners are above the video */
+  z-index: 3; /* assure que les coin sont vien sur la vidéo */
 }
 
 .corner.top-left {
@@ -340,7 +340,7 @@ body {
   height: 3px;
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
   animation: scan 2s linear infinite;
-  z-index: 3; /* Ensure scan line is above the video */
+  z-index: 3; /* assure que la ligne rouge du scanner soit bien centré */
 }
 
 @keyframes scan {
@@ -355,7 +355,7 @@ body {
 .start-scan-btn {
   background-color: #4CAF50;
   color: white;
-  padding: 12px 20px; /* Réduire le padding du bouton */
+  padding: 12px 20px; /* Padding pour le boutojn */
   font-size: 16px;
   margin: 20px 0;
   border: none;
@@ -466,7 +466,7 @@ body {
 /* Media Queries pour iPhone avec barre de navigation en bas */
 @media only screen and (min-height: 812px) and (max-width: 768px) {
   .navbar {
-    bottom: constant(safe-area-inset-bottom); /* Pour iPhone avec barre de navigation en bas */
-    bottom: env(safe-area-inset-bottom); /* Pour iPhone avec barre de navigation en bas */
+    bottom: constant(safe-area-inset-bottom); /* constante Pour iPhone avec barre de navigation en bas */
+    bottom: env(safe-area-inset-bottom); /* env Pour iPhone avec barre de navigation en bas */
   }
 }

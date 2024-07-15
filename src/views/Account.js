@@ -1,3 +1,5 @@
+//* Logique pour la page COMPTE + les différentes connexion + BDD *//
+
 const Account = () => {
     return `
       <div id="account">

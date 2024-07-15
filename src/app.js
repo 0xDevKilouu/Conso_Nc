@@ -1,3 +1,6 @@
+//* Fichier "main" *//
+//* Importation des pages, routage des pages *//
+
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';

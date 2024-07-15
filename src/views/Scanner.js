@@ -1,3 +1,5 @@
+//* Logique du scanner + récupérations des inforamtions produits (surment le dissocié et en faire un autre fichier séparé) *//
+
 import { BrowserBarcodeReader, NotFoundException } from '@zxing/library';
 import axios from 'axios';
 
@@ -66,12 +68,12 @@ function startScanning() {
   codeReader.decodeFromVideoDevice(undefined, videoElement, (result, err) => {
     if (result) {
       console.log(result);
-      stopScanning(false);  // Don't stop video stream
+      stopScanning(false);  // n'éteind pas le stream vidéo
       fetchProductInfo(result.text);
     }
     if (err && !(err instanceof NotFoundException)) {
       console.error(err);
-      stopScanning(false);  // Don't stop video stream
+      stopScanning(false);  // n'éteind pas le stream vidéo
     }
   });
 }

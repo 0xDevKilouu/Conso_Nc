@@ -1,6 +1,6 @@
 {
-    "name": "LocalFood NC",
-    "short_name": "LocalFood",
+    "name": "Conso NC",
+    "short_name": "ConsoNC",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
