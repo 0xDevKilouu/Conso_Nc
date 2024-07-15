@@ -73,7 +73,7 @@ function startScanning() {
     }
     if (err && !(err instanceof NotFoundException)) {
       console.error(err);
-      stopScanning(false);  // fait en sorte de ne pas éteindre pas le stream vidéo
+      stopScanning(false);  // n'éteind pas le stream vidéo
     }
   });
 }
