@@ -68,12 +68,12 @@ function startScanning() {
   codeReader.decodeFromVideoDevice(undefined, videoElement, (result, err) => {
     if (result) {
       console.log(result);
-      stopScanning(false);  // n'éteind pas le stream vidéo
+      stopScanning(false);  // fait en sorte de ne pas éteindre pas le stream vidéo
       fetchProductInfo(result.text);
     }
     if (err && !(err instanceof NotFoundException)) {
       console.error(err);
-      stopScanning(false);  // n'éteind pas le stream vidéo
+      stopScanning(false);  // fait en sorte de ne pas éteindre pas le stream vidéo
     }
   });
 }
@@ -120,7 +120,7 @@ function fetchProductInfo(barcode) {
       if (response.data.status === 1) {
         displayProductInfo(response.data.product);
       } else {
-        displayErrorMessage('Produit non trouvé.');
+        displayErrorMessage('Produit non trouvé ou inéxistant dans notre base de donnée.');
       }
     })
     .catch(error => {
