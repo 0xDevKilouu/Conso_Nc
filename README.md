@@ -1,9 +1,9 @@
 # -Conso NC
----------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Procédure / Logiques / Dépendances / HELP 
 
-Fichiers :
+# Fichiers :
   - app.js => fichier .main
   - Scanner.js => Fonctions du Scanner
   - Promo.js => Fonctions des Promo
@@ -14,8 +14,7 @@ Fichiers :
   - styles.css => Logique et affichage du l'Apps
   - manifest.json => Information + Identitée de l'Apps
 
-
-Scanner + Informations produits : 
+# Scanner + Informations produits : 
   - Récupération information produit via la requête API (`https://world.openfoodfacts.org/api/v0/product/ '${barcode}.json' `)
   - '${barcode}.json' Ce fera remplacer automatiquement par le code EAN 13 du produit scanné 
   - Récupération du grade nutriscore en image avec lettrage "A,B,C,D,E" et couleur
@@ -38,4 +37,14 @@ Scanner + Informations produits :
       - Sel
 
 
+# To do --> 
+  - Logique de compte "Account" --> Google connexion, or user simple 
+  - Mettre en place la BDD et logique de compte
+  - Mettre en place "Ma liste" création liste de course
+  - Création et mise en place du BACKEND ADMIN, pour toutes demandes de "PUBLICITE"
+  - Mise en place du tunel de vente "ePaync" 
+  - Voir pour API V2 et V3, (V3 en develloppement)
+
+
+  - Voir l'UI / UX 
   
