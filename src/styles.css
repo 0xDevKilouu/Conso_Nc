@@ -473,7 +473,11 @@ body {
 
 /* Styles pour les écrans d'ordinateur */
 @media (min-width: 1024px) {
-  .navbar {
-    justify-content: space-between;
+  .navigation {
+    max-width: none; /* Annule la limitation de largeur */
+    width: 80%; /* Largeur de la barre de navigation sur écran large */
+    justify-content: space-around; /* Répartit l'espace autour des éléments */
+    left: 50%;
+    transform: translateX(-50%); /* Centre horizontalement */
   }
 }
