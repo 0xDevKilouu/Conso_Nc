@@ -470,3 +470,10 @@ body {
     bottom: env(safe-area-inset-bottom); /* env Pour iPhone avec barre de navigation en bas */
   }
 }
+
+/* Styles pour les écrans d'ordinateur */
+@media (min-width: 1024px) {
+  .navbar {
+    justify-content: space-between;
+  }
+}
