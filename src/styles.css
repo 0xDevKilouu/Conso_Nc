@@ -456,6 +456,84 @@ body {
   transform: scale(1.05);
 }
 
+
+/* Styles pour la section promo */
+#promo {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--primary-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  color: var(--bg-default);
+}
+
+#promo h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#promo p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.add-promo {
+  margin-bottom: 20px;
+}
+
+.add-promo h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.add-promo form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-promo input, .add-promo button {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.add-promo button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  border: none;
+  cursor: pointer;
+}
+
+.add-promo button:hover {
+  background-color: #e33a3d;
+}
+
+.promo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.promo-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.promo-item h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.promo-item p {
+  font-size: 16px;
+}
+
+
+
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
   #scannerFrame {
