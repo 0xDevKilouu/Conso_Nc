@@ -459,7 +459,7 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: var(--primary-white);
@@ -480,36 +480,19 @@ body {
   margin-bottom: 20px;
 }
 
-.add-promo {
-  margin-bottom: 20px;
-}
-
-.add-promo h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.add-promo form {
-  display: flex;
-  flex-direction: column;
-}
-
-.add-promo input, .add-promo button {
-  margin-bottom: 10px;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.add-promo button {
+#add-promo-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
   background-color: var(--primary-red);
   color: var(--primary-white);
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.add-promo button:hover {
+#add-promo-button:hover {
   background-color: #e33a3d;
 }
 
@@ -519,17 +502,81 @@ body {
 }
 
 .promo-item {
+  display: flex;
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-.promo-item h3 {
+.promo-product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.promo-details {
+  flex-grow: 1;
+}
+
+.promo-details h3 {
   font-size: 18px;
   margin-bottom: 5px;
 }
 
-.promo-item p {
+.promo-details p {
   font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.company-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.promo-form-container {
+  padding: 20px;
+  background-color: var(--primary-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.promo-form-container h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.promo-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-form-container input,
+.promo-form-container textarea,
+.promo-form-container button {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.promo-form-container button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  border: none;
+  cursor: pointer;
+}
+
+.promo-form-container button:hover {
+  background-color: #e33a3d;
+}
+
+.hidden {
+  display: none;
 }
 
 
