@@ -11,7 +11,8 @@
     "license": "ISC",
     "dependencies": {
         "@zxing/library": "^0.21.1",
-        "axios": "^1.7.2"
+        "axios": "^1.7.2",
+        "firebase": "^10.12.4"
     },
     "devDependencies": {
         "@babel/core": "^7.24.7",
