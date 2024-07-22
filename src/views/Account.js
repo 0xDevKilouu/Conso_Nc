@@ -1,4 +1,4 @@
-import { auth, db } from '../data/firebaseConfig'; // Chemin relatif correct
+import { auth, db } from '../data/firebaseConfig'; // Utilisez un chemin relatif correct
 
 const Account = () => {
   const user = auth.currentUser;
