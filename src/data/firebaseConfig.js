@@ -12,8 +12,12 @@ const firebaseConfig = {
     measurementId: "G-BY69W74409"
   };
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
 
-export { auth, db };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+  export { auth, db };
