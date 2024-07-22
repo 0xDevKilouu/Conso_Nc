@@ -1,9 +1,9 @@
-import { auth } from '../data/firebaseConfig';
+import { auth, googleProvider } from '../data/firebaseConfig';
 
 const Account = () => {
   const renderUserInfo = (user) => `
     <div id="user-info">
-      <p>Bienvenue, ${user.email}</p>
+      <p>Bienvenue, ${user.displayName || user.email}</p>
       <button id="logout-button">Déconnexion</button>
     </div>
   `;
@@ -15,10 +15,15 @@ const Account = () => {
       <button type="button" id="login-button">Connexion</button>
       <button type="button" id="show-signup-form-button">Inscription</button>
     </form>
+    <div id="google-login-button">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+      <span>Se connecter avec Google</span>
+    </div>
   `;
 
   const renderSignupForm = () => `
     <form id="signup-form">
+      <input type="text" id="signup-name" placeholder="Nom" required>
       <input type="email" id="signup-email" placeholder="Email" required>
       <input type="password" id="signup-password" placeholder="Mot de passe" required>
       <button type="button" id="signup-button">S'inscrire</button>
@@ -43,9 +48,11 @@ const Account = () => {
     } else {
       const loginButton = document.getElementById('login-button');
       const signupFormButton = document.getElementById('show-signup-form-button');
-      if (loginButton && signupFormButton) {
+      const googleLoginButton = document.getElementById('google-login-button');
+      if (loginButton && signupFormButton && googleLoginButton) {
         loginButton.addEventListener('click', handleLogin);
         signupFormButton.addEventListener('click', showSignupForm);
+        googleLoginButton.addEventListener('click', handleGoogleLogin);
       }
     }
   };
@@ -70,14 +77,32 @@ const Account = () => {
   };
 
   const handleSignup = async () => {
+    const name = document.getElementById('signup-name').value;
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
+    if (password.length < 6) {
+      alert('Le mot de passe doit contenir au moins 6 caractères.');
+      return;
+    }
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      await userCredential.user.updateProfile({
+        displayName: name,
+      });
       alert('Inscription réussie');
       handleAuthStateChange();
     } catch (error) {
       alert('Erreur d\'inscription: ' + error.message);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await auth.signInWithPopup(googleProvider);
+      alert('Connexion avec Google réussie');
+      handleAuthStateChange();
+    } catch (error) {
+      alert('Erreur de connexion avec Google: ' + error.message);
     }
   };
 
@@ -105,9 +130,11 @@ const Account = () => {
     document.getElementById('content').innerHTML = renderLoginForm();
     const loginButton = document.getElementById('login-button');
     const signupFormButton = document.getElementById('show-signup-form-button');
-    if (loginButton && signupFormButton) {
+    const googleLoginButton = document.getElementById('google-login-button');
+    if (loginButton && signupFormButton && googleLoginButton) {
       loginButton.addEventListener('click', handleLogin);
       signupFormButton.addEventListener('click', showSignupForm);
+      googleLoginButton.addEventListener('click', handleGoogleLogin);
     }
   };
 

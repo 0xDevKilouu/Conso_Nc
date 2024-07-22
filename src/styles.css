@@ -591,7 +591,7 @@ body {
   text-align: center;
 }
 
-#login-form input {
+#login-form input, #signup-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -599,7 +599,7 @@ body {
   border: 1px solid #ddd;
 }
 
-#login-form button {
+#login-form button, #signup-form button {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -610,8 +610,26 @@ body {
   cursor: pointer;
 }
 
-#login-form button:hover {
+#login-form button:hover, #signup-form button:hover {
   background-color: #e33a3d;
+}
+
+#google-login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #757575;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#google-login-button img {
+  width: 20px;
+  margin-right: 10px;
 }
 
 
