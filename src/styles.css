@@ -580,6 +580,41 @@ body {
 }
 
 
+/* Partie compte */
+#account {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--primary-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+#login-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#login-form button:hover {
+  background-color: #e33a3d;
+}
+
+
 
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
