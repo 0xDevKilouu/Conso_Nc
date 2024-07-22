@@ -9,21 +9,21 @@ const Account = () => {
   `;
 
   const renderLoginForm = () => `
-    <div id="login-form">
+    <form id="login-form">
       <input type="email" id="email" placeholder="Email" required>
       <input type="password" id="password" placeholder="Mot de passe" required>
-      <button id="login-button">Connexion</button>
-      <button id="show-signup-form-button">Inscription</button>
-    </div>
+      <button type="button" id="login-button">Connexion</button>
+      <button type="button" id="show-signup-form-button">Inscription</button>
+    </form>
   `;
 
   const renderSignupForm = () => `
-    <div id="signup-form">
+    <form id="signup-form">
       <input type="email" id="signup-email" placeholder="Email" required>
       <input type="password" id="signup-password" placeholder="Mot de passe" required>
-      <button id="signup-button">S'inscrire</button>
-      <button id="show-login-form-button">Retour</button>
-    </div>
+      <button type="button" id="signup-button">S'inscrire</button>
+      <button type="button" id="show-login-form-button">Retour</button>
+    </form>
   `;
 
   const renderAccountPage = (user) => `
@@ -69,7 +69,8 @@ const Account = () => {
     const password = document.getElementById('password').value;
     console.log('Login Attempt:', { email, password });
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      const userCredential = await auth.signInWithEmailAndPassword(email, password);
+      console.log('Login Success:', userCredential);
       alert('Connexion réussie');
       handleAuthStateChange();
     } catch (error) {
@@ -83,7 +84,8 @@ const Account = () => {
     const password = document.getElementById('signup-password').value;
     console.log('Signup Attempt:', { email, password });
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+      console.log('Signup Success:', userCredential);
       alert('Inscription réussie');
       handleAuthStateChange();
     } catch (error) {
