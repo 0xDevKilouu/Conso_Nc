@@ -1,4 +1,4 @@
-import { auth, db } from './data/firebaseConfig';
+import { auth, db } from '../data/firebaseConfig';
 
 const Account = () => {
   // Event listener for the add promo button
