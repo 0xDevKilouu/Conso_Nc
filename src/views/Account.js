@@ -36,8 +36,10 @@ const Account = () => {
   const attachEventListeners = () => {
     const user = auth.currentUser;
     if (user) {
+      console.log('Attaching event listener to logout button');
       document.getElementById('logout-button').addEventListener('click', handleLogout);
     } else {
+      console.log('Attaching event listeners to login and signup buttons');
       document.getElementById('login-button').addEventListener('click', handleLogin);
       document.getElementById('show-signup-form-button').addEventListener('click', showSignupForm);
     }
@@ -45,6 +47,7 @@ const Account = () => {
 
   const handleAuthStateChange = () => {
     auth.onAuthStateChanged((user) => {
+      console.log('Auth state changed:', user);
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
     });
@@ -90,18 +93,23 @@ const Account = () => {
   };
 
   const showSignupForm = () => {
+    console.log('Showing signup form');
     document.getElementById('content').innerHTML = renderSignupForm();
     document.getElementById('signup-button').addEventListener('click', handleSignup);
     document.getElementById('show-login-form-button').addEventListener('click', showLoginForm);
   };
 
   const showLoginForm = () => {
+    console.log('Showing login form');
     document.getElementById('content').innerHTML = renderLoginForm();
     document.getElementById('login-button').addEventListener('click', handleLogin);
     document.getElementById('show-signup-form-button').addEventListener('click', showSignupForm);
   };
 
-  document.addEventListener('DOMContentLoaded', handleAuthStateChange);
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('Document loaded');
+    handleAuthStateChange();
+  });
 
   return renderAccountPage(auth.currentUser);
 };
