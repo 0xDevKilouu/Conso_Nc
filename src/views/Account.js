@@ -1,4 +1,6 @@
+// Account.js
 import { auth, googleProvider } from '../data/firebaseConfig';
+import { handleLogin, handleSignup, handleGoogleLogin, handleLogout } from '../data/auth';
 
 const Account = () => {
   const renderUserInfo = (user) => `
@@ -62,58 +64,6 @@ const Account = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
     });
-  };
-
-  const handleLogin = async () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      alert('Connexion réussie');
-      handleAuthStateChange();
-    } catch (error) {
-      alert('Erreur de connexion: ' + error.message);
-    }
-  };
-
-  const handleSignup = async () => {
-    const name = document.getElementById('signup-name').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
-    if (password.length < 6) {
-      alert('Le mot de passe doit contenir au moins 6 caractères.');
-      return;
-    }
-    try {
-      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-      await userCredential.user.updateProfile({
-        displayName: name,
-      });
-      alert('Inscription réussie');
-      handleAuthStateChange();
-    } catch (error) {
-      alert('Erreur d\'inscription: ' + error.message);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await auth.signInWithPopup(googleProvider);
-      alert('Connexion avec Google réussie');
-      handleAuthStateChange();
-    } catch (error) {
-      alert('Erreur de connexion avec Google: ' + error.message);
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      alert('Déconnexion réussie');
-      handleAuthStateChange();
-    } catch (error) {
-      alert('Erreur de déconnexion: ' + error.message);
-    }
   };
 
   const showSignupForm = () => {
