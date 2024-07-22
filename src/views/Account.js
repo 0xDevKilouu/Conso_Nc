@@ -1,4 +1,4 @@
-import { auth, db } from '../data/firebaseConfig'; // Utilisez un chemin relatif correct
+import { auth } from '../data/firebaseConfig';
 
 const Account = () => {
   const user = auth.currentUser;
@@ -27,45 +27,50 @@ const Account = () => {
     </div>
   `;
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('content').innerHTML = renderAccountPage();
+  const handleAuthStateChange = () => {
+    auth.onAuthStateChanged((user) => {
+      document.getElementById('content').innerHTML = renderAccountPage();
+      if (user) {
+        document.getElementById('logout-button').addEventListener('click', handleLogout);
+      } else {
+        document.getElementById('login-button').addEventListener('click', handleLogin);
+        document.getElementById('signup-button').addEventListener('click', handleSignup);
+      }
+    });
+  };
 
-    if (isLoggedIn) {
-      document.getElementById('logout-button').addEventListener('click', () => {
-        auth.signOut().then(() => {
-          alert('Déconnexion réussie');
-          document.getElementById('content').innerHTML = renderLoginForm();
-        });
-      });
-    } else {
-      const loginButton = document.getElementById('login-button');
-      const signupButton = document.getElementById('signup-button');
-
-      loginButton.addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        try {
-          await auth.signInWithEmailAndPassword(email, password);
-          alert('Connexion réussie');
-          document.getElementById('content').innerHTML = renderUserInfo(auth.currentUser);
-        } catch (error) {
-          alert(error.message);
-        }
-      });
-
-      signupButton.addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        try {
-          await auth.createUserWithEmailAndPassword(email, password);
-          alert('Inscription réussie');
-          document.getElementById('content').innerHTML = renderUserInfo(auth.currentUser);
-        } catch (error) {
-          alert(error.message);
-        }
-      });
+  const handleLogin = async () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      alert('Connexion réussie');
+    } catch (error) {
+      alert(error.message);
     }
-  });
+  };
+
+  const handleSignup = async () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      alert('Inscription réussie');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      alert('Déconnexion réussie');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', handleAuthStateChange);
 
   return renderAccountPage();
 };
