@@ -1,4 +1,4 @@
-import { auth, db } from '../data/firebaseConfig';
+import { auth, db } from 'src/data/firebaseConfig.js';
 
 const Account = () => {
   const user = auth.currentUser;
