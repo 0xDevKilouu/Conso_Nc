@@ -53,24 +53,28 @@ const Account = () => {
   const handleLogin = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    console.log('Login Attempt:', { email, password }); // Debug log
     try {
       await auth.signInWithEmailAndPassword(email, password);
       alert('Connexion réussie');
       handleAuthStateChange();
     } catch (error) {
-      alert(error.message);
+      alert('Erreur de connexion: ' + error.message);
+      console.error('Login Error:', error); // Debug log
     }
   };
 
   const handleSignup = async () => {
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
+    console.log('Signup Attempt:', { email, password }); // Debug log
     try {
       await auth.createUserWithEmailAndPassword(email, password);
       alert('Inscription réussie');
       handleAuthStateChange();
     } catch (error) {
-      alert(error.message);
+      alert('Erreur d\'inscription: ' + error.message);
+      console.error('Signup Error:', error); // Debug log
     }
   };
 
@@ -80,7 +84,8 @@ const Account = () => {
       alert('Déconnexion réussie');
       handleAuthStateChange();
     } catch (error) {
-      alert(error.message);
+      alert('Erreur de déconnexion: ' + error.message);
+      console.error('Logout Error:', error); // Debug log
     }
   };
 
