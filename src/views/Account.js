@@ -51,6 +51,7 @@ const Account = () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       alert('Connexion réussie');
+      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
     } catch (error) {
       alert(error.message);
     }
@@ -62,6 +63,7 @@ const Account = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
       alert('Inscription réussie');
+      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
     } catch (error) {
       alert(error.message);
     }
@@ -71,6 +73,7 @@ const Account = () => {
     try {
       await auth.signOut();
       alert('Déconnexion réussie');
+      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
     } catch (error) {
       alert(error.message);
     }
