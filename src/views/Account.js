@@ -26,22 +26,20 @@ const Account = () => {
     </div>
   `;
 
-  const renderAccountPage = (user) => `
-    <div id="account">
-      <h2>Compte</h2>
-      ${user ? renderUserInfo(user) : renderLoginForm()}
-    </div>
-  `;
+  const attachEventListeners = () => {
+    const user = auth.currentUser;
+    if (user) {
+      document.getElementById('logout-button').addEventListener('click', handleLogout);
+    } else {
+      document.getElementById('login-button').addEventListener('click', handleLogin);
+      document.getElementById('show-signup-form-button').addEventListener('click', showSignupForm);
+    }
+  };
 
   const handleAuthStateChange = () => {
     auth.onAuthStateChanged((user) => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
-      if (user) {
-        document.getElementById('logout-button').addEventListener('click', handleLogout);
-      } else {
-        document.getElementById('login-button').addEventListener('click', handleLogin);
-        document.getElementById('show-signup-form-button').addEventListener('click', showSignupForm);
-      }
+      attachEventListeners();
     });
   };
 
@@ -51,7 +49,7 @@ const Account = () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       alert('Connexion réussie');
-      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
+      handleAuthStateChange();
     } catch (error) {
       alert(error.message);
     }
@@ -63,7 +61,7 @@ const Account = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
       alert('Inscription réussie');
-      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
+      handleAuthStateChange();
     } catch (error) {
       alert(error.message);
     }
@@ -73,7 +71,7 @@ const Account = () => {
     try {
       await auth.signOut();
       alert('Déconnexion réussie');
-      handleAuthStateChange(); // Rafraîchir l'état de l'authentification
+      handleAuthStateChange();
     } catch (error) {
       alert(error.message);
     }
