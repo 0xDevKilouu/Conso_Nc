@@ -26,6 +26,13 @@ const Account = () => {
     </div>
   `;
 
+  const renderAccountPage = (user) => `
+    <div id="account">
+      <h2>Compte</h2>
+      ${user ? renderUserInfo(user) : renderLoginForm()}
+    </div>
+  `;
+
   const attachEventListeners = () => {
     const user = auth.currentUser;
     if (user) {
