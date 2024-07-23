@@ -23,7 +23,7 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // Ajoutez le middleware CORS ici
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
