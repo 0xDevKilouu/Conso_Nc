@@ -17,6 +17,7 @@ const routes = {
 };
 
 const loadView = (view) => {
+  console.log(`Loading view: ${view}`);
   document.getElementById('content').innerHTML = routes[view]();
   if (view === 'scanner') {
     initializeScanner();
@@ -26,10 +27,22 @@ const loadView = (view) => {
 const setupNavbar = () => {
   document.getElementById('navbar').innerHTML = Navbar();
 
-  document.getElementById('homeButton').addEventListener('click', () => loadView('home'));
-  document.getElementById('scanButton').addEventListener('click', () => loadView('scanner'));
-  document.getElementById('promoButton').addEventListener('click', () => loadView('promo'));
-  document.getElementById('accountButton').addEventListener('click', () => loadView('account'));
+  document.getElementById('homeButton').addEventListener('click', () => {
+    console.log('Home button clicked');
+    loadView('home');
+  });
+  document.getElementById('scanButton').addEventListener('click', () => {
+    console.log('Scan button clicked');
+    loadView('scanner');
+  });
+  document.getElementById('promoButton').addEventListener('click', () => {
+    console.log('Promo button clicked');
+    loadView('promo');
+  });
+  document.getElementById('accountButton').addEventListener('click', () => {
+    console.log('Account button clicked');
+    loadView('account');
+  });
 
   const listItems = document.querySelectorAll('.list');
   function activateLink() {
@@ -45,6 +58,8 @@ const initApp = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded event fired');
+  
   // Load Ionicons
   const script1 = document.createElement('script');
   script1.type = 'module';

@@ -12,12 +12,15 @@ const Account = () => {
     <div id="firebaseui-auth-container"></div>
   `;
 
-  const renderAccountPage = (user) => `
-    <div id="account">
-      <h2>Compte</h2>
-      ${user ? renderUserInfo(user) : renderAuthUI()}
-    </div>
-  `;
+  const renderAccountPage = (user) => {
+    console.log('Rendering account page with user:', user);
+    return `
+      <div id="account">
+        <h2>Compte</h2>
+        ${user ? renderUserInfo(user) : renderAuthUI()}
+      </div>
+    `;
+  };
 
   const attachEventListeners = () => {
     const user = auth.currentUser;
@@ -37,6 +40,7 @@ const Account = () => {
 
   const handleAuthStateChange = () => {
     auth.onAuthStateChanged((user) => {
+      console.log('Auth state changed:', user);
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
@@ -46,6 +50,7 @@ const Account = () => {
   };
 
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event fired');
     handleAuthStateChange();
   });
 
