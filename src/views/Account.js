@@ -45,6 +45,7 @@ const Account = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
+        console.log('Initializing Firebase UI');
         ui.start('#firebaseui-auth-container', uiConfig);
       }
     });
