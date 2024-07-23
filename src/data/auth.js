@@ -1,4 +1,3 @@
-// auth.js
 import { auth, googleProvider } from '../data/firebaseConfig';
 
 export const handleLogin = async () => {
@@ -8,6 +7,7 @@ export const handleLogin = async () => {
     await auth.signInWithEmailAndPassword(email, password);
     alert('Connexion réussie');
   } catch (error) {
+    console.error('Erreur de connexion:', error);
     alert('Erreur de connexion: ' + error.message);
   }
 };
@@ -25,6 +25,7 @@ export const handleSignup = async () => {
     await userCredential.user.updateProfile({ displayName: name });
     alert('Inscription réussie');
   } catch (error) {
+    console.error('Erreur d\'inscription:', error);
     alert('Erreur d\'inscription: ' + error.message);
   }
 };
@@ -34,6 +35,7 @@ export const handleGoogleLogin = async () => {
     await auth.signInWithPopup(googleProvider);
     alert('Connexion avec Google réussie');
   } catch (error) {
+    console.error('Erreur de connexion avec Google:', error);
     alert('Erreur de connexion avec Google: ' + error.message);
   }
 };
@@ -43,6 +45,7 @@ export const handleLogout = async () => {
     await auth.signOut();
     alert('Déconnexion réussie');
   } catch (error) {
+    console.error('Erreur de déconnexion:', error);
     alert('Erreur de déconnexion: ' + error.message);
   }
 };
