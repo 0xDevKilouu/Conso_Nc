@@ -30,6 +30,7 @@ const Account = () => {
         logoutButton.addEventListener('click', () => {
           auth.signOut().then(() => {
             alert('Déconnexion réussie');
+            handleAuthStateChange();  // Re-render the auth UI after logout
           }).catch((error) => {
             console.error('Erreur de déconnexion:', error);
           });
