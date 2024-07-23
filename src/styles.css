@@ -600,6 +600,11 @@ body {
   color: var(--primary-white);
 }
 
+.mdl-textfield__input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield; /* Ajouté pour compatibilité */
+}
+
 
 
 
