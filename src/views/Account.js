@@ -1,6 +1,5 @@
-// Account.js
-import { auth, googleProvider } from '../data/firebaseConfig';
-import { handleLogin, handleSignup, handleGoogleLogin, handleLogout } from '../data/auth';
+import { auth } from './firebaseConfig';
+import { handleLogin, handleSignup, handleGoogleLogin, handleLogout } from './auth';
 
 const Account = () => {
   const renderUserInfo = (user) => `
