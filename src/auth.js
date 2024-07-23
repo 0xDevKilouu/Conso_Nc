@@ -1,4 +1,4 @@
-import { auth, googleProvider } from './firebaseConfig';
+import { auth, googleProvider } from '../src/firebaseConfig';
 
 export const handleLogin = async () => {
   const email = document.getElementById('email').value;
