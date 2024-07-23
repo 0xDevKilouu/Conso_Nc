@@ -1,6 +1,5 @@
-// Importer Firebase
-import firebase from "firebase/app";
-import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
 import * as firebaseui from 'firebaseui';
 
 // Configuration Firebase
@@ -15,16 +14,16 @@ const firebaseConfig = {
 };
 
 // Initialiser Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 // Configurer FirebaseUI
 const uiConfig = {
   signInSuccessUrl: '/',
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    GoogleAuthProvider.PROVIDER_ID,
+    EmailAuthProvider.PROVIDER_ID,
   ],
 };
 
