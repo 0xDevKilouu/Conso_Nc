@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
-// Configuration Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCenXl0HoRahcnsDZuHe_fw3dli97shei0",
   authDomain: "consonc-26043.firebaseapp.com",
@@ -13,7 +12,6 @@ const firebaseConfig = {
   measurementId: "G-BY69W74409"
 };
 
-// Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
