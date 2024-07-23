@@ -60,6 +60,11 @@ const initApp = () => {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded event fired');
   
+  fetch('https://conso-nc.vercel.app/secure-data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+  
   // Load Ionicons
   const script1 = document.createElement('script');
   script1.type = 'module';
