@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import * as firebaseui from 'firebaseui';
 
+// Configuration Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCenXl0HoRahcnsDZuHe_fw3dli97shei0",
   authDomain: "consonc-26043.firebaseapp.com",
@@ -12,9 +14,21 @@ const firebaseConfig = {
   measurementId: "G-BY69W74409"
 };
 
+// Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const analytics = getAnalytics(app);
 const googleProvider = new GoogleAuthProvider();
 
-export { auth, googleProvider };
+// Configure FirebaseUI.
+const uiConfig = {
+  signInSuccessUrl: '/',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+};
+
+const ui = new firebaseui.auth.AuthUI(auth);
+
+export { auth, googleProvider, ui, uiConfig };
