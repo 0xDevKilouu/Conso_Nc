@@ -1,8 +1,3 @@
-function initializeGoogleAuth() {
-  console.log('Google API loaded.');
-  // Toute initialisation supplémentaire si nécessaire
-}
-
 //* Fichier "main" *//
 //* Importation des pages, routage des pages *//
 
