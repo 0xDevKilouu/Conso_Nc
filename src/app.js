@@ -58,12 +58,17 @@ const initApp = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded event fired');
-  
   fetch('https://conso-nc.vercel.app/secure-data')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
+
+  initApp();
   
   // Load Ionicons
   const script1 = document.createElement('script');
@@ -75,6 +80,4 @@ document.addEventListener('DOMContentLoaded', () => {
   script2.noModule = true;
   script2.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
   document.head.appendChild(script2);
-
-  initApp();
 });
