@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const admin = require('firebase-admin');
+const cors = require('cors');
 
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
@@ -22,6 +23,7 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors()); // Ajoutez le middleware CORS ici
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
