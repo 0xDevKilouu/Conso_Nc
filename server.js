@@ -30,13 +30,16 @@ app.get('/secure-data', async (req, res) => {
   try {
     const data = await admin.firestore().collection('secure-collection').get();
     if (!data.empty) {
-      res.send(data.docs.map(doc => doc.data()));
+      const jsonData = data.docs.map(doc => doc.data());
+      console.log('Data retrieved successfully:', jsonData);  // Log retrieved data
+      res.json(jsonData);
     } else {
-      res.send([]);
+      console.log('No data found');  // Log if no data found
+      res.json([]);
     }
   } catch (error) {
     console.error('Error retrieving data:', error.message);
-    res.status(500).send({ error: 'Error retrieving data' });
+    res.status(500).json({ error: 'Error retrieving data' });
   }
 });
 

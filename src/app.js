@@ -65,11 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       return response.json();
     })
-    .then(data => console.log(data))
+    .then(data => {
+      console.log('Data received:', data);
+      if (Array.isArray(data)) {
+        console.log(data);
+      } else {
+        console.error('Received data is not an array:', data);
+      }
+    })
     .catch(error => console.error('Error:', error));
 
   initApp();
-  
+
   // Load Ionicons
   const script1 = document.createElement('script');
   script1.type = 'module';
