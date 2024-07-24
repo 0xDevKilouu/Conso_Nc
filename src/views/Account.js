@@ -1,5 +1,5 @@
 // Account.js
-import { auth, ui, uiConfig } from './firebaseConfig';
+import { auth, ui, uiConfig } from '../firebaseConfig';
 
 const renderUserInfo = (user) => `
   <div id="user-info">
