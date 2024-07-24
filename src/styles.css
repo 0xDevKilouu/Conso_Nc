@@ -580,9 +580,10 @@ body {
 }
 
 
-#firebaseui-auth-container {
+/* Améliorations pour la section Compte */
+#account-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   background-color: var(--primary-white);
@@ -591,20 +592,32 @@ body {
   text-align: center;
 }
 
-#firebaseui-auth-container .firebaseui-idp-button {
-  width: 100%;
-  margin-bottom: 10px;
+#account-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--bg-default);
 }
 
-#firebaseui-auth-container .firebaseui-idp-button .firebaseui-idp-text {
+#account-container p {
+  font-size: 16px;
+  color: #333;
+}
+
+#account-container button {
+  background-color: var(--primary-red);
   color: var(--primary-white);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
 }
 
-.mdl-textfield__input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield; /* Ajouté pour compatibilité */
+#account-container button:hover {
+  background-color: #e33a3d;
 }
-
 
 
 
