@@ -37,7 +37,12 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = ['https://consotest.netlify.app', 'https://conso-nc.vercel.app', 'http://localhost:3000'];
+const allowedOrigins = [
+    'https://consotest.netlify.app',
+    'https://conso-nc.vercel.app',
+    'http://localhost:3000',
+    'https://conso-1cbjp0poe-kiloudevs-projects.vercel.app'  
+  ];
 
 const corsOptions = {
   origin: function (origin, callback) {
