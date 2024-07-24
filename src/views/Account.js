@@ -8,7 +8,10 @@ const renderUserInfo = (user) => `
 `;
 
 const renderAuthUI = () => `
-  <div id="firebaseui-auth-container"></div>
+  <div id="account-container">
+    <h2>Connexion</h2>
+    <div id="firebaseui-auth-container"></div>
+  </div>
 `;
 
 const renderAccountPage = (user) => {
