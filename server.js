@@ -23,7 +23,19 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const allowedOrigins = ['https://consotest.netlify.app', 'https://conso-nc.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
