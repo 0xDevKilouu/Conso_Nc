@@ -1,3 +1,4 @@
+// Account.js
 import { auth, ui, uiConfig } from '../firebaseConfig';
 
 const Account = () => {
