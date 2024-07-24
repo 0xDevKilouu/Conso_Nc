@@ -37,29 +37,8 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Ajouter une règle générale pour tous les sous-domaines de vercel.app
-const allowedOrigins = [
-  'https://consotest.netlify.app',
-  'https://conso-nc.vercel.app',
-  'http://localhost:3000',
-  /\.vercel\.app$/  // Autoriser tous les sous-domaines de vercel.app
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log('Request origin:', origin);
-    if (allowedOrigins.some((allowedOrigin) => 
-      typeof allowedOrigin === 'string' ? allowedOrigin === origin : allowedOrigin.test(origin)
-    ) || !origin) {
-      callback(null, true);
-    } else {
-      console.error('Not allowed by CORS');
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
-
-app.use(cors(corsOptions));
+// Configuration CORS permissive pour le développement
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
