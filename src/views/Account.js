@@ -58,3 +58,5 @@ const handleAuthStateChange = () => {
 document.addEventListener('DOMContentLoaded', () => {
   handleAuthStateChange();
 });
+
+export default handleAuthStateChange;

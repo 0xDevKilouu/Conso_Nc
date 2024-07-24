@@ -1,3 +1,6 @@
+//* Fichier "main.js" *//
+//* Importation des pages, routage des pages *//
+
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
@@ -19,7 +22,7 @@ const loadView = (view) => {
   if (view === 'account') {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        document.getElementById('content').innerHTML = Account();
+        document.getElementById('content').innerHTML = Account(user);
       } else {
         document.getElementById('content').innerHTML = `<div id="firebaseui-auth-container"></div>`;
         import('firebaseui').then((firebaseui) => {
