@@ -1,6 +1,3 @@
-//* Fichier "main.js" *//
-//* Importation des pages, routage des pages *//
-
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
@@ -19,12 +16,14 @@ const routes = {
 
 const loadView = (view) => {
   console.log(`Loading view: ${view}`);
+  const content = document.getElementById('content');
+
   if (view === 'account') {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        document.getElementById('content').innerHTML = Account(user);
+        content.innerHTML = Account(user);
       } else {
-        document.getElementById('content').innerHTML = `<div id="firebaseui-auth-container"></div>`;
+        content.innerHTML = `<div id="firebaseui-auth-container"></div>`;
         import('firebaseui').then((firebaseui) => {
           const uiConfig = {
             signInSuccessUrl: '/#account',
@@ -39,7 +38,7 @@ const loadView = (view) => {
       }
     });
   } else {
-    document.getElementById('content').innerHTML = routes[view]();
+    content.innerHTML = routes[view] ? routes[view]() : Home();
     if (view === 'scanner') {
       initializeScanner();
     }
@@ -76,7 +75,9 @@ const setupNavbar = () => {
 
 const initApp = () => {
   setupNavbar();
-  loadView('home'); // Load the home view initially
+  const hash = window.location.hash.substring(1);
+  const initialView = hash || 'home';
+  loadView(initialView); // Load the initial view based on the URL hash or default to home
 };
 
 document.addEventListener('DOMContentLoaded', () => {
