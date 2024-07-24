@@ -12,26 +12,9 @@
     <div id="navbar"></div>
     <div id="content"></div>
   </div>
-  <!-- Ajouter le script Google Identity Services -->
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script>
-    function handleCredentialResponse(response) {
-      console.log("Encoded JWT ID token: " + response.credential);
-      // Utilisez la réponse de l'identifiant pour authentifier l'utilisateur sur votre backend.
-    }
-
-    window.onload = function () {
-      google.accounts.id.initialize({
-        client_id: '545413279038-qsivhgi9o357vq1chnfnh5jrsq3jbffu.apps.googleusercontent.com',
-        callback: handleCredentialResponse
-      });
-      google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"), // ID du conteneur où vous souhaitez rendre le bouton de connexion
-        { theme: "outline", size: "large" } // Options de personnalisation du bouton
-      );
-      google.accounts.id.prompt(); // Affiche la boîte de dialogue de connexion Google promptée automatiquement
-    }
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.8.0/firebaseui.js"></script>
   <script src="bundle.js"></script>
 </body>
 </html>
