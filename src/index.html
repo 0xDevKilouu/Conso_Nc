@@ -12,42 +12,26 @@
     <div id="navbar"></div>
     <div id="content"></div>
   </div>
-  <!-- Ajoutez ce script avant de charger l'API Google -->
+  <!-- Ajouter le script Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script>
-    function handleClientLoad() {
-      console.log("Google API client load started");
-      gapi.load('client:auth2', initClient);
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      // Utilisez la réponse de l'identifiant pour authentifier l'utilisateur sur votre backend.
     }
 
-    function initClient() {
-      console.log("Initializing Google API client");
-      gapi.client.init({
-        apiKey: 'AIzaSyCenXl0HoRahcnsDZuHe_fw3dli97shei0', 
-        clientId: '545413279038-qsivhgi9o357vq1chnfnh5jrsq3jbffu.apps.googleusercontent.com',
-        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-        scope: 'https://www.googleapis.com/auth/drive.metadata.readonly'
-      }).then(function () {
-        console.log("Google API client initialized");
-        // Handle sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-        // Handle the initial sign-in state.
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      }, function(error) {
-        console.log("Error initializing Google API client:", JSON.stringify(error, null, 2));
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: '545413279038-qsivhgi9o357vq1chnfnh5jrsq3jbffu.apps.googleusercontent.com',
+        callback: handleCredentialResponse
       });
-    }
-
-    function updateSigninStatus(isSignedIn) {
-      console.log("Sign-in status changed:", isSignedIn);
-      if (isSignedIn) {
-        console.log("Signed in");
-      } else {
-        console.log("Not signed in");
-      }
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"), // ID du conteneur où vous souhaitez rendre le bouton de connexion
+        { theme: "outline", size: "large" } // Options de personnalisation du bouton
+      );
+      google.accounts.id.prompt(); // Affiche la boîte de dialogue de connexion Google promptée automatiquement
     }
   </script>
-  <script src="https://apis.google.com/js/api.js" onload="handleClientLoad()"></script>
   <script src="bundle.js"></script>
 </body>
 </html>
