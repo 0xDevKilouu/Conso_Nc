@@ -1,5 +1,4 @@
 // Account.js
-
 function loadScript(src, callback) {
   const script = document.createElement('script');
   script.src = src;
@@ -8,7 +7,7 @@ function loadScript(src, callback) {
 }
 
 function initializeFirebaseApp() {
-  // Firebase Configuration
+  // Configuration Firebase
   const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -19,12 +18,12 @@ function initializeFirebaseApp() {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-  // Configure FirebaseUI
+  // Configurer FirebaseUI
   const uiConfig = {
     signInSuccessUrl: '/',
     signInOptions: [
@@ -93,7 +92,7 @@ function initializeFirebaseApp() {
   });
 }
 
-// Load Firebase scripts dynamically
+// Charger dynamiquement les scripts Firebase
 loadScript('https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js', () => {
   loadScript('https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js', () => {
     loadScript('https://cdn.firebase.com/libs/firebaseui/6.0.0/firebaseui.js', () => {
