@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
 import * as firebaseui from 'firebaseui';
 
-// Configuration Firebase
+// Configuration Firebas
 const firebaseConfig = {
   apiKey: "AIzaSyCenXl0HoRahcnsDZuHe_fw3dli97shei0",
   authDomain: "consonc-26043.firebaseapp.com",
