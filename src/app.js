@@ -4,7 +4,7 @@ import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
 import Account from './views/Account';
-import { auth } from './firebaseConfig';
+import { auth, firebase } from './firebaseConfig';
 
 const routes = {
   home: Home,
@@ -18,30 +18,13 @@ const loadView = (view) => {
   console.log(`Loading view: ${view}`);
   const content = document.getElementById('content');
 
-  if (view === 'account') {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        content.innerHTML = Account(user);
-      } else {
-        content.innerHTML = `<div id="firebaseui-auth-container"></div>`;
-        import('firebaseui').then((firebaseui) => {
-          const uiConfig = {
-            signInSuccessUrl: '/#account',
-            signInOptions: [
-              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            ],
-          };
-          const ui = new firebaseui.auth.AuthUI(auth);
-          ui.start('#firebaseui-auth-container', uiConfig);
-        });
-      }
-    });
-  } else {
-    content.innerHTML = routes[view] ? routes[view]() : Home();
+  if (routes[view]) {
+    content.innerHTML = routes[view]();
     if (view === 'scanner') {
       initializeScanner();
     }
+  } else {
+    content.innerHTML = Home();
   }
 };
 
@@ -73,11 +56,24 @@ const setupNavbar = () => {
   listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
+const checkAuthState = () => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      loadView('account');
+    } else {
+      loadView('home'); // Or redirect to login page if you have one
+    }
+  });
+};
+
 const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
-  const initialView = hash || 'home';
-  loadView(initialView); // Load the initial view based on the URL hash or default to home
+  if (hash === 'account') {
+    checkAuthState();
+  } else {
+    loadView(hash || 'home'); // Load the initial view based on the URL hash or default to home
+  }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
