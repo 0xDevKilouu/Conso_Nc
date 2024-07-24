@@ -36,6 +36,6 @@ const uiConfig = {
   }
 };
 
-const ui = new firebaseui.auth.AuthUI(auth);
+const ui = new firebaseui.auth.AuthUI(getAuth(app));  // Assurez-vous que c'est la même instance d'auth
 
 export { auth, googleProvider, ui, uiConfig };
