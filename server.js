@@ -38,7 +38,31 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Configuration CORS permissive pour le développement
-app.use(cors());
+const allowedOrigins = [
+  'https://consotest.netlify.app',
+  'https://conso-nc.vercel.app',
+  'http://localhost:3000',
+  /\.vercel\.app$/
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log('Request origin:', origin);
+    if (allowedOrigins.some((allowedOrigin) => 
+      typeof allowedOrigin === 'string' ? allowedOrigin === origin : allowedOrigin.test(origin)
+    ) || !origin) {
+      callback(null, true);
+    } else {
+      console.error('Not allowed by CORS');
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
@@ -57,6 +81,12 @@ app.get('/secure-data', async (req, res) => {
     console.error('Error retrieving data:', error.message);
     res.status(500).json({ error: 'Error retrieving data' });
   }
+});
+
+// Servir les fichiers statiques avec les en-têtes de sécurité appropriés
+app.get('*', (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
 });
 
 app.get('*', (req, res) => {
