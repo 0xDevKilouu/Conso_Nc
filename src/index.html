@@ -12,6 +12,41 @@
     <div id="navbar"></div>
     <div id="content"></div>
   </div>
+  <!-- Ajoutez ce script avant de charger l'API Google -->
+  <script>
+    function handleClientLoad() {
+      console.log("Google API client load started");
+      gapi.load('client:auth2', initClient);
+    }
+
+    function initClient() {
+      console.log("Initializing Google API client");
+      gapi.client.init({
+        apiKey: 'YOUR_FIREBASE_API_KEY', // Remplacez par votre clé API Firebase
+        clientId: '545413279038-qsivhgi9o357vq1chnfnh5jrsq3jbffu.apps.googleusercontent.com',
+        discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
+        scope: 'https://www.googleapis.com/auth/drive.metadata.readonly'
+      }).then(function () {
+        console.log("Google API client initialized");
+        // Handle sign-in state changes.
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      }, function(error) {
+        console.log("Error initializing Google API client:", JSON.stringify(error, null, 2));
+      });
+    }
+
+    function updateSigninStatus(isSignedIn) {
+      console.log("Sign-in status changed:", isSignedIn);
+      if (isSignedIn) {
+        console.log("Signed in");
+      } else {
+        console.log("Not signed in");
+      }
+    }
+  </script>
   <script src="https://apis.google.com/js/api.js" onload="handleClientLoad()"></script>
   <script src="bundle.js"></script>
 </body>

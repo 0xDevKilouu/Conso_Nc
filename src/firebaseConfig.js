@@ -38,42 +38,4 @@ const uiConfig = {
 
 const ui = new firebaseui.auth.AuthUI(auth);
 
-function handleClientLoad() {
-  console.log("Google API client load started");
-  gapi.load('client:auth2', initClient);
-}
-
-function initClient() {
-  console.log("Initializing Google API client");
-  gapi.client.init({
-    apiKey: process.env.FIREBASE_API_KEY,
-    clientId: '545413279038-qsivhgi9o357vq1chnfnh5jrsq3jbffu.apps.googleusercontent.com',
-    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-    scope: 'https://www.googleapis.com/auth/drive.metadata.readonly'
-  }).then(function () {
-    console.log("Google API client initialized");
-    // Handle sign-in state changes.
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-    // Handle the initial sign-in state.
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-  }, function(error) {
-    console.log("Error initializing Google API client:", JSON.stringify(error, null, 2));
-  });
-}
-
-function updateSigninStatus(isSignedIn) {
-  console.log("Sign-in status changed:", isSignedIn);
-  if (isSignedIn) {
-    console.log("Signed in");
-  } else {
-    console.log("Not signed in");
-  }
-}
-
-// Assurez-vous que gapi est chargé avant d'initialiser FirebaseUI
-document.addEventListener('DOMContentLoaded', () => {
-  handleClientLoad();
-});
-
 export { auth, googleProvider, ui, uiConfig };
