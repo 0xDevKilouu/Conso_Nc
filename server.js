@@ -3,7 +3,7 @@ const path = require('path');
 const admin = require('firebase-admin');
 const cors = require('cors');
 
-// Variables d'environnement de Firebase
+// Variables d'environnement de Firebas
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJECT_ID,
