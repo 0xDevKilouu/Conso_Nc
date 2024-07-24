@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const admin = require('firebase-admin');
 const cors = require('cors');
+require('dotenv').config(); // Charger les variables d'environnement
 
 console.log('Starting server.js');
 
@@ -17,44 +18,40 @@ console.log('FIREBASE_TOKEN_URI:', process.env.FIREBASE_TOKEN_URI);
 console.log('FIREBASE_AUTH_PROVIDER_CERT_URL:', process.env.FIREBASE_AUTH_PROVIDER_CERT_URL);
 console.log('FIREBASE_CLIENT_CERT_URL:', process.env.FIREBASE_CLIENT_CERT_URL);
 
-try {
-  const serviceAccount = {
-    type: process.env.FIREBASE_TYPE,
-    project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    client_id: process.env.FIREBASE_CLIENT_ID,
-    auth_uri: process.env.FIREBASE_AUTH_URI,
-    token_uri: process.env.FIREBASE_TOKEN_URI,
-    auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
-    client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
-  };
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
+};
 
-  console.log('Initializing Firebase Admin SDK');
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-  });
-} catch (error) {
-  console.error('Error initializing Firebase Admin SDK:', error.message);
-}
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = ['https://consotest.netlify.app', 'https://conso-nc.vercel.app'];
+const allowedOrigins = ['https://consotest.netlify.app', 'https://conso-nc.vercel.app', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log('Request origin:', origin);
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
+      console.error('Not allowed by CORS');
       callback(new Error('Not allowed by CORS'));
     }
   }
 };
 
-console.log('Setting up middleware');
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'dist')));
 
