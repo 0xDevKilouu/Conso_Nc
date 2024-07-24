@@ -1,12 +1,10 @@
-//* Fichier "main" *//
-//* Importation des pages, routage des pages *//
-
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
 import Account from './views/Account';
+import { auth } from './firebaseConfig';
 
 const routes = {
   home: Home,
@@ -18,9 +16,30 @@ const routes = {
 
 const loadView = (view) => {
   console.log(`Loading view: ${view}`);
-  document.getElementById('content').innerHTML = routes[view]();
-  if (view === 'scanner') {
-    initializeScanner();
+  if (view === 'account') {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        document.getElementById('content').innerHTML = Account();
+      } else {
+        document.getElementById('content').innerHTML = `<div id="firebaseui-auth-container"></div>`;
+        import('firebaseui').then((firebaseui) => {
+          const uiConfig = {
+            signInSuccessUrl: '/#account',
+            signInOptions: [
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+              firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+          };
+          const ui = new firebaseui.auth.AuthUI(auth);
+          ui.start('#firebaseui-auth-container', uiConfig);
+        });
+      }
+    });
+  } else {
+    document.getElementById('content').innerHTML = routes[view]();
+    if (view === 'scanner') {
+      initializeScanner();
+    }
   }
 };
 
