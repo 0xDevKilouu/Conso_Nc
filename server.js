@@ -3,25 +3,12 @@ const path = require('path');
 const admin = require('firebase-admin');
 const cors = require('cors');
 
-console.log('Initializing Firebase with the following service account:');
-console.log({
-    type: process.env.FIREBASE_TYPE,
-    project_id: process.env.FIREBASE_PROJECT_ID,
-    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : 'undefined',
-    client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    client_id: process.env.FIREBASE_CLIENT_ID,
-    auth_uri: process.env.FIREBASE_AUTH_URI,
-    token_uri: process.env.FIREBASE_TOKEN_URI,
-    auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
-    client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
-});
-
+// Variables d'environnement de Firebase
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJECT_ID,
   private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  private_key: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : 'undefined',
   client_email: process.env.FIREBASE_CLIENT_EMAIL,
   client_id: process.env.FIREBASE_CLIENT_ID,
   auth_uri: process.env.FIREBASE_AUTH_URI,
@@ -30,6 +17,7 @@ const serviceAccount = {
   client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL
 };
 
+// Initialisation de Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -37,6 +25,7 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configuration de CORS
 const allowedOrigins = ['https://consotest.netlify.app', 'https://conso-nc.vercel.app'];
 
 const corsOptions = {
@@ -50,6 +39,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+// Servir les fichiers statiques depuis le dossier 'dist'
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/secure-data', async (req, res) => {
@@ -69,6 +60,7 @@ app.get('/secure-data', async (req, res) => {
   }
 });
 
+// Rediriger toutes les autres requêtes vers index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
@@ -76,3 +68,8 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+
+
