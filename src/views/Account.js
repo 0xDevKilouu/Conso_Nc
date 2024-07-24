@@ -1,5 +1,4 @@
-// Account.js
-import { auth } from '../firebaseConfig';
+import { auth, ui, uiConfig } from '../firebaseConfig';
 
 const renderUserInfo = (user) => `
   <div id="user-info">
@@ -40,23 +39,9 @@ const handleAuthStateChange = () => {
     document.getElementById('content').innerHTML = renderAccountPage(user);
     attachEventListeners();
     if (!user) {
-      import('firebaseui').then((firebaseui) => {
-        const uiConfig = {
-          signInSuccessUrl: '/#account',
-          signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          ],
-        };
-        const ui = new firebaseui.auth.AuthUI(auth);
-        ui.start('#firebaseui-auth-container', uiConfig);
-      });
+      ui.start('#firebaseui-auth-container', uiConfig);
     }
   });
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-  handleAuthStateChange();
-});
 
 export default handleAuthStateChange;
