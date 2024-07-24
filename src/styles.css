@@ -598,6 +598,10 @@ body {
   border-radius: 8px;
   background-color: var(--primary-red);
   color: var(--primary-white);
+  height: 50px; /* Réduire la hauteur des boutons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #firebaseui-auth-container .firebaseui-idp-button:hover {
@@ -606,6 +610,12 @@ body {
 
 #firebaseui-auth-container .firebaseui-idp-button .firebaseui-idp-text {
   color: var(--primary-white);
+}
+
+#firebaseui-auth-container .firebaseui-idp-button .firebaseui-idp-icon {
+  height: 20px; /* Réduire la taille de l'icône Google */
+  width: 20px;
+  margin-right: 10px;
 }
 
 
