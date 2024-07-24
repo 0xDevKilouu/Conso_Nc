@@ -16,7 +16,6 @@ const firebaseConfig = {
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 
 // Configurer FirebaseUI
 const uiConfig = {
@@ -29,4 +28,4 @@ const uiConfig = {
 
 const ui = new firebaseui.auth.AuthUI(auth);
 
-export { auth, googleProvider, ui, uiConfig };
+export { auth, ui, uiConfig };
