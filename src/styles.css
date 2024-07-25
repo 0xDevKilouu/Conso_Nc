@@ -468,6 +468,7 @@ body {
   box-sizing: border-box;
   text-align: left;
   color: var(--bg-default);
+  position: relative;
 }
 
 #promo h2 {
@@ -481,15 +482,15 @@ body {
 }
 
 #add-promo-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  display: block;
+  margin: 20px auto;
   padding: 10px 20px;
   background-color: var(--primary-red);
   color: var(--primary-white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 #add-promo-button:hover {

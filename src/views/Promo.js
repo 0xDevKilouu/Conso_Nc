@@ -23,7 +23,7 @@ const Promo = async () => {
     <div id="promo">
       <h2>Promo</h2>
       <p>Liste de toutes les promotions à venir.</p>
-      ${isLoggedIn ? `<button id="add-promo-button">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
+      ${isLoggedIn ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
       ${promoItems.length > 0 ? `
         <ul class="promo-list">
           ${promoItems.map(item => `
