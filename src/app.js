@@ -3,7 +3,7 @@ import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
-import handleAuthStateChange from './views/Account'; // Assurez-vous que handleAuthStateChange est correctement importé
+import handleAuthStateChange from './views/Account';
 import { auth } from './firebaseConfig';
 
 const routes = {
@@ -11,7 +11,7 @@ const routes = {
   scanner: Scanner,
   promo: Promo,
   compare: Compare,
-  account: handleAuthStateChange, // Utiliser handleAuthStateChange pour gérer l'état de l'authentification
+  account: handleAuthStateChange,
 };
 
 const loadView = (view) => {
@@ -20,7 +20,6 @@ const loadView = (view) => {
 
   if (routes[view]) {
     if (view === 'account') {
-      // Appeler handleAuthStateChange pour gérer la vue "Account"
       handleAuthStateChange();
     } else {
       content.innerHTML = routes[view]();
@@ -64,7 +63,7 @@ const setupNavbar = () => {
 const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
-  loadView(hash || 'home'); // Charger la vue initiale basée sur le hash de l'URL ou par défaut sur home
+  loadView(hash || 'home');
 };
 
 document.addEventListener('DOMContentLoaded', () => {

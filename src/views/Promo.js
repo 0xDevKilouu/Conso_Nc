@@ -1,3 +1,7 @@
+import { auth, firestore, storage } from '../firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 const Promo = () => {
   const isLoggedIn = checkUserLoggedIn();
   const promoItems = getPromoItems();
@@ -39,22 +43,63 @@ const Promo = () => {
   `;
 };
 
-// Example functions for demonstration
 const checkUserLoggedIn = () => {
-  return true; // Implement your logic to check if user is logged in
+  return auth.currentUser != null; // Utilise Firebase auth pour vérifier si l'utilisateur est connecté
 };
 
 const getPromoItems = () => {
   return [
     { name: 'Produit A', details: '50% de réduction', image: 'path/to/imageA.jpg', companyLogo: 'path/to/logoA.png' },
     { name: 'Produit B', details: 'Achetez-en 1, obtenez-en 1 gratuit', image: 'path/to/imageB.jpg', companyLogo: 'path/to/logoB.png' }
-  ]; // Fetch promo items from your backend or database
+  ]; // Récupère les éléments de promotion de ton backend ou base de données
 };
 
-// Event listener for the add promo button
 document.addEventListener('click', function(event) {
   if (event.target && event.target.id === 'add-promo-button') {
     document.getElementById('promo-form-wrapper').classList.toggle('hidden');
+  }
+});
+
+document.addEventListener('submit', async function(event) {
+  if (event.target && event.target.id === 'promo-form') {
+    event.preventDefault();
+    const form = event.target;
+    const productName = form['product-name'].value;
+    const promoDetails = form['promo-details'].value;
+    const productImage = form['product-image'].files[0];
+    const companyLogo = form['company-logo'].files[0];
+
+    if (!productName || !promoDetails || !productImage || !companyLogo) {
+      alert('Tous les champs sont obligatoires.');
+      return;
+    }
+
+    try {
+      const productImageRef = ref(storage, `product-images/${productImage.name}`);
+      const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
+
+      const productImageSnapshot = await uploadBytes(productImageRef, productImage);
+      const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
+
+      const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
+      const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
+
+      await addDoc(collection(firestore, 'promotions'), {
+        name: productName,
+        details: promoDetails,
+        image: productImageUrl,
+        companyLogo: companyLogoUrl,
+        createdBy: auth.currentUser.uid,
+        createdAt: new Date(),
+      });
+
+      alert('Promotion ajoutée avec succès!');
+      form.reset();
+      document.getElementById('promo-form-wrapper').classList.add('hidden');
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout de la promotion:', error);
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    }
   }
 });
 
