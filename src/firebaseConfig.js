@@ -5,6 +5,7 @@ import * as firebaseui from 'firebaseui';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
+// Configuration Firebase
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -15,12 +16,14 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
+// Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
+// Configurer FirebaseUI
 const uiConfig = {
   signInSuccessUrl: '/',
   signInOptions: [

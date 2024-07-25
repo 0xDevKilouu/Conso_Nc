@@ -1,5 +1,5 @@
 import { auth, firestore, storage } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const Promo = () => {
@@ -44,14 +44,16 @@ const Promo = () => {
 };
 
 const checkUserLoggedIn = () => {
-  return auth.currentUser != null; // Utilise Firebase auth pour vérifier si l'utilisateur est connecté
+  return auth.currentUser != null;
 };
 
-const getPromoItems = () => {
-  return [
-    { name: 'Produit A', details: '50% de réduction', image: 'path/to/imageA.jpg', companyLogo: 'path/to/logoA.png' },
-    { name: 'Produit B', details: 'Achetez-en 1, obtenez-en 1 gratuit', image: 'path/to/imageB.jpg', companyLogo: 'path/to/logoB.png' }
-  ]; // Récupère les éléments de promotion de ton backend ou base de données
+const getPromoItems = async () => {
+  const querySnapshot = await getDocs(collection(firestore, 'promotions'));
+  const promos = [];
+  querySnapshot.forEach((doc) => {
+    promos.push({ id: doc.id, ...doc.data() });
+  });
+  return promos;
 };
 
 document.addEventListener('click', function(event) {
