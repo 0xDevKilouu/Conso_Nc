@@ -3,15 +3,15 @@ import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
-import Account from './views/Account';
-import { auth, firebase } from './firebaseConfig';
+import handleAuthStateChange from './views/Account'; // Assurez-vous que handleAuthStateChange est correctement importé
+import { auth } from './firebaseConfig';
 
 const routes = {
   home: Home,
   scanner: Scanner,
   promo: Promo,
   compare: Compare,
-  account: Account,
+  account: handleAuthStateChange, // Utiliser handleAuthStateChange pour gérer l'état de l'authentification
 };
 
 const loadView = (view) => {
@@ -19,9 +19,14 @@ const loadView = (view) => {
   const content = document.getElementById('content');
 
   if (routes[view]) {
-    content.innerHTML = routes[view]();
-    if (view === 'scanner') {
-      initializeScanner();
+    if (view === 'account') {
+      // Appeler handleAuthStateChange pour gérer la vue "Account"
+      handleAuthStateChange();
+    } else {
+      content.innerHTML = routes[view]();
+      if (view === 'scanner') {
+        initializeScanner();
+      }
     }
   } else {
     content.innerHTML = Home();
@@ -56,24 +61,10 @@ const setupNavbar = () => {
   listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
-const checkAuthState = () => {
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      loadView('account');
-    } else {
-      loadView('home'); // Or redirect to login page if you have one
-    }
-  });
-};
-
 const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
-  if (hash === 'account') {
-    checkAuthState();
-  } else {
-    loadView(hash || 'home'); // Load the initial view based on the URL hash or default to home
-  }
+  loadView(hash || 'home'); // Charger la vue initiale basée sur le hash de l'URL ou par défaut sur home
 };
 
 document.addEventListener('DOMContentLoaded', () => {
