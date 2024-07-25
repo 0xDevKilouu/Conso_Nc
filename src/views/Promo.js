@@ -2,9 +2,9 @@ import { auth, firestore, storage } from '../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-const Promo = () => {
+const Promo = async () => {
   const isLoggedIn = checkUserLoggedIn();
-  const promoItems = getPromoItems();
+  const promoItems = await getPromoItems();
 
   const renderPromoForm = () => `
     <div class="promo-form-container">
