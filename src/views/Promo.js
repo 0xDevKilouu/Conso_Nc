@@ -24,18 +24,20 @@ const Promo = async () => {
       <h2>Promo</h2>
       <p>Liste de toutes les promotions à venir.</p>
       ${isLoggedIn ? `<button id="add-promo-button">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
-      <ul class="promo-list">
-        ${promoItems.map(item => `
-          <li class="promo-item">
-            <img src="${item.image}" alt="${item.name}" class="promo-product-image">
-            <div class="promo-details">
-              <h3>${item.name}</h3>
-              <p>${item.details}</p>
-              <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
-            </div>
-          </li>
-        `).join('')}
-      </ul>
+      ${promoItems.length > 0 ? `
+        <ul class="promo-list">
+          ${promoItems.map(item => `
+            <li class="promo-item">
+              <img src="${item.image}" alt="${item.name}" class="promo-product-image">
+              <div class="promo-details">
+                <h3>${item.name}</h3>
+                <p>${item.details}</p>
+                <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`}
       <div id="promo-form-wrapper" class="hidden">
         ${renderPromoForm()}
       </div>

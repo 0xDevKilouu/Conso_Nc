@@ -14,7 +14,7 @@ const routes = {
   account: handleAuthStateChange,
 };
 
-const loadView = (view) => {
+const loadView = async (view) => {
   console.log(`Loading view: ${view}`);
   const content = document.getElementById('content');
 
@@ -22,7 +22,8 @@ const loadView = (view) => {
     if (view === 'account') {
       handleAuthStateChange();
     } else {
-      content.innerHTML = routes[view]();
+      const viewContent = await routes[view]();
+      content.innerHTML = viewContent;
       if (view === 'scanner') {
         initializeScanner();
       }
