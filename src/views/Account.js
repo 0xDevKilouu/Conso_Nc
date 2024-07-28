@@ -1,4 +1,5 @@
-import { auth, ui, uiConfig, signInWithGoogleRedirect } from '../firebaseConfig';
+import { auth, ui, uiConfig } from '../firebaseConfig';
+import { getRedirectResult } from "firebase/auth";
 
 const renderUserInfo = (user) => `
   <div id="user-info">
