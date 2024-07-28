@@ -15,7 +15,6 @@ const routes = {
 };
 
 const loadView = async (view) => {
-  console.log(`Loading view: ${view}`);
   const content = document.getElementById('content');
 
   if (routes[view]) {
@@ -36,22 +35,10 @@ const loadView = async (view) => {
 const setupNavbar = () => {
   document.getElementById('navbar').innerHTML = Navbar();
 
-  document.getElementById('homeButton').addEventListener('click', () => {
-    console.log('Home button clicked');
-    loadView('home');
-  });
-  document.getElementById('scanButton').addEventListener('click', () => {
-    console.log('Scan button clicked');
-    loadView('scanner');
-  });
-  document.getElementById('promoButton').addEventListener('click', () => {
-    console.log('Promo button clicked');
-    loadView('promo');
-  });
-  document.getElementById('accountButton').addEventListener('click', () => {
-    console.log('Account button clicked');
-    loadView('account');
-  });
+  document.getElementById('homeButton').addEventListener('click', () => loadView('home'));
+  document.getElementById('scanButton').addEventListener('click', () => loadView('scanner'));
+  document.getElementById('promoButton').addEventListener('click', () => loadView('promo'));
+  document.getElementById('accountButton').addEventListener('click', () => loadView('account'));
 
   const listItems = document.querySelectorAll('.list');
   function activateLink() {
@@ -76,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json();
     })
     .then(data => {
-      console.log('Data received:', data);
       if (Array.isArray(data)) {
         console.log(data);
       } else {

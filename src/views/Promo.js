@@ -3,7 +3,7 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const Promo = async () => {
-  const isLoggedIn = checkUserLoggedIn();
+  // Suppression de la vérification de la connexion utilisateur pour afficher les promotions
   const promoItems = await getPromoItems();
 
   const renderPromoForm = () => `
@@ -23,7 +23,7 @@ const Promo = async () => {
     <div id="promo">
       <h2>Promo</h2>
       <p>Liste de toutes les promotions à venir.</p>
-      ${isLoggedIn ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
+      ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
       ${promoItems.length > 0 ? `
         <ul class="promo-list">
           ${promoItems.map(item => `
@@ -43,10 +43,6 @@ const Promo = async () => {
       </div>
     </div>
   `;
-};
-
-const checkUserLoggedIn = () => {
-  return auth.currentUser != null;
 };
 
 const getPromoItems = async () => {
