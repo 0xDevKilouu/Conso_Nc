@@ -3,7 +3,6 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const Promo = async () => {
-  // Suppression de la vérification de la connexion utilisateur pour afficher les promotions
   const promoItems = await getPromoItems();
 
   const renderPromoForm = () => `
@@ -46,12 +45,17 @@ const Promo = async () => {
 };
 
 const getPromoItems = async () => {
-  const querySnapshot = await getDocs(collection(firestore, 'promotions'));
-  const promos = [];
-  querySnapshot.forEach((doc) => {
-    promos.push({ id: doc.id, ...doc.data() });
-  });
-  return promos;
+  try {
+    const querySnapshot = await getDocs(collection(firestore, 'promotions'));
+    const promos = [];
+    querySnapshot.forEach((doc) => {
+      promos.push({ id: doc.id, ...doc.data() });
+    });
+    return promos;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des promotions:', error);
+    return [];
+  }
 };
 
 document.addEventListener('click', function(event) {
