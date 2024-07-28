@@ -1,6 +1,6 @@
 // firebaseConfig.js
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, EmailAuthProvider, signInWithRedirect } from "firebase/auth";
 import * as firebaseui from 'firebaseui';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
@@ -23,6 +23,11 @@ const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
+// Fonction de connexion par redirection
+const signInWithGoogleRedirect = () => {
+  signInWithRedirect(auth, googleProvider);
+};
+
 // Configurer FirebaseUI
 const uiConfig = {
   signInSuccessUrl: '/',
@@ -43,4 +48,4 @@ const uiConfig = {
 
 const ui = new firebaseui.auth.AuthUI(auth);
 
-export { auth, googleProvider, ui, uiConfig, firestore, storage };
+export { auth, googleProvider, ui, uiConfig, firestore, storage, signInWithGoogleRedirect };

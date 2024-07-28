@@ -1,10 +1,12 @@
+// app.js
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
-import { auth } from './firebaseConfig';
+import { auth, signInWithGoogleRedirect } from './firebaseConfig';
+import { getRedirectResult } from "firebase/auth";
 
 const routes = {
   home: Home,
@@ -15,6 +17,7 @@ const routes = {
 };
 
 const loadView = async (view) => {
+  console.log(`Loading view: ${view}`);
   const content = document.getElementById('content');
 
   if (routes[view]) {
@@ -35,10 +38,22 @@ const loadView = async (view) => {
 const setupNavbar = () => {
   document.getElementById('navbar').innerHTML = Navbar();
 
-  document.getElementById('homeButton').addEventListener('click', () => loadView('home'));
-  document.getElementById('scanButton').addEventListener('click', () => loadView('scanner'));
-  document.getElementById('promoButton').addEventListener('click', () => loadView('promo'));
-  document.getElementById('accountButton').addEventListener('click', () => loadView('account'));
+  document.getElementById('homeButton').addEventListener('click', () => {
+    console.log('Home button clicked');
+    loadView('home');
+  });
+  document.getElementById('scanButton').addEventListener('click', () => {
+    console.log('Scan button clicked');
+    loadView('scanner');
+  });
+  document.getElementById('promoButton').addEventListener('click', () => {
+    console.log('Promo button clicked');
+    loadView('promo');
+  });
+  document.getElementById('accountButton').addEventListener('click', () => {
+    console.log('Account button clicked');
+    loadView('account');
+  });
 
   const listItems = document.querySelectorAll('.list');
   function activateLink() {
@@ -48,8 +63,20 @@ const setupNavbar = () => {
   listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
+const addGoogleSignInButton = () => {
+  const button = document.createElement('button');
+  button.id = 'googleSignInButton';
+  button.innerText = 'Se connecter avec Google';
+  document.body.appendChild(button);
+
+  button.addEventListener('click', () => {
+    signInWithGoogleRedirect();
+  });
+};
+
 const initApp = () => {
   setupNavbar();
+  addGoogleSignInButton();
   const hash = window.location.hash.substring(1);
   loadView(hash || 'home');
 };
@@ -63,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json();
     })
     .then(data => {
+      console.log('Data received:', data);
       if (Array.isArray(data)) {
         console.log(data);
       } else {
@@ -83,4 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
   script2.noModule = true;
   script2.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
   document.head.appendChild(script2);
+
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result.user) {
+        console.log('Utilisateur connecté:', result.user);
+        // Traiter l'utilisateur connecté
+      }
+    })
+    .catch((error) => {
+      console.error('Erreur de connexion:', error);
+    });
 });
