@@ -18,10 +18,14 @@ const loadView = async (view) => {
   const content = document.getElementById('content');
 
   if (routes[view]) {
-    const viewContent = await routes[view]();
-    content.innerHTML = viewContent;
-    if (view === 'scanner') {
-      initializeScanner();
+    if (view === 'account') {
+      handleAuthStateChange();
+    } else {
+      const viewContent = await routes[view]();
+      content.innerHTML = viewContent;
+      if (view === 'scanner') {
+        initializeScanner();
+      }
     }
   } else {
     content.innerHTML = Home();
