@@ -40,8 +40,9 @@ const attachEventListeners = () => {
 
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
+    const content = document.getElementById('content');
     if (window.location.hash.substring(1) === 'account') {
-      document.getElementById('content').innerHTML = renderAccountPage(user);
+      content.innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
         ui.start('#firebaseui-auth-container', uiConfig);
@@ -56,13 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (result.user) {
         console.log('Utilisateur connecté:', result.user);
         // Traiter l'utilisateur connecté
+        const content = document.getElementById('content');
+        if (window.location.hash.substring(1) === 'account') {
+          content.innerHTML = renderAccountPage(result.user);
+          attachEventListeners();
+        }
       }
     })
     .catch((error) => {
       console.error('Erreur de connexion:', error);
     });
 
-  // Ne pas appeler handleAuthStateChange ici pour éviter le problème de connexion affiché sur d'autres pages
+  if (window.location.hash.substring(1) === 'account') {
+    handleAuthStateChange();
+  }
 });
 
 export default handleAuthStateChange;
