@@ -56,11 +56,10 @@ const handleAuthStateChange = () => {
 document.addEventListener('DOMContentLoaded', () => {
   getRedirectResult(auth)
     .then((result) => {
-      if (result.user) {
-        console.log('Utilisateur connecté:', result.user);
-        // Traiter l'utilisateur connecté
+      if (result && result.user) {
+        console.log('Utilisateur connecté après redirection:', result.user);
+        const content = document.getElementById('content');
         if (window.location.hash.substring(1) === 'account') {
-          const content = document.getElementById('content');
           content.innerHTML = renderAccountPage(result.user);
           attachEventListeners();
         }
