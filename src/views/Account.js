@@ -15,14 +15,12 @@ const renderAuthUI = () => `
   </div>
 `;
 
-const renderAccountPage = (user) => {
-  return `
-    <div id="account">
-      <h2>Compte</h2>
-      ${user ? renderUserInfo(user) : renderAuthUI()}
-    </div>
-  `;
-};
+const renderAccountPage = (user) => `
+  <div id="account">
+    <h2>Compte</h2>
+    ${user ? renderUserInfo(user) : renderAuthUI()}
+  </div>
+`;
 
 const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
