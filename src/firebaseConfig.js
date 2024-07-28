@@ -1,9 +1,9 @@
 // firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, EmailAuthProvider, signInWithRedirect } from "firebase/auth";
-import * as firebaseui from 'firebaseui';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import * as firebaseui from 'firebaseui';
 
 // Configuration Firebase
 const firebaseConfig = {
