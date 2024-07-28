@@ -40,11 +40,13 @@ const attachEventListeners = () => {
 
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
+    console.log('Auth state changed:', user);
     const content = document.getElementById('content');
     if (window.location.hash.substring(1) === 'account') {
       content.innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
+        console.log('Starting FirebaseUI');
         ui.start('#firebaseui-auth-container', uiConfig);
       }
     }
