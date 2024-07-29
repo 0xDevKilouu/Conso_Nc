@@ -65,6 +65,8 @@ document.addEventListener('click', function(event) {
     if (promoFormWrapper) {
       promoFormWrapper.classList.toggle('hidden');
       console.log('Promo form visibility toggled. Current state:', promoFormWrapper.classList);
+      // Forcing reflow to ensure the toggle effect works properly
+      promoFormWrapper.offsetHeight;
     } else {
       console.error('Promo form wrapper not found');
     }
