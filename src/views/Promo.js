@@ -63,9 +63,8 @@ document.addEventListener('click', function(event) {
     console.log('Add promo button clicked');
     const promoFormWrapper = document.getElementById('promo-form-wrapper');
     if (promoFormWrapper) {
-      console.log('Promo form visibility toggled. Current state:', promoFormWrapper.classList);
       promoFormWrapper.classList.toggle('hidden');
-      console.log('Promo form visibility after toggle. Current state:', promoFormWrapper.classList);
+      console.log('Promo form visibility toggled. Current state:', promoFormWrapper.classList);
     } else {
       console.error('Promo form wrapper not found');
     }
