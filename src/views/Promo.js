@@ -79,22 +79,21 @@ const checkAuthState = () => {
   });
 };
 
+// Éviter les événements multiples
 document.addEventListener('click', function(event) {
   if (event.target && event.target.id === 'add-promo-button') {
     console.log('Add promo button clicked');
     const promoFormWrapper = document.getElementById('promo-form-wrapper');
-    console.log('Promo form wrapper element:', promoFormWrapper);
     if (promoFormWrapper) {
+      console.log('Promo form wrapper element:', promoFormWrapper);
       console.log('Current class list before toggle:', promoFormWrapper.classList);
       promoFormWrapper.classList.toggle('hidden');
       console.log('Current class list after toggle:', promoFormWrapper.classList);
-      // Forcing reflow to ensure the toggle effect works properly
-      promoFormWrapper.offsetHeight;
     } else {
       console.error('Promo form wrapper not found');
     }
   }
-});
+}, { once: true }); // Ajout de { once: true } pour s'assurer que l'événement n'est attaché qu'une seule fois
 
 document.addEventListener('submit', async function(event) {
   if (event.target && event.target.id === 'promo-form') {
@@ -142,6 +141,6 @@ document.addEventListener('submit', async function(event) {
       alert('Une erreur est survenue. Veuillez réessayer.');
     }
   }
-});
+}, { once: true }); // Ajout de { once: true } pour s'assurer que l'événement n'est attaché qu'une seule fois
 
 export default Promo;

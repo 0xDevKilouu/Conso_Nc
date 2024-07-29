@@ -27,7 +27,6 @@ const loadView = async (view) => {
       if (view === 'scanner') {
         initializeScanner();
       }
-      // Ajouter ce log pour confirmer que le contenu est bien chargé
       console.log('View content loaded:', viewContent);
     }
   } else {
@@ -82,7 +81,7 @@ const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
   loadView(hash || 'home');
-  checkAuthState(); // Ajouter l'appel à checkAuthState ici
+  checkAuthState();
 };
 
 document.addEventListener('DOMContentLoaded', () => {
