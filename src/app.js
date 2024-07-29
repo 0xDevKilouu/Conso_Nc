@@ -68,6 +68,16 @@ const setupNavbar = () => {
   listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
+const checkAuthState = () => {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('User is logged in:', user);
+    } else {
+      console.log('User is not logged in');
+    }
+  });
+};
+
 const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);

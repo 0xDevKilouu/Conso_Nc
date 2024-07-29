@@ -63,11 +63,18 @@ const checkAuthState = () => {
   auth.onAuthStateChanged(user => {
     if (user) {
       console.log('User is logged in:', user);
-      document.getElementById('add-promo-button').style.display = 'block';
-      document.getElementById('promo-form-wrapper').classList.add('hidden');
+      const addPromoButton = document.getElementById('add-promo-button');
+      const promoFormWrapper = document.getElementById('promo-form-wrapper');
+      if (addPromoButton && promoFormWrapper) {
+        addPromoButton.style.display = 'block';
+        promoFormWrapper.classList.add('hidden');
+      }
     } else {
       console.log('User is not logged in');
-      document.getElementById('add-promo-button').style.display = 'none';
+      const addPromoButton = document.getElementById('add-promo-button');
+      if (addPromoButton) {
+        addPromoButton.style.display = 'none';
+      }
     }
   });
 };
