@@ -29,7 +29,8 @@ const loadView = async (view) => {
       }
     }
   } else {
-    content.innerHTML = await Home();
+    const viewContent = await Home();
+    content.innerHTML = viewContent;
   }
 };
 
@@ -67,7 +68,8 @@ const setupNavbar = () => {
 
 const initApp = () => {
   setupNavbar();
-  loadView('home');  // Toujours charger la page "Home" par défaut
+  const hash = window.location.hash.substring(1);
+  loadView(hash || 'home');
 };
 
 document.addEventListener('DOMContentLoaded', () => {

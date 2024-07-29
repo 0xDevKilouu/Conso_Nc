@@ -47,10 +47,12 @@ const attachEventListeners = () => {
 
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
-    document.getElementById('content').innerHTML = renderAccountPage(user);
-    attachEventListeners();
-    if (!user) {
-      ui.start('#firebaseui-auth-container', uiConfig);
+    if (window.location.hash.substring(1) === 'account') {
+      document.getElementById('content').innerHTML = renderAccountPage(user);
+      attachEventListeners();
+      if (!user) {
+        ui.start('#firebaseui-auth-container', uiConfig);
+      }
     }
   });
 };
