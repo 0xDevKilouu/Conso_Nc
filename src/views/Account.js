@@ -1,5 +1,5 @@
-import { auth, ui, uiConfig, signInWithRedirect, googleProvider } from '../firebaseConfig';
-import { getRedirectResult } from "firebase/auth";
+import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
+import { getRedirectResult, signInWithRedirect } from "firebase/auth";
 
 const renderUserInfo = (user) => `
   <div id="user-info">
@@ -60,20 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((result) => {
       if (result && result.user) {
         console.log('Utilisateur connecté après redirection:', result.user);
-        const content = document.getElementById('content');
-        if (window.location.hash.substring(1) === 'account') {
-          content.innerHTML = renderAccountPage(result.user);
-          attachEventListeners();
-        }
+        handleAuthStateChange(); // Re-render the auth UI with the logged-in user
       }
     })
     .catch((error) => {
       console.error('Erreur de connexion:', error);
     });
 
-  if (window.location.hash.substring(1) === 'account') {
-    handleAuthStateChange();
-  }
+  handleAuthStateChange(); // Initial call to handle the current auth state
 });
 
 export default handleAuthStateChange;
