@@ -67,8 +67,7 @@ const setupNavbar = () => {
 
 const initApp = () => {
   setupNavbar();
-  const hash = window.location.hash.substring(1);
-  loadView(hash || 'home');
+  loadView('home');  // Toujours charger la page "Home" par défaut
 };
 
 document.addEventListener('DOMContentLoaded', () => {

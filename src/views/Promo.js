@@ -61,7 +61,13 @@ const getPromoItems = async () => {
 document.addEventListener('click', function(event) {
   if (event.target && event.target.id === 'add-promo-button') {
     console.log('Add promo button clicked');
-    document.getElementById('promo-form-wrapper').classList.toggle('hidden');
+    const promoFormWrapper = document.getElementById('promo-form-wrapper');
+    if (promoFormWrapper) {
+      promoFormWrapper.classList.toggle('hidden');
+      console.log('Promo form visibility toggled');
+    } else {
+      console.error('Promo form wrapper not found');
+    }
   }
 });
 
@@ -74,6 +80,8 @@ document.addEventListener('submit', async function(event) {
     const promoDetails = form['promo-details'].value;
     const productImage = form['product-image'].files[0];
     const companyLogo = form['company-logo'].files[0];
+
+    console.log('Form values:', { productName, promoDetails, productImage, companyLogo });
 
     if (!productName || !promoDetails || !productImage || !companyLogo) {
       alert('Tous les champs sont obligatoires.');
@@ -89,6 +97,8 @@ document.addEventListener('submit', async function(event) {
 
       const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
       const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
+
+      console.log('Image URLs:', { productImageUrl, companyLogoUrl });
 
       await addDoc(collection(firestore, 'promotions'), {
         name: productName,
