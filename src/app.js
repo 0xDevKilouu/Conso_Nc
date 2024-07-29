@@ -28,6 +28,11 @@ const loadView = async (view) => {
         initializeScanner();
       }
       console.log('View content loaded:', viewContent);
+
+      // Attacher les événements après le rendu de la vue
+      if (view === 'promo') {
+        Promo();
+      }
     }
   } else {
     const viewContent = await Home();

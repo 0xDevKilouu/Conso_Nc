@@ -59,67 +59,69 @@ const Promo = async () => {
   `;
 };
 
-document.addEventListener('click', function(event) {
-  if (event.target && event.target.id === 'add-promo-button') {
-    console.log('Add promo button clicked');
-    const promoFormWrapper = document.getElementById('promo-form-wrapper');
-    if (promoFormWrapper) {
-      console.log('Promo form wrapper element:', promoFormWrapper);
-      console.log('Current class list before toggle:', promoFormWrapper.classList);
-      promoFormWrapper.classList.toggle('hidden');
-      console.log('Current class list after toggle:', promoFormWrapper.classList);
-    } else {
-      console.error('Promo form wrapper not found');
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('click', function(event) {
+    if (event.target && event.target.id === 'add-promo-button') {
+      console.log('Add promo button clicked');
+      const promoFormWrapper = document.getElementById('promo-form-wrapper');
+      if (promoFormWrapper) {
+        console.log('Promo form wrapper element:', promoFormWrapper);
+        console.log('Current class list before toggle:', promoFormWrapper.classList);
+        promoFormWrapper.classList.toggle('hidden');
+        console.log('Current class list after toggle:', promoFormWrapper.classList);
+      } else {
+        console.error('Promo form wrapper not found');
+      }
     }
-  }
-});
+  });
 
-document.addEventListener('submit', async function(event) {
-  if (event.target && event.target.id === 'promo-form') {
-    event.preventDefault();
-    console.log('Promo form submitted');
-    const form = event.target;
-    const productName = form['product-name'].value;
-    const promoDetails = form['promo-details'].value;
-    const productImage = form['product-image'].files[0];
-    const companyLogo = form['company-logo'].files[0];
+  document.addEventListener('submit', async function(event) {
+    if (event.target && event.target.id === 'promo-form') {
+      event.preventDefault();
+      console.log('Promo form submitted');
+      const form = event.target;
+      const productName = form['product-name'].value;
+      const promoDetails = form['promo-details'].value;
+      const productImage = form['product-image'].files[0];
+      const companyLogo = form['company-logo'].files[0];
 
-    console.log('Form values:', { productName, promoDetails, productImage, companyLogo });
+      console.log('Form values:', { productName, promoDetails, productImage, companyLogo });
 
-    if (!productName || !promoDetails || !productImage || !companyLogo) {
-      alert('Tous les champs sont obligatoires.');
-      return;
+      if (!productName || !promoDetails || !productImage || !companyLogo) {
+        alert('Tous les champs sont obligatoires.');
+        return;
+      }
+
+      try {
+        const productImageRef = ref(storage, `product-images/${productImage.name}`);
+        const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
+
+        const productImageSnapshot = await uploadBytes(productImageRef, productImage);
+        const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
+
+        const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
+        const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
+
+        console.log('Image URLs:', { productImageUrl, companyLogoUrl });
+
+        await addDoc(collection(firestore, 'promotions'), {
+          name: productName,
+          details: promoDetails,
+          image: productImageUrl,
+          companyLogo: companyLogoUrl,
+          createdBy: auth.currentUser.uid,
+          createdAt: new Date(),
+        });
+
+        alert('Promotion ajoutée avec succès!');
+        form.reset();
+        document.getElementById('promo-form-wrapper').classList.add('hidden');
+      } catch (error) {
+        console.error('Erreur lors de l\'ajout de la promotion:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
     }
-
-    try {
-      const productImageRef = ref(storage, `product-images/${productImage.name}`);
-      const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
-
-      const productImageSnapshot = await uploadBytes(productImageRef, productImage);
-      const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
-
-      const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
-      const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
-
-      console.log('Image URLs:', { productImageUrl, companyLogoUrl });
-
-      await addDoc(collection(firestore, 'promotions'), {
-        name: productName,
-        details: promoDetails,
-        image: productImageUrl,
-        companyLogo: companyLogoUrl,
-        createdBy: auth.currentUser.uid,
-        createdAt: new Date(),
-      });
-
-      alert('Promotion ajoutée avec succès!');
-      form.reset();
-      document.getElementById('promo-form-wrapper').classList.add('hidden');
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de la promotion:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
-    }
-  }
+  });
 });
 
 export default Promo;
