@@ -456,7 +456,6 @@ body {
   transform: scale(1.05);
 }
 
-
 /* Styles pour la section promo */
 #promo {
   max-width: 800px;
@@ -580,8 +579,6 @@ body {
   display: none;
 }
 
-
-
 /* Améliorations pour la section Firebase U */
 #firebaseui-auth-container {
   width: 100%;
@@ -619,9 +616,6 @@ body {
   width: 20px;
   margin-right: 10px;
 }
-
-
-
 
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {

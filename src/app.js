@@ -27,6 +27,8 @@ const loadView = async (view) => {
       if (view === 'scanner') {
         initializeScanner();
       }
+      // Ajouter ce log pour confirmer que le contenu est bien chargé
+      console.log('View content loaded:', viewContent);
     }
   } else {
     const viewContent = await Home();
@@ -73,6 +75,7 @@ const initApp = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded event fired');
   fetch('https://conso-nc.vercel.app/secure-data')
     .then(response => {
       if (!response.ok) {

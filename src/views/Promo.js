@@ -37,7 +37,7 @@ const Promo = async () => {
           `).join('')}
         </ul>
       ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`}
-      <div id="promo-form-wrapper" class="hidden">
+      <div id="promo-form-wrapper" class="${auth.currentUser ? 'hidden' : ''}">
         ${renderPromoForm()}
       </div>
     </div>
@@ -62,9 +62,11 @@ document.addEventListener('click', function(event) {
   if (event.target && event.target.id === 'add-promo-button') {
     console.log('Add promo button clicked');
     const promoFormWrapper = document.getElementById('promo-form-wrapper');
+    console.log('Promo form wrapper element:', promoFormWrapper);
     if (promoFormWrapper) {
+      console.log('Current class list before toggle:', promoFormWrapper.classList);
       promoFormWrapper.classList.toggle('hidden');
-      console.log('Promo form visibility toggled. Current state:', promoFormWrapper.classList);
+      console.log('Current class list after toggle:', promoFormWrapper.classList);
       // Forcing reflow to ensure the toggle effect works properly
       promoFormWrapper.offsetHeight;
     } else {
