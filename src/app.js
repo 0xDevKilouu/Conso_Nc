@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar';
 import Home from './views/Home';
 import Scanner, { initializeScanner } from './views/Scanner';
-import Promo from './views/Promo';
+import { Promo, attachPromoEvents } from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
 import { auth } from './firebaseConfig';
@@ -27,12 +27,10 @@ const loadView = async (view) => {
       if (view === 'scanner') {
         initializeScanner();
       }
-      console.log('View content loaded:', viewContent);
-
-      // Attacher les événements après le rendu de la vue
       if (view === 'promo') {
-        Promo();
+        attachPromoEvents();
       }
+      console.log('View content loaded:', viewContent);
     }
   } else {
     const viewContent = await Home();
