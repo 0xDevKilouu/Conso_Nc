@@ -37,7 +37,7 @@ const Promo = async () => {
           `).join('')}
         </ul>
       ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`}
-      <div id="promo-form-wrapper" class="${auth.currentUser ? 'hidden' : ''}">
+      <div id="promo-form-wrapper" class="hidden">
         ${renderPromoForm()}
       </div>
     </div>
@@ -56,6 +56,20 @@ const getPromoItems = async () => {
     console.error('Erreur lors de la récupération des promotions:', error);
     return [];
   }
+};
+
+// Ajout de la vérification de l'état de connexion
+const checkAuthState = () => {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('User is logged in:', user);
+      document.getElementById('add-promo-button').style.display = 'block';
+      document.getElementById('promo-form-wrapper').classList.add('hidden');
+    } else {
+      console.log('User is not logged in');
+      document.getElementById('add-promo-button').style.display = 'none';
+    }
+  });
 };
 
 document.addEventListener('click', function(event) {

@@ -72,6 +72,7 @@ const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
   loadView(hash || 'home');
+  checkAuthState(); // Ajouter l'appel à checkAuthState ici
 };
 
 document.addEventListener('DOMContentLoaded', () => {
