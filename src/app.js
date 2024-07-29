@@ -4,6 +4,7 @@ import Scanner, { initializeScanner } from './views/Scanner';
 import Promo from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
+import { auth } from './firebaseConfig';
 
 const routes = {
   home: Home,
@@ -28,32 +29,40 @@ const loadView = async (view) => {
       }
     }
   } else {
-    content.innerHTML = Home();
+    content.innerHTML = await Home();
   }
 };
 
 const setupNavbar = () => {
   document.getElementById('navbar').innerHTML = Navbar();
 
-  const navButtons = {
-    homeButton: 'home',
-    scanButton: 'scanner',
-    promoButton: 'promo',
-    accountButton: 'account'
-  };
-
-  Object.keys(navButtons).forEach(id => {
-    document.getElementById(id).addEventListener('click', () => {
-      console.log(`${navButtons[id]} button clicked`);
-      loadView(navButtons[id]);
-    });
+  document.getElementById('homeButton').addEventListener('click', () => {
+    console.log('Home button clicked');
+    loadView('home');
+    window.location.hash = 'home';
+  });
+  document.getElementById('scanButton').addEventListener('click', () => {
+    console.log('Scan button clicked');
+    loadView('scanner');
+    window.location.hash = 'scanner';
+  });
+  document.getElementById('promoButton').addEventListener('click', () => {
+    console.log('Promo button clicked');
+    loadView('promo');
+    window.location.hash = 'promo';
+  });
+  document.getElementById('accountButton').addEventListener('click', () => {
+    console.log('Account button clicked');
+    loadView('account');
+    window.location.hash = 'account';
   });
 
   const listItems = document.querySelectorAll('.list');
-  listItems.forEach(item => item.addEventListener('click', function() {
-    listItems.forEach(i => i.classList.remove('active'));
+  function activateLink() {
+    listItems.forEach(item => item.classList.remove('active'));
     this.classList.add('active');
-  }));
+  }
+  listItems.forEach(item => item.addEventListener('click', activateLink));
 };
 
 const initApp = () => {
@@ -72,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       console.log('Data received:', data);
-      if (!Array.isArray(data)) {
+      if (Array.isArray(data)) {
+        console.log(data);
+      } else {
         console.error('Received data is not an array:', data);
       }
     })

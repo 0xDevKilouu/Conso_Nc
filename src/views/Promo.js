@@ -60,6 +60,7 @@ const getPromoItems = async () => {
 
 document.addEventListener('click', function(event) {
   if (event.target && event.target.id === 'add-promo-button') {
+    console.log('Add promo button clicked');
     document.getElementById('promo-form-wrapper').classList.toggle('hidden');
   }
 });
@@ -67,6 +68,7 @@ document.addEventListener('click', function(event) {
 document.addEventListener('submit', async function(event) {
   if (event.target && event.target.id === 'promo-form') {
     event.preventDefault();
+    console.log('Promo form submitted');
     const form = event.target;
     const productName = form['product-name'].value;
     const promoDetails = form['promo-details'].value;
