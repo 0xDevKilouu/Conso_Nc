@@ -1,14 +1,24 @@
 import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
 import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
 
+let isUpdateFormVisible = false;
+
+const toggleUpdateForm = () => {
+  isUpdateFormVisible = !isUpdateFormVisible;
+  handleAuthStateChange();
+};
+
 const renderUserInfo = (user) => `
   <div id="user-info">
     <p>Bienvenue, ${user.displayName || user.email}</p>
-    <form id="update-profile-form">
-      <input type="text" id="new-display-name" placeholder="Nouveau nom" value="${user.displayName || ''}" />
-      <input type="password" id="new-password" placeholder="Nouveau mot de passe" />
-      <button type="submit">Mettre à jour</button>
-    </form>
+    <button id="update-profile-button">Mettre à jour son profil</button>
+    ${isUpdateFormVisible ? `
+      <form id="update-profile-form">
+        <input type="text" id="new-display-name" placeholder="Nouveau nom" value="${user.displayName || ''}" />
+        <input type="password" id="new-password" placeholder="Nouveau mot de passe" />
+        <button type="submit">Enregistrer</button>
+      </form>
+    ` : ''}
     <button id="logout-button">Déconnexion</button>
   </div>
 `;
@@ -23,14 +33,14 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>Compte</h2>
-    ${user ? renderUserInfo(user) : renderAuthUI()}
+    ${user ? renderUserInfo(user) : '<h2>Compte</h2>' + renderAuthUI()}
   </div>
 `;
 
 const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const googleSigninButton = document.getElementById('google-signin-button');
+  const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
 
   if (logoutButton) {
@@ -48,6 +58,10 @@ const attachEventListeners = () => {
     googleSigninButton.addEventListener('click', () => {
       signInWithRedirect(auth, googleProvider);
     });
+  }
+
+  if (updateProfileButton) {
+    updateProfileButton.addEventListener('click', toggleUpdateForm);
   }
 
   if (updateProfileForm) {
