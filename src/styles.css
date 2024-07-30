@@ -617,6 +617,105 @@ body {
   margin-right: 10px;
 }
 
+/* Styles pour la section du compte utilisateur */
+#account {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--primary-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  overflow-y: auto;
+}
+
+#account h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#user-info {
+  text-align: center;
+}
+
+#user-info p {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--bg-default);
+  margin-bottom: 20px;
+}
+
+#update-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#update-profile-form input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#update-profile-form button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#update-profile-form button:hover {
+  background-color: #e33a3d;
+}
+
+#logout-button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#logout-button:hover {
+  background-color: #e33a3d;
+}
+
+#account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#google-signin-button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#google-signin-button:hover {
+  background-color: #e33a3d;
+}
+
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
   #scannerFrame {
