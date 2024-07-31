@@ -4,21 +4,9 @@ const admin = require('firebase-admin');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-dotenv.config(); // Charger les variables d'environneme
+dotenv.config();
 
 console.log('Starting server.js');
-
-console.log('Loading environment variables:');
-console.log('FIREBASE_TYPE:', process.env.FIREBASE_TYPE);
-console.log('FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID);
-console.log('FIREBASE_PRIVATE_KEY_ID:', process.env.FIREBASE_PRIVATE_KEY_ID);
-console.log('FIREBASE_PRIVATE_KEY:', process.env.FIREBASE_PRIVATE_KEY ? 'defined' : 'undefined');
-console.log('FIREBASE_CLIENT_EMAIL:', process.env.FIREBASE_CLIENT_EMAIL);
-console.log('FIREBASE_CLIENT_ID:', process.env.FIREBASE_CLIENT_ID);
-console.log('FIREBASE_AUTH_URI:', process.env.FIREBASE_AUTH_URI);
-console.log('FIREBASE_TOKEN_URI:', process.env.FIREBASE_TOKEN_URI);
-console.log('FIREBASE_AUTH_PROVIDER_CERT_URL:', process.env.FIREBASE_AUTH_PROVIDER_CERT_URL);
-console.log('FIREBASE_CLIENT_CERT_URL:', process.env.FIREBASE_CLIENT_CERT_URL);
 
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
