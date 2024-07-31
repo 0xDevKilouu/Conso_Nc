@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-dotenv.config(); // Charger les variables d'environnemen
+dotenv.config(); // Charger les variables d'environneme
 
 console.log('Starting server.js');
 
