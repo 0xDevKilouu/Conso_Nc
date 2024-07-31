@@ -7,6 +7,18 @@ const bodyParser = require('body-parser');
 
 dotenv.config();
 
+console.log('Environment Variables:');
+console.log('FIREBASE_TYPE:', process.env.FIREBASE_TYPE);
+console.log('FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID);
+console.log('FIREBASE_PRIVATE_KEY_ID:', process.env.FIREBASE_PRIVATE_KEY_ID);
+console.log('FIREBASE_PRIVATE_KEY:', process.env.FIREBASE_PRIVATE_KEY);
+console.log('FIREBASE_CLIENT_EMAIL:', process.env.FIREBASE_CLIENT_EMAIL);
+console.log('FIREBASE_CLIENT_ID:', process.env.FIREBASE_CLIENT_ID);
+console.log('FIREBASE_AUTH_URI:', process.env.FIREBASE_AUTH_URI);
+console.log('FIREBASE_TOKEN_URI:', process.env.FIREBASE_TOKEN_URI);
+console.log('FIREBASE_AUTH_PROVIDER_CERT_URL:', process.env.FIREBASE_AUTH_PROVIDER_CERT_URL);
+console.log('FIREBASE_CLIENT_CERT_URL:', process.env.FIREBASE_CLIENT_CERT_URL);
+
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJECT_ID,
