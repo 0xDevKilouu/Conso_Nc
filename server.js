@@ -3,6 +3,7 @@ const path = require('path');
 const admin = require('firebase-admin');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -50,7 +51,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
+
+app.post('/github-webhook', (req, res) => {
+  console.log('Received GitHub webhook:', req.body);
+  res.status(200).send('Webhook received');
+});
 
 app.get('/secure-data', async (req, res) => {
   console.log('Received request for /secure-data');
@@ -83,6 +90,12 @@ app.get('*', (req, res) => {
       res.status(500).send(err);
     }
   });
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global error handler:', err);
+  res.status(500).send('Something went wrong!');
 });
 
 app.listen(PORT, () => {
