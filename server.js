@@ -6,8 +6,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-console.log('Starting server.js');
-
 const serviceAccount = {
   type: process.env.FIREBASE_TYPE,
   project_id: process.env.FIREBASE_PROJECT_ID,
@@ -28,7 +26,6 @@ admin.initializeApp({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuration CORS permissive pour le développement
 const allowedOrigins = [
   'https://consotest.netlify.app',
   'https://conso-nc.vercel.app',
@@ -62,10 +59,10 @@ app.get('/secure-data', async (req, res) => {
     const data = await admin.firestore().collection('secure-collection').get();
     if (!data.empty) {
       const jsonData = data.docs.map(doc => doc.data());
-      console.log('Data retrieved successfully:', jsonData);  // Log retrieved data
+      console.log('Data retrieved successfully:', jsonData);  
       res.json(jsonData);
     } else {
-      console.log('No data found');  // Log if no data found
+      console.log('No data found');  
       res.json([]);
     }
   } catch (error) {
@@ -74,7 +71,6 @@ app.get('/secure-data', async (req, res) => {
   }
 });
 
-// Servir les fichiers statiques avec les en-têtes de sécurité appropriés
 app.get('*', (req, res, next) => {
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
   next();
