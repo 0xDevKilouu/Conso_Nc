@@ -89,7 +89,7 @@ const initApp = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded event fired');
-  fetch('https://conso-nc.vercel.app/secure-data')
+  fetch('/secure-data')
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

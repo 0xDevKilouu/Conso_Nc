@@ -27,10 +27,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
-  'https://consotest.netlify.app',
-  'https://conso-nc.vercel.app',
   'http://localhost:3000',
-  /\.vercel\.app$/
+  'http://conso.nc',
+  'https://conso.nc'
 ];
 
 const corsOptions = {
