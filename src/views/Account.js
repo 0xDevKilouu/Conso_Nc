@@ -52,11 +52,12 @@ const attachEventListeners = () => {
     });
   }
 
-  if (googleSigninButton) {
-    googleSigninButton.addEventListener('click', () => {
-      signInWithRedirect(auth, googleProvider);
-    });
-  }
+  // Supprimer ou commenter le code pour le bouton googleSigninButton
+  // if (googleSigninButton) {
+  //   googleSigninButton.addEventListener('click', () => {
+  //     signInWithRedirect(auth, googleProvider);
+  //   });
+  // }
 
   if (updateProfileButton) {
     updateProfileButton.addEventListener('click', toggleUpdateForm);
