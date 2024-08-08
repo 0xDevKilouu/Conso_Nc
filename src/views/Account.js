@@ -38,7 +38,6 @@ const renderAccountPage = (user) => `
 
 const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
-  const googleSigninButton = document.getElementById('google-signin-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
 

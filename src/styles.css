@@ -723,21 +723,6 @@ body {
   align-items: center;
 }
 
-#google-signin-button {
-  background-color: var(--primary-red);
-  color: var(--primary-white);
-  padding: 12px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-#google-signin-button:hover {
-  background-color: #e33a3d;
-}
 
 
 /* Media Queries pour les petits écrans */
