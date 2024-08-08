@@ -51,7 +51,7 @@ const renderPromoForm = () => `
 
 const Promo = async () => {
   const promoItems = await getPromoItems();
-  
+
   // Générer la liste des promotions seulement si elles existent
   const promoItemsHTML = promoItems.length > 0 ? `
     <ul class="promo-list">
