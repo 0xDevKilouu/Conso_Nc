@@ -1,15 +1,16 @@
 {
-    "name": "localfood",
+    "name": "ConsoNc",
     "version": "1.0.0",
-    "description": "",
+    "description": "Application de scan de produits",
     "main": "src/app.js",
     "scripts": {
+        "clean": "rm -rf dist",
         "build": "webpack --config webpack.config.js",
         "start": "webpack serve --config webpack.config.js",
-        "deploy": "npm run build && pm2 restart all"
+        "deploy": "npm run clean && npm run build && pm2 restart all"
     },
     "keywords": [],
-    "author": "",
+    "author": "0xKilouDev",
     "license": "ISC",
     "dependencies": {
         "@zxing/library": "^0.21.1",
