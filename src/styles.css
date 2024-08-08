@@ -456,7 +456,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Styles pour la section promo */
+/* Style pour la section promo */
 #promo {
   max-width: 800px;
   margin: 20px auto;
@@ -465,7 +465,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  text-align: left;
+  text-align: center; /* Changer de left à center */
   color: var(--bg-default);
   position: relative;
 }
@@ -503,8 +503,11 @@ body {
 
 .promo-item {
   display: flex;
+  flex-direction: column;
+  align-items: center; /* Ajouter ceci pour centrer horizontalement */
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 20px; /* Ajouter de l'espace entre les promotions */
 }
 
 .promo-product-image {
@@ -512,11 +515,11 @@ body {
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
-  margin-right: 20px;
+  margin-bottom: 10px; /* Ajouter de l'espace sous l'image */
 }
 
 .promo-details {
-  flex-grow: 1;
+  text-align: center; /* Centrer le texte */
 }
 
 .promo-details h3 {
@@ -534,6 +537,7 @@ body {
   height: 50px;
   object-fit: cover;
   border-radius: 8px;
+  margin-top: 10px; /* Ajouter de l'espace au-dessus du logo */
 }
 
 .promo-form-container {
