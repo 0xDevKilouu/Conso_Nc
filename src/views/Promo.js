@@ -51,6 +51,8 @@ const renderPromoForm = () => `
 
 const Promo = async () => {
   const promoItems = await getPromoItems();
+  
+  // Générer la liste des promotions seulement si elles existent
   const promoItemsHTML = promoItems.length > 0 ? `
     <ul class="promo-list">
       ${promoItems.map(item => `
@@ -64,7 +66,7 @@ const Promo = async () => {
         </li>
       `).join('')}
     </ul>
-  ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
+  ` : ''; // Ne rien afficher si la liste est vide
 
   return `
     <div id="promo">
