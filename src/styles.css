@@ -456,7 +456,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Style pour la section promo */
+/* Styles pour la section promo */
 #promo {
   max-width: 800px;
   margin: 20px auto;
@@ -465,7 +465,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  text-align: center; /* Changer de left à center */
+  text-align: center; 
   color: var(--bg-default);
   position: relative;
 }
@@ -504,10 +504,12 @@ body {
 .promo-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ajouter ceci pour centrer horizontalement */
-  padding: 10px;
+  align-items: center; 
+  padding: 20px; /* Ajoute de l'espace autour de chaque promotion */
   border-bottom: 1px solid #ddd;
-  margin-bottom: 20px; /* Ajouter de l'espace entre les promotions */
+  margin-bottom: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute un ombrage autour de chaque promotion */
+  border-radius: 8px;
 }
 
 .promo-product-image {
@@ -515,11 +517,12 @@ body {
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 10px; /* Ajouter de l'espace sous l'image */
+  margin-bottom: 10px; 
 }
 
 .promo-details {
-  text-align: center; /* Centrer le texte */
+  text-align: center; 
+  margin-top: 10px; /* Ajoute de l'espace entre l'image et le texte */
 }
 
 .promo-details h3 {
@@ -537,7 +540,7 @@ body {
   height: 50px;
   object-fit: cover;
   border-radius: 8px;
-  margin-top: 10px; /* Ajouter de l'espace au-dessus du logo */
+  margin-top: 10px; 
 }
 
 .promo-form-container {
