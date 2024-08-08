@@ -1,5 +1,5 @@
-import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
-import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
+import { auth, ui, uiConfig } from '../firebaseConfig';
+import { getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
 
 let isUpdateFormVisible = false;
 
@@ -32,7 +32,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    ${user ? renderUserInfo(user) : '<h2>Compte</h2>' + renderAuthUI()}
+    ${user ? renderUserInfo(user) : '<h2>Votre compte</h2>' + renderAuthUI()}
   </div>
 `;
 
@@ -51,13 +51,6 @@ const attachEventListeners = () => {
       });
     });
   }
-
-  // Supprimer ou commenter le code pour le bouton googleSigninButton
-  // if (googleSigninButton) {
-  //   googleSigninButton.addEventListener('click', () => {
-  //     signInWithRedirect(auth, googleProvider);
-  //   });
-  // }
 
   if (updateProfileButton) {
     updateProfileButton.addEventListener('click', toggleUpdateForm);

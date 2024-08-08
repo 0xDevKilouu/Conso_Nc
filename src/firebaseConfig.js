@@ -1,11 +1,10 @@
-// firebaseConfig.js
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, EmailAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import * as firebaseui from 'firebaseui';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Configuration Fireb
+// Configuration Firebase
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -19,7 +18,6 @@ const firebaseConfig = {
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
@@ -27,8 +25,8 @@ const storage = getStorage(app);
 const uiConfig = {
   signInSuccessUrl: '/',
   signInOptions: [
-    GoogleAuthProvider.PROVIDER_ID,
     EmailAuthProvider.PROVIDER_ID,
+    GoogleAuthProvider.PROVIDER_ID,
   ],
   callbacks: {
     signInSuccessWithAuthResult: (authResult, redirectUrl) => {
@@ -43,4 +41,4 @@ const uiConfig = {
 
 const ui = new firebaseui.auth.AuthUI(auth);
 
-export { auth, googleProvider, ui, uiConfig, firestore, storage, signInWithRedirect };
+export { auth, ui, uiConfig, firestore, storage };
