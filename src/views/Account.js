@@ -32,7 +32,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    ${user ? renderUserInfo(user) : '<h2>Votre compte</h2>' + renderAuthUI()}
+    ${user ? renderUserInfo(user) : '<h2>Votrecompte</h2>' + renderAuthUI()}
   </div>
 `;
 
