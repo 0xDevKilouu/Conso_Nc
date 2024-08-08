@@ -509,39 +509,38 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #ffffff;
+  text-align: left; /* Ajoute un alignement à gauche */
 }
 
 .promo-product-image {
-  width: 100px;
-  height: 100px;
+  width: 80px; /* Réduit la taille de l'image */
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  margin-right: 20px; /* Ajoute plus d'espace entre l'image et le texte */
+  margin-right: 20px; /* Espace entre l'image et le texte */
 }
 
 .promo-details {
   flex-grow: 1;
-  padding-left: 20px; /* Ajoute un espacement supplémentaire entre le texte et l'image */
+  padding-left: 20px; /* Espace supplémentaire entre l'image et le texte */
 }
 
 .promo-details h3 {
   font-size: 18px;
   margin-bottom: 5px;
-  text-align: left;
 }
 
 .promo-details p {
   font-size: 16px;
   margin-bottom: 5px;
-  text-align: left;
 }
 
 .company-logo {
-  width: 40px; /* Réduit la taille du logo */
-  height: 40px;
+  width: 30px; /* Réduction de la taille du logo */
+  height: 30px;
   object-fit: cover;
   border-radius: 8px;
-  margin-left: auto;
+  margin-left: auto; /* Positionnement à droite */
 }
 
 .promo-form-container {
