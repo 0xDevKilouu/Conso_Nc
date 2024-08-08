@@ -16,6 +16,25 @@ const getPromoItems = async () => {
   }
 };
 
+const createFormToken = async (amount, orderId, email) => {
+  const response = await fetch('https://epaync.nc/api-payment/V4/Charge/CreatePayment', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Basic ' + btoa('52213364:testpassword_NUfojbKEuSRUXgt4vVlWVAmJ28dO2X4TtZrVM0U0sJN2G'),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      amount: amount,
+      currency: 'XPF',
+      orderId: orderId,
+      customer: { email: email }
+    })
+  });
+
+  const data = await response.json();
+  return data.answer.formToken;
+};
+
 const renderPromoForm = () => `
   <div class="promo-form-container">
     <h3>Ajouter une promotion</h3>
@@ -26,6 +45,7 @@ const renderPromoForm = () => `
       <input type="file" id="company-logo" name="company-logo" accept="image/*" required>
       <button type="submit">Ajouter</button>
     </form>
+    <div id="payment-form-container"></div>
   </div>
 `;
 
@@ -64,26 +84,17 @@ const attachPromoEvents = () => {
   const promoFormWrapper = document.getElementById('promo-form-wrapper');
   if (addPromoButton && promoFormWrapper) {
     addPromoButton.addEventListener('click', () => {
-      console.log('Add promo button clicked');
-      console.log('Promo form wrapper element:', promoFormWrapper);
-      console.log('Current class list before toggle:', promoFormWrapper.classList);
       promoFormWrapper.classList.toggle('hidden');
-      console.log('Current class list after toggle:', promoFormWrapper.classList);
     });
-  } else {
-    console.error('Add promo button or promo form wrapper not found');
   }
 
   document.getElementById('promo-form').addEventListener('submit', async (event) => {
     event.preventDefault();
-    console.log('Promo form submitted');
     const form = event.target;
     const productName = form['product-name'].value;
     const promoDetails = form['promo-details'].value;
     const productImage = form['product-image'].files[0];
     const companyLogo = form['company-logo'].files[0];
-
-    console.log('Form values:', { productName, promoDetails, productImage, companyLogo });
 
     if (!productName || !promoDetails || !productImage || !companyLogo) {
       alert('Tous les champs sont obligatoires.');
@@ -100,25 +111,48 @@ const attachPromoEvents = () => {
       const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
       const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
 
-      console.log('Image URLs:', { productImageUrl, companyLogoUrl });
+      const formToken = await createFormToken(1000, 'promoOrder-' + new Date().getTime(), 'sample@example.com');
 
-      await addDoc(collection(firestore, 'promotions'), {
+      document.getElementById('payment-form-container').innerHTML = `
+        <div class="kr-embedded" kr-form-token="${formToken}"></div>
+      `;
+
+      sessionStorage.setItem('promoData', JSON.stringify({
         name: productName,
         details: promoDetails,
         image: productImageUrl,
         companyLogo: companyLogoUrl,
         createdBy: auth.currentUser.uid,
-        createdAt: new Date(),
-      });
-
-      alert('Promotion ajoutée avec succès!');
-      form.reset();
-      promoFormWrapper.classList.add('hidden');
+        createdAt: new Date()
+      }));
     } catch (error) {
-      console.error('Erreur lors de l\'ajout de la promotion:', error);
+      console.error('Erreur lors de la création du formToken ou de l\'upload des images:', error);
       alert('Une erreur est survenue. Veuillez réessayer.');
     }
   });
 };
+
+const finalizePromotion = async () => {
+  const promoData = JSON.parse(sessionStorage.getItem('promoData'));
+  if (promoData) {
+    try {
+      await addDoc(collection(firestore, 'promotions'), promoData);
+      alert('Promotion ajoutée avec succès!');
+      sessionStorage.removeItem('promoData');
+      document.getElementById('promo-form').reset();
+      document.getElementById('payment-form-container').innerHTML = '';
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout de la promotion:', error);
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+  }
+};
+
+window.addEventListener('load', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('payment') === 'success') {
+    finalizePromotion();
+  }
+});
 
 export { Promo, attachPromoEvents };
