@@ -503,12 +503,12 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: center; /* Aligne les éléments verticalement au centre */
+  align-items: center;
   padding: 15px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute un ombrage léger */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: #ffffff; /* Assure un fond blanc pour la carte */
+  background-color: #ffffff;
 }
 
 .promo-product-image {
@@ -516,18 +516,18 @@ body {
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
-  margin-right: 15px; /* Ajoute de l'espace entre l'image et le texte */
+  margin-right: 20px; /* Ajoute plus d'espace entre l'image et le texte */
 }
 
 .promo-details {
   flex-grow: 1;
-  padding-left: 10px; /* Ajoute un espacement entre le texte et l'image */
+  padding-left: 20px; /* Ajoute un espacement supplémentaire entre le texte et l'image */
 }
 
 .promo-details h3 {
   font-size: 18px;
   margin-bottom: 5px;
-  text-align: left; /* Assure que le texte est aligné à gauche */
+  text-align: left;
 }
 
 .promo-details p {
@@ -537,11 +537,11 @@ body {
 }
 
 .company-logo {
-  width: 50px;
-  height: 50px;
+  width: 40px; /* Réduit la taille du logo */
+  height: 40px;
   object-fit: cover;
   border-radius: 8px;
-  margin-left: auto; /* Place le logo à droite */
+  margin-left: auto;
 }
 
 .promo-form-container {
