@@ -1,5 +1,5 @@
 {
-    "name": "ConsoNc",
+    "name": "consonc",
     "version": "1.0.0",
     "description": "Application de scan de produits",
     "main": "src/app.js",
