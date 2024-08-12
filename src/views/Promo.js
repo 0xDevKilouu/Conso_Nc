@@ -68,7 +68,7 @@ const Promo = async () => {
 
   return `
     <div id="promo">
-      <h2>Promotions</h2>
+      <h2>Promotiffons</h2>
       <p>Liste de toutes les promotions à venir.</p>
       ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
       ${promoItemsHTML}
