@@ -5,7 +5,10 @@
     "main": "src/app.js",
     "scripts": {
         "build": "webpack --config webpack.config.js",
-        "start": "webpack serve --config webpack.config.js"
+        "start": "webpack serve --config webpack.config.js",
+        "clean": "rm -rf dist && rm -rf node_modules",
+        "install-dependencies": "npm install",
+        "deploy": "npm run clean && npm run install-dependencies && npm run build"
     },
     "keywords": [],
     "author": "",
