@@ -27,6 +27,7 @@ const renderAuthUI = () => `
   <div id="account-container">
     <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
+    <button id="google-signin-button">Se connecter avec Google</button> <!-- Bouton Google Sign-In -->
   </div>
 `;
 
@@ -40,6 +41,7 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
+  const googleSigninButton = document.getElementById('google-signin-button'); // Ajout de cette ligne
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -52,7 +54,7 @@ const attachEventListeners = () => {
     });
   }
 
-  if (googleSigninButton) {
+  if (googleSigninButton) { // Vérification si le bouton existe
     googleSigninButton.addEventListener('click', () => {
       signInWithRedirect(auth, googleProvider);
     });
