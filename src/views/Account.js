@@ -3,6 +3,59 @@ import { getRedirectResult, updateProfile, updatePassword } from "firebase/auth"
 
 let isUpdateFormVisible = false;
 
+// Déclaration globale de la fonction replaceFirebaseUIText
+const replaceFirebaseUIText = () => {
+  const termsElement = document.querySelector('.firebaseui-card-footer');
+  if (termsElement) {
+    termsElement.innerHTML = `
+      En continuant, vous indiquez que vous acceptez nos 
+      <a href="<your-terms-of-service-url>" target="_blank">Conditions d'utilisation</a> 
+      et notre 
+      <a href="<your-privacy-policy-url>" target="_blank">Politique de confidentialité</a>.
+    `;
+  }
+
+  document.querySelectorAll('.firebaseui-id-submit').forEach(button => {
+    if (button.innerText.toLowerCase() === 'next') {
+      button.innerText = 'Suivant';
+    }
+    if (button.innerText.toLowerCase() === 'cancel') {
+      button.innerText = 'Annuler';
+    }
+    if (button.innerText.toLowerCase() === 'back') {
+      button.innerText = 'Retour';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-secondary-link').forEach(link => {
+    if (link.innerText.toLowerCase().includes('trouble getting email')) {
+      link.innerText = 'Problème pour recevoir l\'email ?';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-page-sign-in').forEach(signInText => {
+    if (signInText.innerText.toLowerCase().includes('sign-in email sent')) {
+      signInText.innerText = 'Email de connexion envoyé';
+    }
+  });
+
+  // Traduire d'autres éléments de l'interface FirebaseUI
+  document.querySelectorAll('.firebaseui-title').forEach(title => {
+    if (title.innerText.toLowerCase().includes('sign in')) {
+      title.innerText = 'Se connecter';
+    }
+    if (title.innerText.toLowerCase().includes('sign up')) {
+      title.innerText = 'Créer un compte';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-password-reset-link').forEach(link => {
+    if (link.innerText.toLowerCase().includes('forgot password?')) {
+      link.innerText = 'Mot de passe oublié ?';
+    }
+  });
+};
+
 const toggleUpdateForm = () => {
   isUpdateFormVisible = !isUpdateFormVisible;
   handleAuthStateChange();
@@ -93,59 +146,6 @@ const attachEventListeners = () => {
       ui.start('#firebaseui-auth-container', uiConfig);
     });
   }
-};
-
-// Fonction pour remplacer le texte de l'interface Firebase UI par du texte en français
-const replaceFirebaseUIText = () => {
-  const termsElement = document.querySelector('.firebaseui-card-footer');
-  if (termsElement) {
-    termsElement.innerHTML = `
-      En continuant, vous indiquez que vous acceptez nos 
-      <a href="<your-terms-of-service-url>" target="_blank">Conditions d'utilisation</a> 
-      et notre 
-      <a href="<your-privacy-policy-url>" target="_blank">Politique de confidentialité</a>.
-    `;
-  }
-
-  document.querySelectorAll('.firebaseui-id-submit').forEach(button => {
-    if (button.innerText.toLowerCase() === 'next') {
-      button.innerText = 'Suivant';
-    }
-    if (button.innerText.toLowerCase() === 'cancel') {
-      button.innerText = 'Annuler';
-    }
-    if (button.innerText.toLowerCase() === 'back') {
-      button.innerText = 'Retour';
-    }
-  });
-
-  document.querySelectorAll('.firebaseui-id-secondary-link').forEach(link => {
-    if (link.innerText.toLowerCase().includes('trouble getting email')) {
-      link.innerText = 'Problème pour recevoir l\'email ?';
-    }
-  });
-
-  document.querySelectorAll('.firebaseui-id-page-sign-in').forEach(signInText => {
-    if (signInText.innerText.toLowerCase().includes('sign-in email sent')) {
-      signInText.innerText = 'Email de connexion envoyé';
-    }
-  });
-
-  // Traduire d'autres éléments de l'interface FirebaseUI
-  document.querySelectorAll('.firebaseui-title').forEach(title => {
-    if (title.innerText.toLowerCase().includes('sign in')) {
-      title.innerText = 'Se connecter';
-    }
-    if (title.innerText.toLowerCase().includes('sign up')) {
-      title.innerText = 'Créer un compte';
-    }
-  });
-
-  document.querySelectorAll('.firebaseui-id-password-reset-link').forEach(link => {
-    if (link.innerText.toLowerCase().includes('forgot password?')) {
-      link.innerText = 'Mot de passe oublié ?';
-    }
-  });
 };
 
 const handleAuthStateChange = () => {
