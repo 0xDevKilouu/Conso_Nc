@@ -1,4 +1,4 @@
-import { auth, signInWithEmailAndPassword, updateProfile, updatePassword } from "firebase/auth";
+import { auth, getRedirectResult, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, updatePassword } from "firebase/auth";
 import { ui, uiConfig } from '../firebaseConfig';
 
 let isUpdateFormVisible = false;
@@ -35,7 +35,7 @@ const renderLoginForm = () => `
 
 const renderAuthUI = () => `
   <div id="account-container">
-    <div id="login-container"></div> 
+    <div id="firebaseui-auth-container"></div>
     <p id="already-have-account">
       Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
     </p>
@@ -53,15 +53,15 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
+  const loginForm = document.getElementById('login-form');
   const loginLink = document.getElementById('login-link');
-  const loginContainer = document.getElementById('login-container');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
       auth.signOut().then(() => {
         alert('Déconnexion réussie');
-        window.location.hash = 'home';  // Rediriger vers la page d'accueil après déconnexion
-        handleAuthStateChange();  // Re-rendre l'interface après déconnexion
+        window.location.hash = 'home';
+        handleAuthStateChange();
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
       });
@@ -98,18 +98,6 @@ const attachEventListeners = () => {
     });
   }
 
-  if (loginLink) {
-    loginLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      loginContainer.innerHTML = renderLoginForm(); // Affiche le formulaire de connexion ici
-      attachLoginFormEventListener(); // Attache l'événement au formulaire nouvellement rendu
-    });
-  }
-};
-
-const attachLoginFormEventListener = () => {
-  const loginForm = document.getElementById('login-form');
-
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -119,7 +107,7 @@ const attachLoginFormEventListener = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log('Connexion réussie:', userCredential.user);
-          handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
+          handleAuthStateChange();
         })
         .catch((error) => {
           console.error('Erreur de connexion:', error);
@@ -127,18 +115,28 @@ const attachLoginFormEventListener = () => {
         });
     });
   }
+
+  if (loginLink) {
+    loginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
+      attachEventListeners();
+    });
+  }
 };
 
 const handleAuthStateChange = () => {
-  auth.onAuthStateChanged((user) => {
+  onAuthStateChanged(auth, (user) => {
     if (user) {
-      // Si l'utilisateur est connecté, afficher la page de compte
       window.location.hash = 'account';
     }
 
     if (window.location.hash.substring(1) === 'account') {
       document.getElementById('content').innerHTML = renderAccountPage(user);
-      attachEventListeners(); // Attacher les événements après le rendu
+      attachEventListeners();
+      if (!user) {
+        ui.start('#firebaseui-auth-container', uiConfig);
+      }
     }
   });
 };
@@ -148,14 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((result) => {
       if (result && result.user) {
         console.log('Utilisateur connecté après redirection:', result.user);
-        handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
+        handleAuthStateChange();
       }
     })
     .catch((error) => {
       console.error('Erreur de connexion:', error);
     });
 
-  handleAuthStateChange(); // Appel initial pour gérer l'état d'authentification actuel
+  handleAuthStateChange();
 });
 
 export default handleAuthStateChange;

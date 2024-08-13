@@ -4,7 +4,7 @@ import Scanner, { initializeScanner } from './views/Scanner';
 import { Promo, attachPromoEvents } from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
-import { auth } from './firebaseConfig'; 
+import { auth } from './firebaseConfig';
 
 const routes = {
   home: Home,
@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded event fired');
   initApp();
 
-  // Load Ionicons
   const script1 = document.createElement('script');
   script1.type = 'module';
   script1.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js';
