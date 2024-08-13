@@ -36,7 +36,7 @@ const createFormToken = async (amount, orderId, email) => {
 };
 
 const renderPromoForm = () => `
-  <div class="promo-form-container hidden">
+  <div class="promo-form-container">
     <h3>Ajouter une promotion</h3>
     <form id="promo-form">
       <input type="text" id="product-name" name="product-name" placeholder="Nom du produit" required>
@@ -58,16 +58,14 @@ const Promo = async () => {
     <ul class="promo-list">
       ${promoItems.map(item => `
         <li class="promo-item">
-          <div class="promo-item-content">
-            <img src="${item.image}" alt="${item.name}" class="promo-product-image">
-            <div class="promo-details">
-              <h3>${item.name}</h3>
-              <p>${item.details}</p>
-              <div class="promo-info">
-                <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
-                <div class="promo-location">${item.location}</div>
-                <div class="promo-expiry">${item.expiry}</div>
-              </div>
+          <img src="${item.image}" alt="${item.name}" class="promo-product-image">
+          <div class="promo-details">
+            <h3>${item.name}</h3>
+            <p>${item.details}</p>
+            <div class="promo-info">
+              <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
+              <div class="promo-location">${item.location}</div>
+              <div class="promo-expiry">${item.expiry}</div>
             </div>
             <div class="promo-price">${item.contact}</div>
           </div>
@@ -79,7 +77,7 @@ const Promo = async () => {
   return `
     <div id="promo">
       <h2>Promotions</h2>
-      <p>Vous retrouverez la liste de nos promotions actuels</p>
+      <p>Vous retrouverez la liste de nos promotions actuelles</p>
       ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
       ${promoItemsHTML}
       <div id="promo-form-wrapper" class="hidden">
@@ -171,7 +169,7 @@ window.addEventListener('load', () => {
   if (urlParams.get('payment') === 'success') {
     finalizePromotion();
   }
-  attachPromoEvents(); // Assurez-vous que les événements sont attachés lors du chargement
+  attachPromoEvents();
 });
 
 export { Promo, attachPromoEvents };

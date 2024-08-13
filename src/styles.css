@@ -505,33 +505,34 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
   padding: 10px;
   width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
 }
 
 .promo-product-image {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 4px;
   margin-right: 15px;
 }
 
 .promo-details {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
 .promo-details h3 {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #d32f2f;
   font-weight: bold;
   text-align: left;
@@ -539,14 +540,14 @@ body {
 
 .promo-details p {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #333;
   text-align: left;
 }
 
 .promo-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -554,6 +555,7 @@ body {
   width: 30px;
   height: 30px;
   object-fit: contain;
+  margin-right: 10px;
 }
 
 .promo-location {
@@ -573,6 +575,7 @@ body {
   font-weight: bold;
   color: #000;
   text-align: right;
+  margin-left: auto;
 }
 
 
