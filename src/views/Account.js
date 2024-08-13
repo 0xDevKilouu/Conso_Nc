@@ -1,5 +1,5 @@
 import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
-import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
+import { getRedirectResult } from "firebase/auth";
 
 // Définit la langue en français
 auth.languageCode = 'fr'; 
@@ -34,7 +34,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2>
+    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
@@ -94,11 +94,8 @@ const handleAuthStateChange = () => {
       if (!user) {
         ui.start('#firebaseui-auth-container', {
           signInOptions: [
-            {
-              provider: googleProvider.PROVIDER_ID,
-              fullLabel: "Se connecter avec Google", // Texte du bouton Google
-            },
-            'password', // Pour les connexions par e-mail
+            googleProvider.PROVIDER_ID,
+            'password',
           ],
           tosUrl: '/terms-of-service',
           privacyPolicyUrl: '/privacy-policy',
