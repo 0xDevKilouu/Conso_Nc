@@ -472,11 +472,13 @@ body {
 #promo h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center; /* Centrer le titre */
 }
 
 #promo p {
   font-size: 16px;
   margin-bottom: 20px;
+  text-align: center; /* Centrer le sous-titre */
 }
 
 #add-promo-button {
@@ -503,20 +505,19 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
-  text-align: left;
   position: relative;
   width: 100%;
 }
 
 .promo-product-image {
-  width: 60px; /* Taille réduite de l'image */
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 4px;
   margin-right: 10px;
@@ -524,26 +525,30 @@ body {
 
 .promo-details {
   flex-grow: 1;
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .promo-details h3 {
   font-size: 16px;
   margin-bottom: 5px;
-  color: #d32f2f; /* Couleur rouge */
+  color: #d32f2f;
   font-weight: bold;
 }
 
 .promo-details p {
   font-size: 14px;
   margin-bottom: 5px;
+  color: #333;
 }
 
 .company-logo {
-  width: 20px; /* Taille réduite du logo */
+  width: 20px;
   height: 20px;
   object-fit: cover;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .promo-expiry,
@@ -565,6 +570,7 @@ body {
   font-size: 12px;
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .promo-price {
@@ -585,6 +591,7 @@ body {
 .promo-form-container h3 {
   font-size: 20px;
   margin-bottom: 10px;
+  text-align: center; /* Centrer le titre du formulaire */
 }
 
 .promo-form-container form {
@@ -616,6 +623,7 @@ body {
 .hidden {
   display: none;
 }
+
 
 
 /* Améliorations pour la section Firebase U */
