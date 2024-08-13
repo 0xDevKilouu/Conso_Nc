@@ -48,10 +48,7 @@ const uiConfig = {
     },
     uiShown: () => {
       console.log('Interface FirebaseUI affichée !');
-      const nextButton = document.querySelector('.firebaseui-id-submit');
-      if (nextButton) {
-        nextButton.innerText = 'Suivant'; // Assurez-vous que le texte du bouton est correct
-      }
+      replaceFirebaseUIText(); // Appeler la fonction de remplacement du texte ici
     }
   }
 };

@@ -27,6 +27,9 @@ const renderUserInfo = (user) => `
 const renderAuthUI = () => `
   <div id="account-container">
     <div id="firebaseui-auth-container"></div>
+    <p id="already-have-account">
+      Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
+    </p>
   </div>
 `;
 
@@ -41,6 +44,7 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
+  const loginLink = document.getElementById('login-link');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -82,6 +86,13 @@ const attachEventListeners = () => {
       }
     });
   }
+
+  if (loginLink) {
+    loginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      ui.start('#firebaseui-auth-container', uiConfig);
+    });
+  }
 };
 
 // Fonction pour remplacer le texte de l'interface Firebase UI par du texte en français
@@ -117,6 +128,22 @@ const replaceFirebaseUIText = () => {
   document.querySelectorAll('.firebaseui-id-page-sign-in').forEach(signInText => {
     if (signInText.innerText.toLowerCase().includes('sign-in email sent')) {
       signInText.innerText = 'Email de connexion envoyé';
+    }
+  });
+
+  // Traduire d'autres éléments de l'interface FirebaseUI
+  document.querySelectorAll('.firebaseui-title').forEach(title => {
+    if (title.innerText.toLowerCase().includes('sign in')) {
+      title.innerText = 'Se connecter';
+    }
+    if (title.innerText.toLowerCase().includes('sign up')) {
+      title.innerText = 'Créer un compte';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-password-reset-link').forEach(link => {
+    if (link.innerText.toLowerCase().includes('forgot password?')) {
+      link.innerText = 'Mot de passe oublié ?';
     }
   });
 };
