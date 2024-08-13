@@ -34,7 +34,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
+    <h2>${user ? 'Compte' : 'Connexion'}</h2>
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
@@ -48,7 +48,7 @@ const attachEventListeners = () => {
     logoutButton.addEventListener('click', () => {
       auth.signOut().then(() => {
         alert('Déconnexion réussie');
-        handleAuthStateChange();  // Re-render the auth UI after logout
+        handleAuthStateChange();
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
       });
@@ -93,7 +93,6 @@ const handleAuthStateChange = () => {
       attachEventListeners();
       if (!user) {
         ui.start('#firebaseui-auth-container', {
-          ...uiConfig,
           signInOptions: [
             {
               provider: googleProvider.PROVIDER_ID,
@@ -101,8 +100,8 @@ const handleAuthStateChange = () => {
             },
             'password', // Pour les connexions par e-mail
           ],
-          tosUrl: '<your-terms-of-service-url>', // Ajoutez ceci pour définir une URL de CGU
-          privacyPolicyUrl: '<your-privacy-policy-url>', // Ajoutez ceci pour définir une URL de politique de confidentialité
+          tosUrl: '/terms-of-service',
+          privacyPolicyUrl: '/privacy-policy',
           callbacks: {
             uiShown: () => {
               const nextButton = document.querySelector('.firebaseui-id-submit');
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((result) => {
       if (result && result.user) {
         console.log('Utilisateur connecté après redirection:', result.user);
-        handleAuthStateChange(); // Re-render the auth UI with the logged-in user
+        handleAuthStateChange();
       }
     })
     .catch((error) => {
