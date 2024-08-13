@@ -43,6 +43,9 @@ const renderPromoForm = () => `
       <textarea id="promo-details" name="promo-details" placeholder="Détails de la promotion" required></textarea>
       <input type="file" id="product-image" name="product-image" accept="image/*" required>
       <input type="file" id="company-logo" name="company-logo" accept="image/*" required>
+      <input type="text" id="promo-expiry" name="promo-expiry" placeholder="Date d'expiration" required>
+      <input type="text" id="promo-location" name="promo-location" placeholder="Localisation (ex: Kenu-in DUMBEA Mall)" required>
+      <input type="text" id="promo-contact" name="promo-contact" placeholder="Contact du promoteur" required>
       <button type="submit">Ajouter</button>
     </form>
     <div id="payment-form-container"></div>
@@ -55,11 +58,16 @@ const Promo = async () => {
     <ul class="promo-list">
       ${promoItems.map(item => `
         <li class="promo-item">
-          <img src="${item.image}" alt="${item.name}" class="promo-product-image">
-          <div class="promo-details">
-            <h3>${item.name}</h3>
-            <p>${item.details}</p>
-            <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
+          <div class="promo-item-content">
+            <img src="${item.image}" alt="${item.name}" class="promo-product-image">
+            <div class="promo-details">
+              <h3>${item.name}</h3>
+              <p>${item.details}</p>
+              <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
+              <div class="promo-expiry">Exp : -Jour/-Heure</div>
+              <div class="promo-location">Kenu-in DUMBEA Mall</div>
+              <div class="promo-price">41.41.41</div>
+            </div>
           </div>
         </li>
       `).join('')}
@@ -95,8 +103,11 @@ const attachPromoEvents = () => {
     const promoDetails = form['promo-details'].value;
     const productImage = form['product-image'].files[0];
     const companyLogo = form['company-logo'].files[0];
+    const promoExpiry = form['promo-expiry'].value;
+    const promoLocation = form['promo-location'].value;
+    const promoContact = form['promo-contact'].value;
 
-    if (!productName || !promoDetails || !productImage || !companyLogo) {
+    if (!productName || !promoDetails || !productImage || !companyLogo || !promoExpiry || !promoLocation || !promoContact) {
       alert('Tous les champs sont obligatoires.');
       return;
     }
@@ -122,6 +133,9 @@ const attachPromoEvents = () => {
         details: promoDetails,
         image: productImageUrl,
         companyLogo: companyLogoUrl,
+        expiry: promoExpiry,
+        location: promoLocation,
+        contact: promoContact,
         createdBy: auth.currentUser.uid,
         createdAt: new Date()
       }));
