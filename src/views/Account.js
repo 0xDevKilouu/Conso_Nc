@@ -84,13 +84,52 @@ const attachEventListeners = () => {
   }
 };
 
+// Ajout du script de remplacement de texte pour la traduction en français
+const replaceFirebaseUIText = () => {
+  // Remplacer la phrase "By continuing, you are indicating that you accept our Terms of Service and Privacy Policy."
+  const termsElement = document.querySelector('.firebaseui-card-footer');
+  if (termsElement) {
+    termsElement.innerHTML = `
+      En continuant, vous indiquez que vous acceptez nos 
+      <a href="<your-terms-of-service-url>" target="_blank">Conditions d'utilisation</a> 
+      et notre 
+      <a href="<your-privacy-policy-url>" target="_blank">Politique de confidentialité</a>.
+    `;
+  }
+
+  // Remplacer les autres éléments qui restent en anglais
+  document.querySelectorAll('.firebaseui-id-submit').forEach(button => {
+    if (button.innerText.toLowerCase() === 'next') {
+      button.innerText = 'Suivant';
+    }
+    if (button.innerText.toLowerCase() === 'cancel') {
+      button.innerText = 'Annuler';
+    }
+    if (button.innerText.toLowerCase() === 'back') {
+      button.innerText = 'Retour';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-secondary-link').forEach(link => {
+    if (link.innerText.toLowerCase().includes('trouble getting email')) {
+      link.innerText = 'Problème pour recevoir l\'email ?';
+    }
+  });
+
+  document.querySelectorAll('.firebaseui-id-page-sign-in').forEach(signInText => {
+    if (signInText.innerText.toLowerCase().includes('sign-in email sent')) {
+      signInText.innerText = 'Email de connexion envoyé';
+    }
+  });
+};
+
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
     if (window.location.hash.substring(1) === 'account') {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig); // Utiliser uiConfig pour FirebaseUI
+        ui.start('#firebaseui-auth-container', uiConfig).then(replaceFirebaseUIText);
       }
     }
   });
