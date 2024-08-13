@@ -1,5 +1,6 @@
 import { ui, uiConfig } from './firebaseConfig';
 
+
 // Fonction pour remplacer le texte de l'interface Firebase UI par du texte en français
 const replaceFirebaseUIText = () => {
   const termsElement = document.querySelector('.firebaseui-card-footer');
