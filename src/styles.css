@@ -458,21 +458,20 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 1000px; /* Augmenter la largeur maximale pour correspondre à l'image d'exemple */
+  max-width: 1000px;
   margin: 20px auto;
-  padding: 10px; /* Réduire le padding pour se concentrer sur le contenu */
+  padding: 20px;
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
   color: var(--bg-default);
-  position: relative;
 }
 
 #promo h2 {
   font-size: 24px;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: center; 
 }
 
 #promo p {
@@ -505,19 +504,17 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: flex-start;
-  padding: 10px;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
-  position: relative;
+  padding: 10px;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajouter une ombre pour un effet de carte */
 }
 
 .promo-product-image {
-  width: 150px; /* Taille de l'image augmentée pour correspondre à l'exemple */
+  width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 4px;
@@ -528,51 +525,47 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 5px 0;
+  justify-content: center;
 }
 
 .promo-details h3 {
   font-size: 18px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: #d32f2f;
   font-weight: bold;
-  text-align: left; /* Titre aligné à gauche */
+  text-align: left;
 }
 
 .promo-details p {
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: #333;
-  text-align: left; /* Description alignée à gauche */
+  text-align: left;
 }
 
 .promo-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  width: 100%;
 }
 
 .company-logo {
-  width: 30px; /* Taille du logo légèrement augmentée pour correspondre à l'exemple */
+  width: 30px;
   height: 30px;
   object-fit: contain;
-  margin-right: 10px;
 }
 
 .promo-location {
-  display: flex;
-  align-items: center;
   font-size: 14px;
   color: #555;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .promo-expiry {
   font-size: 14px;
   color: #777;
-  margin-left: auto; /* Mettre à droite dans la zone d'information */
+  margin-left: auto;
 }
 
 .promo-price {
@@ -580,7 +573,6 @@ body {
   font-weight: bold;
   color: #000;
   text-align: right;
-  margin-top: 5px;
 }
 
 

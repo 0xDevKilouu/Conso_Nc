@@ -63,11 +63,13 @@ const Promo = async () => {
             <div class="promo-details">
               <h3>${item.name}</h3>
               <p>${item.details}</p>
-              <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
-              <div class="promo-expiry">Exp : -Jour/-Heure</div>
-              <div class="promo-location">Kenu-in DUMBEA Mall</div>
-              <div class="promo-price">41.41.41</div>
+              <div class="promo-info">
+                <img src="${item.companyLogo}" alt="Logo de la société" class="company-logo">
+                <div class="promo-location">${item.location}</div>
+                <div class="promo-expiry">${item.expiry}</div>
+              </div>
             </div>
+            <div class="promo-price">${item.contact}</div>
           </div>
         </li>
       `).join('')}
@@ -86,6 +88,7 @@ const Promo = async () => {
     </div>
   `;
 };
+
 
 const attachPromoEvents = () => {
   const addPromoButton = document.getElementById('add-promo-button');
