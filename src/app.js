@@ -4,7 +4,7 @@ import Scanner, { initializeScanner } from './views/Scanner';
 import { Promo, attachPromoEvents } from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
-import { auth } from './firebaseConfig'; // Assurez-vous que 'auth' est bien importé
+import { auth } from './firebaseConfig'; 
 
 const routes = {
   home: Home,
@@ -89,23 +89,6 @@ const initApp = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded event fired');
-  fetch('/secure-data')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Data received:', data);
-      if (Array.isArray(data)) {
-        console.log(data);
-      } else {
-        console.error('Received data is not an array:', data);
-      }
-    })
-    .catch(error => console.error('Error:', error));
-
   initApp();
 
   // Load Ionicons

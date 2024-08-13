@@ -1,4 +1,3 @@
-// firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, EmailAuthProvider } from "firebase/auth";
 import * as firebaseui from 'firebaseui';
@@ -18,7 +17,7 @@ const firebaseConfig = {
 
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // Assurez-vous que 'auth' est bien initialisé
+const auth = getAuth(app);
 auth.languageCode = 'fr';  // Assurez-vous que la langue est définie en français
 
 const googleProvider = new GoogleAuthProvider();
@@ -41,15 +40,6 @@ const uiConfig = {
   ],
   tosUrl: '<your-terms-of-service-url>', // URL des termes de service
   privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
-  callbacks: {
-    signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-      console.log('Connexion réussie !');
-      return true; // Continue la redirection vers signInSuccessUrl
-    },
-    uiShown: () => {
-      console.log('Interface FirebaseUI affichée !');
-    }
-  }
 };
 
 const ui = new firebaseui.auth.AuthUI(auth);

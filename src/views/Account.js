@@ -1,5 +1,5 @@
-import { auth, signInWithEmailAndPassword, getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
-import { ui, uiConfig } from '../firebaseConfig';
+import { auth, ui, uiConfig } from '../firebaseConfig';
+import { getRedirectResult, signInWithEmailAndPassword, updateProfile, updatePassword } from "firebase/auth";
 
 let isUpdateFormVisible = false;
 
@@ -24,19 +24,9 @@ const renderUserInfo = (user) => `
   </div>
 `;
 
-const renderLoginForm = () => `
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required />
-    <input type="password" id="login-password" placeholder="Mot de passe" required />
-    <button type="submit">Se connecter</button>
-  </form>
-  <div id="login-error"></div>
-`;
-
 const renderAuthUI = () => `
   <div id="account-container">
     <div id="firebaseui-auth-container"></div>
-    ${renderLoginForm()}
     <p id="already-have-account">
       Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
     </p>
@@ -54,7 +44,7 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const loginForm = document.getElementById('login-form');
+  const loginLink = document.getElementById('login-link');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -98,21 +88,10 @@ const attachEventListeners = () => {
     });
   }
 
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+  if (loginLink) {
+    loginLink.addEventListener('click', (e) => {
       e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log('Connexion réussie:', userCredential.user);
-          handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
-        })
-        .catch((error) => {
-          console.error('Erreur de connexion:', error);
-          document.getElementById('login-error').innerText = 'Erreur de connexion: ' + error.message;
-        });
+      ui.start('#firebaseui-auth-container', uiConfig);
     });
   }
 };
