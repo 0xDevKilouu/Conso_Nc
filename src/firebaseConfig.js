@@ -36,7 +36,7 @@ const uiConfig = {
     {
       provider: EmailAuthProvider.PROVIDER_ID,
       signInMethod: EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,  // Utiliser l'authentification par mot de passe
-      fullLabel: "S'inscrire avec votre email" // Texte en français pour l'email
+      fullLabel: "Se connecter avec l'email et mot de passe" // Texte en français pour l'email
     }
   ],
   tosUrl: '<your-terms-of-service-url>', // URL des termes de service
@@ -48,7 +48,7 @@ const uiConfig = {
     },
     uiShown: () => {
       console.log('Interface FirebaseUI affichée !');
-      replaceFirebaseUIText(); // Appeler la fonction de remplacement du texte ici
+      // On ne remplace plus le texte ici pour éviter les erreurs
     }
   }
 };
