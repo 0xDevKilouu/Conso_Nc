@@ -84,9 +84,8 @@ const attachEventListeners = () => {
   }
 };
 
-// Ajout du script de remplacement de texte pour la traduction en français
+// Fonction pour remplacer le texte de l'interface Firebase UI par du texte en français
 const replaceFirebaseUIText = () => {
-  // Remplacer la phrase "By continuing, you are indicating that you accept our Terms of Service and Privacy Policy."
   const termsElement = document.querySelector('.firebaseui-card-footer');
   if (termsElement) {
     termsElement.innerHTML = `
@@ -97,7 +96,6 @@ const replaceFirebaseUIText = () => {
     `;
   }
 
-  // Remplacer les autres éléments qui restent en anglais
   document.querySelectorAll('.firebaseui-id-submit').forEach(button => {
     if (button.innerText.toLowerCase() === 'next') {
       button.innerText = 'Suivant';
@@ -129,7 +127,8 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig).then(replaceFirebaseUIText);
+        ui.start('#firebaseui-auth-container', uiConfig);
+        replaceFirebaseUIText(); // Appeler la fonction ici après le rendu de l'interface
       }
     }
   });
