@@ -1,8 +1,5 @@
-import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
-import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
-
-// Définit la langue en français
-auth.languageCode = 'fr'; 
+import { auth, ui, uiConfig } from '../firebaseConfig';
+import { getRedirectResult } from "firebase/auth";
 
 let isUpdateFormVisible = false;
 
@@ -34,7 +31,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2>
+    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
@@ -43,7 +40,6 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const googleSigninButton = document.getElementById('google-signin-button');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -53,12 +49,6 @@ const attachEventListeners = () => {
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
       });
-    });
-  }
-
-  if (googleSigninButton) {
-    googleSigninButton.addEventListener('click', () => {
-      signInWithRedirect(auth, googleProvider);
     });
   }
 
@@ -99,26 +89,7 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', {
-          ...uiConfig,
-          signInOptions: [
-            {
-              provider: googleProvider.PROVIDER_ID,
-              fullLabel: "Se connecter avec Google", // Texte du bouton Google en français
-            },
-            'password',
-          ],
-          tosUrl: '<your-terms-of-service-url>', // URL des termes de service
-          privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
-          callbacks: {
-            uiShown: () => {
-              const nextButton = document.querySelector('.firebaseui-id-submit');
-              if (nextButton) {
-                nextButton.innerText = 'Suivant'; // Changement du texte du bouton en français
-              }
-            },
-          },
-        });
+        ui.start('#firebaseui-auth-container', uiConfig); // Utiliser uiConfig pour FirebaseUI
       }
     }
   });
