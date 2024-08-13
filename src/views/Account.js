@@ -27,7 +27,6 @@ const renderAuthUI = () => `
   <div id="account-container">
     <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
-    <button id="google-signin-button">Se connecter avec Google</button> <!-- Bouton Google Sign-In -->
   </div>
 `;
 
