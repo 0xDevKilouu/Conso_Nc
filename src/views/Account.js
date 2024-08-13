@@ -35,7 +35,8 @@ const renderLoginForm = () => `
 
 const renderAuthUI = () => `
   <div id="account-container">
-    <div id="login-container"></div> 
+    <div id="firebaseui-auth-container"></div>
+    ${renderLoginForm()}
     <p id="already-have-account">
       Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
     </p>
@@ -53,8 +54,7 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const loginLink = document.getElementById('login-link');
-  const loginContainer = document.getElementById('login-container');
+  const loginForm = document.getElementById('login-form');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -98,18 +98,6 @@ const attachEventListeners = () => {
     });
   }
 
-  if (loginLink) {
-    loginLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      loginContainer.innerHTML = renderLoginForm(); // Affiche le formulaire de connexion ici
-      attachLoginFormEventListener(); // Attache l'événement au formulaire nouvellement rendu
-    });
-  }
-};
-
-const attachLoginFormEventListener = () => {
-  const loginForm = document.getElementById('login-form');
-
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -138,7 +126,10 @@ const handleAuthStateChange = () => {
 
     if (window.location.hash.substring(1) === 'account') {
       document.getElementById('content').innerHTML = renderAccountPage(user);
-      attachEventListeners(); // Attacher les événements après le rendu
+      attachEventListeners();
+      if (!user) {
+        ui.start('#firebaseui-auth-container', uiConfig);
+      }
     }
   });
 };
