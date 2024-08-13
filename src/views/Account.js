@@ -1,5 +1,5 @@
-import { auth, ui, uiConfig } from '../firebaseConfig';
-import { getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
+import { auth, signInWithEmailAndPassword, getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
+import { ui, uiConfig } from '../firebaseConfig';
 
 let isUpdateFormVisible = false;
 
@@ -24,9 +24,19 @@ const renderUserInfo = (user) => `
   </div>
 `;
 
+const renderLoginForm = () => `
+  <form id="login-form">
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-password" placeholder="Mot de passe" required />
+    <button type="submit">Se connecter</button>
+  </form>
+  <div id="login-error"></div>
+`;
+
 const renderAuthUI = () => `
   <div id="account-container">
     <div id="firebaseui-auth-container"></div>
+    ${renderLoginForm()}
     <p id="already-have-account">
       Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
     </p>
@@ -44,12 +54,13 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const loginLink = document.getElementById('login-link');
+  const loginForm = document.getElementById('login-form');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
       auth.signOut().then(() => {
         alert('Déconnexion réussie');
+        window.location.hash = 'home';  // Rediriger vers la page d'accueil après déconnexion
         handleAuthStateChange();  // Re-rendre l'interface après déconnexion
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
@@ -87,16 +98,32 @@ const attachEventListeners = () => {
     });
   }
 
-  if (loginLink) {
-    loginLink.addEventListener('click', (e) => {
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      ui.start('#firebaseui-auth-container', uiConfig);
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log('Connexion réussie:', userCredential.user);
+          handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
+        })
+        .catch((error) => {
+          console.error('Erreur de connexion:', error);
+          document.getElementById('login-error').innerText = 'Erreur de connexion: ' + error.message;
+        });
     });
   }
 };
 
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
+    if (user) {
+      // Si l'utilisateur est connecté, afficher la page de compte
+      window.location.hash = 'account';
+    }
+
     if (window.location.hash.substring(1) === 'account') {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
@@ -112,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((result) => {
       if (result && result.user) {
         console.log('Utilisateur connecté après redirection:', result.user);
-        handleAuthStateChange(); // Re-render the auth UI with the logged-in user
+        handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
       }
     })
     .catch((error) => {
       console.error('Erreur de connexion:', error);
     });
 
-  handleAuthStateChange(); // Initial call to handle the current auth state
+  handleAuthStateChange(); // Appel initial pour gérer l'état d'authentification actuel
 });
 
 export default handleAuthStateChange;

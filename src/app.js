@@ -20,7 +20,7 @@ const loadView = async (view) => {
 
   if (routes[view]) {
     if (view === 'account') {
-      handleAuthStateChange();
+      handleAuthStateChange();  // Charge ou met à jour la vue du compte
     } else {
       const viewContent = await routes[view]();
       content.innerHTML = viewContent;
