@@ -28,14 +28,13 @@ const renderUserInfo = (user) => `
 
 const renderAuthUI = () => `
   <div id="account-container">
-    <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
   </div>
 `;
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2>
+    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
@@ -93,7 +92,23 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig);
+        ui.start('#firebaseui-auth-container', {
+          ...uiConfig,
+          // Ajout de la configuration de langue ici
+          signInOptions: [
+            {
+              provider: googleProvider.PROVIDER_ID,
+              fullLabel: "Se connecter avec Google", // Texte du bouton Google
+            },
+            'password', // Pour les connexions par e-mail
+          ],
+          // Callbacks pour l'interface Firebase UI
+          callbacks: {
+            uiShown: () => {
+              document.querySelector('.firebaseui-id-submit').innerText = 'Suivant'; // Changement du bouton Next
+            },
+          },
+        });
       }
     }
   });
