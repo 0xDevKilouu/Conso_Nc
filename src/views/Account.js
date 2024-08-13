@@ -1,8 +1,5 @@
 import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
-import { getRedirectResult } from "firebase/auth";
-
-// Définit la langue en français
-auth.languageCode = 'fr'; 
+import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
 
 let isUpdateFormVisible = false;
 
@@ -28,14 +25,15 @@ const renderUserInfo = (user) => `
 
 const renderAuthUI = () => `
   <div id="account-container">
+    <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
+    <button id="google-signin-button">Se connecter avec Google</button> <!-- Bouton Google Sign-In -->
   </div>
 `;
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
-    ${user ? renderUserInfo(user) : renderAuthUI()}
+    ${user ? renderUserInfo(user) : '<h2>Compte</h2>' + renderAuthUI()}
   </div>
 `;
 
@@ -43,15 +41,22 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
+  const googleSigninButton = document.getElementById('google-signin-button'); // Ajout de cette ligne
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
       auth.signOut().then(() => {
         alert('Déconnexion réussie');
-        handleAuthStateChange();
+        handleAuthStateChange();  // Re-render the auth UI after logout
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
       });
+    });
+  }
+
+  if (googleSigninButton) { // Vérification si le bouton existe
+    googleSigninButton.addEventListener('click', () => {
+      signInWithRedirect(auth, googleProvider);
     });
   }
 
@@ -92,22 +97,7 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', {
-          signInOptions: [
-            googleProvider.PROVIDER_ID,
-            'password',
-          ],
-          tosUrl: '/terms-of-service',
-          privacyPolicyUrl: '/privacy-policy',
-          callbacks: {
-            uiShown: () => {
-              const nextButton = document.querySelector('.firebaseui-id-submit');
-              if (nextButton) {
-                nextButton.innerText = 'Suivant'; // Changement du texte du bouton
-              }
-            },
-          },
-        });
+        ui.start('#firebaseui-auth-container', uiConfig);
       }
     }
   });
@@ -118,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((result) => {
       if (result && result.user) {
         console.log('Utilisateur connecté après redirection:', result.user);
-        handleAuthStateChange();
+        handleAuthStateChange(); // Re-render the auth UI with the logged-in user
       }
     })
     .catch((error) => {
