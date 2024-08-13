@@ -55,6 +55,7 @@ const attachEventListeners = () => {
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
   const loginForm = document.getElementById('login-form');
+  const loginLink = document.getElementById('login-link');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -115,6 +116,15 @@ const attachEventListeners = () => {
         });
     });
   }
+
+  if (loginLink) {
+    loginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Affiche le formulaire de connexion manuel
+      document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
+      attachEventListeners(); // Réattache les événements au nouveau formulaire
+    });
+  }
 };
 
 const handleAuthStateChange = () => {
@@ -128,7 +138,8 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig);
+        document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
+        attachEventListeners(); // Réattache les événements au nouveau formulaire
       }
     }
   });
