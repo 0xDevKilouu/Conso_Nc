@@ -36,7 +36,7 @@ const createFormToken = async (amount, orderId, email) => {
 };
 
 const renderPromoForm = () => `
-  <div class="promo-form-container">
+  <div class="promo-form-container hidden">
     <h3>Ajouter une promotion</h3>
     <form id="promo-form">
       <input type="text" id="product-name" name="product-name" placeholder="Nom du produit" required>
@@ -89,65 +89,66 @@ const Promo = async () => {
   `;
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+const attachPromoEvents = () => {
   if (auth.currentUser) {
     const addPromoButton = document.getElementById('add-promo-button');
     const promoFormWrapper = document.getElementById('promo-form-wrapper');
-    addPromoButton.addEventListener('click', () => {
-      promoFormWrapper.classList.toggle('hidden');
+    if (addPromoButton && promoFormWrapper) {
+      addPromoButton.addEventListener('click', () => {
+        promoFormWrapper.classList.toggle('hidden');
+      });
+    }
+
+    document.getElementById('promo-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const productName = form['product-name'].value;
+      const promoDetails = form['promo-details'].value;
+      const productImage = form['product-image'].files[0];
+      const companyLogo = form['company-logo'].files[0];
+      const promoExpiry = form['promo-expiry'].value;
+      const promoLocation = form['promo-location'].value;
+      const promoContact = form['promo-contact'].value;
+
+      if (!productName || !promoDetails || !productImage || !companyLogo || !promoExpiry || !promoLocation || !promoContact) {
+        alert('Tous les champs sont obligatoires.');
+        return;
+      }
+
+      try {
+        const productImageRef = ref(storage, `product-images/${productImage.name}`);
+        const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
+
+        const productImageSnapshot = await uploadBytes(productImageRef, productImage);
+        const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
+
+        const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
+        const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
+
+        const formToken = await createFormToken(1000, 'promoOrder-' + new Date().getTime(), 'sample@example.com');
+
+        document.getElementById('payment-form-container').innerHTML = `
+          <div class="kr-embedded" kr-form-token="${formToken}"></div>
+        `;
+
+        sessionStorage.setItem('promoData', JSON.stringify({
+          name: productName,
+          details: promoDetails,
+          image: productImageUrl,
+          companyLogo: companyLogoUrl,
+          expiry: promoExpiry,
+          location: promoLocation,
+          contact: promoContact,
+          createdBy: auth.currentUser.uid,
+          createdAt: new Date()
+        }));
+      } catch (error) {
+        console.error('Erreur lors de la création du formToken ou de l\'upload des images:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
     });
   }
-});
-
-
-  document.getElementById('promo-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const productName = form['product-name'].value;
-    const promoDetails = form['promo-details'].value;
-    const productImage = form['product-image'].files[0];
-    const companyLogo = form['company-logo'].files[0];
-    const promoExpiry = form['promo-expiry'].value;
-    const promoLocation = form['promo-location'].value;
-    const promoContact = form['promo-contact'].value;
-
-    if (!productName || !promoDetails || !productImage || !companyLogo || !promoExpiry || !promoLocation || !promoContact) {
-      alert('Tous les champs sont obligatoires.');
-      return;
-    }
-
-    try {
-      const productImageRef = ref(storage, `product-images/${productImage.name}`);
-      const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
-
-      const productImageSnapshot = await uploadBytes(productImageRef, productImage);
-      const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
-
-      const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
-      const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
-
-      const formToken = await createFormToken(1000, 'promoOrder-' + new Date().getTime(), 'sample@example.com');
-
-      document.getElementById('payment-form-container').innerHTML = `
-        <div class="kr-embedded" kr-form-token="${formToken}"></div>
-      `;
-
-      sessionStorage.setItem('promoData', JSON.stringify({
-        name: productName,
-        details: promoDetails,
-        image: productImageUrl,
-        companyLogo: companyLogoUrl,
-        expiry: promoExpiry,
-        location: promoLocation,
-        contact: promoContact,
-        createdBy: auth.currentUser.uid,
-        createdAt: new Date()
-      }));
-    } catch (error) {
-      console.error('Erreur lors de la création du formToken ou de l\'upload des images:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
-    }
-  });
+};
 
 const finalizePromotion = async () => {
   const promoData = JSON.parse(sessionStorage.getItem('promoData'));
@@ -170,6 +171,7 @@ window.addEventListener('load', () => {
   if (urlParams.get('payment') === 'success') {
     finalizePromotion();
   }
+  attachPromoEvents(); // Assurez-vous que les événements sont attachés lors du chargement
 });
 
 export { Promo, attachPromoEvents };
