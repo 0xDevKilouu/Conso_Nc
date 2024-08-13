@@ -36,7 +36,7 @@ const createFormToken = async (amount, orderId, email) => {
 };
 
 const renderPromoForm = () => `
-  <div class="promo-form-container">
+  <div class="promo-form-container hidden">
     <h3>Ajouter une promotion</h3>
     <form id="promo-form">
       <input type="text" id="product-name" name="product-name" placeholder="Nom du produit" required>
@@ -80,7 +80,7 @@ const Promo = async () => {
       <p>Vous retrouverez la liste de nos promotions actuelles</p>
       ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
       ${promoItemsHTML}
-      <div id="promo-form-wrapper" class="hidden">
+      <div id="promo-form-wrapper" class="hidden"> <!-- Formulaire caché par défaut -->
         ${renderPromoForm()}
       </div>
     </div>
