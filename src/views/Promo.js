@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Une erreur est survenue. Veuillez réessayer.');
     }
   });
-};
 
 const finalizePromotion = async () => {
   const promoData = JSON.parse(sessionStorage.getItem('promoData'));
