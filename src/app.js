@@ -4,7 +4,7 @@ import Scanner, { initializeScanner } from './views/Scanner';
 import { Promo, attachPromoEvents } from './views/Promo';
 import Compare from './views/Compare';
 import handleAuthStateChange from './views/Account';
-import { auth } from './firebaseConfig';
+import { auth } from './firebaseConfig'; // Assurez-vous que 'auth' est bien importé
 
 const routes = {
   home: Home,
@@ -20,7 +20,7 @@ const loadView = async (view) => {
 
   if (routes[view]) {
     if (view === 'account') {
-      handleAuthStateChange();  // Charge ou met à jour la vue du compte
+      handleAuthStateChange();
     } else {
       const viewContent = await routes[view]();
       content.innerHTML = viewContent;

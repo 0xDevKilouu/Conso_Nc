@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const auth = getAuth(app); // Assurez-vous que 'auth' est bien initialisé
 auth.languageCode = 'fr';  // Assurez-vous que la langue est définie en français
 
 const googleProvider = new GoogleAuthProvider();
@@ -27,7 +27,7 @@ const storage = getStorage(app);
 
 // Configurer FirebaseUI
 const uiConfig = {
-  signInSuccessUrl: '/', // Redirection après connexion
+  signInSuccessUrl: '#account', // Redirection après connexion
   signInOptions: [
     {
       provider: GoogleAuthProvider.PROVIDER_ID,
@@ -48,7 +48,6 @@ const uiConfig = {
     },
     uiShown: () => {
       console.log('Interface FirebaseUI affichée !');
-      // On ne remplace plus le texte ici pour éviter les erreurs
     }
   }
 };
