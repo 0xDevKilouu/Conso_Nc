@@ -1,161 +1,160 @@
-import { auth, getRedirectResult, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, updatePassword } from "firebase/auth";
+import { auth, signInWithEmailAndPassword, onAuthStateChanged, getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
 import { ui, uiConfig } from '../firebaseConfig';
 
 let isUpdateFormVisible = false;
 
 const toggleUpdateForm = () => {
-  isUpdateFormVisible = !isUpdateFormVisible;
-  handleAuthStateChange();
+    isUpdateFormVisible = !isUpdateFormVisible;
+    handleAuthStateChange();
 };
 
 const renderUserInfo = (user) => `
-  <div id="user-info">
-    <p>Bienvenue, ${user.displayName || user.email}</p>
-    <p><strong>Email vérifié:</strong> ${user.emailVerified ? 'Oui' : 'Non'}</p>
-    <button id="update-profile-button">Mettre à jour son profil</button>
-    ${isUpdateFormVisible ? `
-      <form id="update-profile-form">
-        <input type="text" id="new-display-name" placeholder="Nouveau nom" value="${user.displayName || ''}" />
-        <input type="password" id="new-password" placeholder="Nouveau mot de passe" />
-        <button type="submit">Enregistrer</button>
-      </form>
-    ` : ''}
-    <button id="logout-button">Déconnexion</button>
-  </div>
+    <div id="user-info">
+        <p>Bienvenue, ${user.displayName || user.email}</p>
+        <p><strong>Email vérifié:</strong> ${user.emailVerified ? 'Oui' : 'Non'}</p>
+        <button id="update-profile-button">Mettre à jour son profil</button>
+        ${isUpdateFormVisible ? `
+        <form id="update-profile-form">
+            <input type="text" id="new-display-name" placeholder="Nouveau nom" value="${user.displayName || ''}" />
+            <input type="password" id="new-password" placeholder="Nouveau mot de passe" />
+            <button type="submit">Enregistrer</button>
+        </form>
+        ` : ''}
+        <button id="logout-button">Déconnexion</button>
+    </div>
 `;
 
 const renderLoginForm = () => `
-  <form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required />
-    <input type="password" id="login-password" placeholder="Mot de passe" required />
-    <button type="submit">Se connecter</button>
-    <div id="login-error" style="color: red; margin-top: 10px;"></div>
-  </form>
+    <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Mot de passe" required />
+        <button type="submit">Se connecter</button>
+        <div id="login-error" style="color: red; margin-top: 10px;"></div>
+    </form>
 `;
 
 const renderAuthUI = () => `
-  <div id="account-container">
-    <div id="firebaseui-auth-container"></div>
-    <p id="already-have-account">
-      Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
-    </p>
-  </div>
+    <div id="account-container">
+        <div id="firebaseui-auth-container"></div>
+        <p id="already-have-account">
+            Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
+        </p>
+    </div>
 `;
 
 const renderAccountPage = (user) => `
-  <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2>
-    ${user ? renderUserInfo(user) : renderAuthUI()}
-  </div>
+    <div id="account">
+        <h2>${user ? 'Compte' : 'Connexion'}</h2>
+        ${user ? renderUserInfo(user) : renderAuthUI()}
+    </div>
 `;
 
 const attachEventListeners = () => {
-  const logoutButton = document.getElementById('logout-button');
-  const updateProfileButton = document.getElementById('update-profile-button');
-  const updateProfileForm = document.getElementById('update-profile-form');
-  const loginForm = document.getElementById('login-form');
-  const loginLink = document.getElementById('login-link');
+    const logoutButton = document.getElementById('logout-button');
+    const updateProfileButton = document.getElementById('update-profile-button');
+    const updateProfileForm = document.getElementById('update-profile-form');
+    const loginForm = document.getElementById('login-form');
+    const loginLink = document.getElementById('login-link');
 
-  if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-      auth.signOut().then(() => {
-        alert('Déconnexion réussie');
-        window.location.hash = 'home';  // Rediriger vers la page d'accueil après déconnexion
-        handleAuthStateChange();  // Re-rendre l'interface après déconnexion
-      }).catch((error) => {
-        console.error('Erreur de déconnexion:', error);
-      });
-    });
-  }
-
-  if (updateProfileButton) {
-    updateProfileButton.addEventListener('click', toggleUpdateForm);
-  }
-
-  if (updateProfileForm) {
-    updateProfileForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const newDisplayName = document.getElementById('new-display-name').value;
-      const newPassword = document.getElementById('new-password').value;
-      const user = auth.currentUser;
-
-      if (newDisplayName && user) {
-        updateProfile(user, { displayName: newDisplayName }).then(() => {
-          alert('Nom mis à jour');
-          handleAuthStateChange();
-        }).catch((error) => {
-          console.error('Erreur de mise à jour du nom:', error);
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                alert('Déconnexion réussie');
+                window.location.hash = 'home';
+                handleAuthStateChange();
+            }).catch((error) => {
+                console.error('Erreur de déconnexion:', error);
+            });
         });
-      }
+    }
 
-      if (newPassword && user) {
-        updatePassword(user, newPassword).then(() => {
-          alert('Mot de passe mis à jour');
-        }).catch((error) => {
-          console.error('Erreur de mise à jour du mot de passe:', error);
+    if (updateProfileButton) {
+        updateProfileButton.addEventListener('click', toggleUpdateForm);
+    }
+
+    if (updateProfileForm) {
+        updateProfileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newDisplayName = document.getElementById('new-display-name').value;
+            const newPassword = document.getElementById('new-password').value;
+            const user = auth.currentUser;
+
+            if (newDisplayName && user) {
+                updateProfile(user, { displayName: newDisplayName }).then(() => {
+                    alert('Nom mis à jour');
+                    handleAuthStateChange();
+                }).catch((error) => {
+                    console.error('Erreur de mise à jour du nom:', error);
+                });
+            }
+
+            if (newPassword && user) {
+                updatePassword(user, newPassword).then(() => {
+                    alert('Mot de passe mis à jour');
+                }).catch((error) => {
+                    console.error('Erreur de mise à jour du mot de passe:', error);
+                });
+            }
         });
-      }
-    });
-  }
+    }
 
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          console.log('Connexion réussie:', userCredential.user);
-          handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
-        })
-        .catch((error) => {
-          console.error('Erreur de connexion:', error);
-          document.getElementById('login-error').innerText = 'Erreur de connexion: ' + error.message;
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log('Connexion réussie:', userCredential.user);
+                    handleAuthStateChange();
+                })
+                .catch((error) => {
+                    console.error('Erreur de connexion:', error);
+                    document.getElementById('login-error').innerText = 'Erreur de connexion: ' + error.message;
+                });
         });
-    });
-  }
+    }
 
-  if (loginLink) {
-    loginLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      // Affiche le formulaire de connexion manuel au lieu de FirebaseUI
-      document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
-      attachEventListeners(); // Réattache les événements au nouveau formulaire
-    });
-  }
+    if (loginLink) {
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Affiche le formulaire de connexion manuel au lieu de FirebaseUI
+            document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
+            attachEventListeners();
+        });
+    }
 };
 
 const handleAuthStateChange = () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // Si l'utilisateur est connecté, afficher la page de compte
-      window.location.hash = 'account';
-    }
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            window.location.hash = 'account';
+        }
 
-    if (window.location.hash.substring(1) === 'account') {
-      document.getElementById('content').innerHTML = renderAccountPage(user);
-      attachEventListeners();
-      if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig);
-      }
-    }
-  });
+        if (window.location.hash.substring(1) === 'account') {
+            document.getElementById('content').innerHTML = renderAccountPage(user);
+            attachEventListeners();
+            if (!user) {
+                ui.start('#firebaseui-auth-container', uiConfig);
+            }
+        }
+    });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  getRedirectResult(auth)
-    .then((result) => {
-      if (result && result.user) {
-        console.log('Utilisateur connecté après redirection:', result.user);
-        handleAuthStateChange(); // Re-rendre l'interface avec l'utilisateur connecté
-      }
-    })
-    .catch((error) => {
-      console.error('Erreur de connexion:', error);
-    });
+    getRedirectResult(auth)
+        .then((result) => {
+            if (result && result.user) {
+                console.log('Utilisateur connecté après redirection:', result.user);
+                handleAuthStateChange();
+            }
+        })
+        .catch((error) => {
+            console.error('Erreur de connexion:', error);
+        });
 
-  handleAuthStateChange(); // Appel initial pour gérer l'état d'authentification actuel
+    handleAuthStateChange();
 });
 
 export default handleAuthStateChange;
