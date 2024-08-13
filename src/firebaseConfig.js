@@ -35,8 +35,8 @@ const uiConfig = {
     },
     {
       provider: EmailAuthProvider.PROVIDER_ID,
-      signInMethod: EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-      fullLabel: "Se connecter avec l'email" // Texte en français pour l'email
+      signInMethod: EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,  // Utiliser l'authentification par mot de passe
+      fullLabel: "Se connecter avec l'email et mot de passe" // Texte en français pour l'email
     }
   ],
   tosUrl: '<your-terms-of-service-url>', // URL des termes de service
@@ -44,7 +44,7 @@ const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: (authResult, redirectUrl) => {
       console.log('Connexion réussie !');
-      return true;
+      return true; // Continue la redirection vers signInSuccessUrl
     },
     uiShown: () => {
       console.log('Interface FirebaseUI affichée !');

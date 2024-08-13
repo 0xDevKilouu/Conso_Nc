@@ -1,5 +1,5 @@
 import { auth, ui, uiConfig } from '../firebaseConfig';
-import { getRedirectResult } from "firebase/auth";
+import { getRedirectResult, updateProfile, updatePassword } from "firebase/auth";
 
 let isUpdateFormVisible = false;
 
@@ -46,7 +46,7 @@ const attachEventListeners = () => {
     logoutButton.addEventListener('click', () => {
       auth.signOut().then(() => {
         alert('Déconnexion réussie');
-        handleAuthStateChange();  // Re-render the auth UI after logout
+        handleAuthStateChange();  // Re-rendre l'interface après déconnexion
       }).catch((error) => {
         console.error('Erreur de déconnexion:', error);
       });
