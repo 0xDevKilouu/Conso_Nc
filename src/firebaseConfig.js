@@ -33,7 +33,11 @@ const uiConfig = {
       provider: GoogleAuthProvider.PROVIDER_ID,
       fullLabel: "Se connecter avec Google", // Texte en français pour le bouton Google
     },
-    EmailAuthProvider.PROVIDER_ID,
+    {
+      provider: EmailAuthProvider.PROVIDER_ID,
+      signInMethod: EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+      fullLabel: "Se connecter avec l'email" // Texte en français pour l'email
+    }
   ],
   tosUrl: '<your-terms-of-service-url>', // URL des termes de service
   privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
