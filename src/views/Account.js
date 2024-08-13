@@ -11,6 +11,7 @@ const toggleUpdateForm = () => {
 const renderUserInfo = (user) => `
   <div id="user-info">
     <p>Bienvenue, ${user.displayName || user.email}</p>
+    <p><strong>Email vérifié:</strong> ${user.emailVerified ? 'Oui' : 'Non'}</p>
     <button id="update-profile-button">Mettre à jour son profil</button>
     ${isUpdateFormVisible ? `
       <form id="update-profile-form">
@@ -31,7 +32,7 @@ const renderAuthUI = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
-    <h2>${user ? 'Compte' : 'Connexion'}</h2> <!-- Un seul titre selon l'état de connexion -->
+    <h2>${user ? 'Compte' : 'Connexion'}</h2>
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
