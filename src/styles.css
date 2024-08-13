@@ -466,12 +466,13 @@ body {
   border-radius: 8px;
   box-sizing: border-box;
   color: var(--bg-default);
+  position: relative;
 }
 
 #promo h2 {
   font-size: 24px;
   margin-bottom: 20px;
-  text-align: center; 
+  text-align: center;
 }
 
 #promo p {
@@ -504,8 +505,8 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  align-items: flex-start;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
@@ -525,7 +526,7 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .promo-details h3 {
@@ -547,7 +548,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .company-logo {

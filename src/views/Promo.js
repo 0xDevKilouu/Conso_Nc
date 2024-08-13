@@ -89,15 +89,16 @@ const Promo = async () => {
   `;
 };
 
-
-const attachPromoEvents = () => {
-  const addPromoButton = document.getElementById('add-promo-button');
-  const promoFormWrapper = document.getElementById('promo-form-wrapper');
-  if (addPromoButton && promoFormWrapper) {
+document.addEventListener('DOMContentLoaded', () => {
+  if (auth.currentUser) {
+    const addPromoButton = document.getElementById('add-promo-button');
+    const promoFormWrapper = document.getElementById('promo-form-wrapper');
     addPromoButton.addEventListener('click', () => {
       promoFormWrapper.classList.toggle('hidden');
     });
   }
+});
+
 
   document.getElementById('promo-form').addEventListener('submit', async (event) => {
     event.preventDefault();
