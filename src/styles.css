@@ -624,6 +624,55 @@ body {
   margin-right: 10px;
 }
 
+
+/* Styles pour le formulaire de connexion */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary-white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#login-form button {
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-form button:hover {
+  background-color: #e33a3d;
+}
+
+#login-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+
 /* Styles pour la section du compte utilisateur */
 #account {
   width: 100%;
