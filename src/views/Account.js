@@ -1,6 +1,9 @@
 import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
 import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
 
+// Définit la langue en français
+auth.languageCode = 'fr'; 
+
 let isUpdateFormVisible = false;
 
 const toggleUpdateForm = () => {
@@ -90,26 +93,7 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', {
-          ...uiConfig,
-          signInFlow: 'popup', // Optionnel: Utiliser le mode "popup" plutôt que "redirect"
-          signInOptions: [
-            googleProvider.PROVIDER_ID,
-            'password', // Pour les connexions par e-mail
-          ],
-          callbacks: {
-            ...uiConfig.callbacks,
-            uiShown: () => {
-              console.log('FirebaseUI shown!');
-            },
-          },
-          // Configuration de la langue
-          tosUrl: 'https://your-terms-of-service-url.com',
-          privacyPolicyUrl: 'https://your-privacy-policy-url.com',
-          credentialHelper: 'none',
-          // Ajout de la langue française
-          language: 'fr',
-        });
+        ui.start('#firebaseui-auth-container', uiConfig);
       }
     }
   });
