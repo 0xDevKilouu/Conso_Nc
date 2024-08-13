@@ -94,7 +94,6 @@ const handleAuthStateChange = () => {
       if (!user) {
         ui.start('#firebaseui-auth-container', {
           ...uiConfig,
-          // Ajout de la configuration de langue ici
           signInOptions: [
             {
               provider: googleProvider.PROVIDER_ID,
@@ -102,10 +101,14 @@ const handleAuthStateChange = () => {
             },
             'password', // Pour les connexions par e-mail
           ],
-          // Callbacks pour l'interface Firebase UI
+          tosUrl: '<your-terms-of-service-url>', // Ajoutez ceci pour définir une URL de CGU
+          privacyPolicyUrl: '<your-privacy-policy-url>', // Ajoutez ceci pour définir une URL de politique de confidentialité
           callbacks: {
             uiShown: () => {
-              document.querySelector('.firebaseui-id-submit').innerText = 'Suivant'; // Changement du bouton Next
+              const nextButton = document.querySelector('.firebaseui-id-submit');
+              if (nextButton) {
+                nextButton.innerText = 'Suivant'; // Changement du texte du bouton
+              }
             },
           },
         });
