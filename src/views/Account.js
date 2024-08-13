@@ -1,6 +1,6 @@
 import { auth } from '../firebaseConfig';
 import { getRedirectResult } from "firebase/auth";
-import { startFirebaseUI } from '../firebaseUI';
+import { startFirebaseUI } from './firebaseUI';
 
 
 let isUpdateFormVisible = false;

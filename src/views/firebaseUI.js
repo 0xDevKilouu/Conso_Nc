@@ -1,4 +1,4 @@
-import { ui, uiConfig } from './firebaseConfig';
+import { ui, uiConfig } from '../firebaseConfig';
 
 
 // Fonction pour remplacer le texte de l'interface Firebase UI par du texte en français
