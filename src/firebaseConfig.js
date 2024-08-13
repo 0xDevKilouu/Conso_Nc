@@ -18,7 +18,7 @@ const firebaseConfig = {
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-auth.languageCode = 'fr';
+auth.languageCode = 'fr';  // Assurez-vous que la langue est définie en français
 
 const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
@@ -26,20 +26,20 @@ const storage = getStorage(app);
 
 // Configurer FirebaseUI
 const uiConfig = {
-  signInSuccessUrl: '#account',
+  signInSuccessUrl: '#account', // Redirection après connexion
   signInOptions: [
     {
       provider: GoogleAuthProvider.PROVIDER_ID,
-      fullLabel: "Se connecter avec Google",
+      fullLabel: "Se connecter avec Google", // Texte en français pour le bouton Google
     },
     {
       provider: EmailAuthProvider.PROVIDER_ID,
-      signInMethod: EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,
-      fullLabel: "S'inscrire avec votre email."
+      signInMethod: EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,  // Utiliser l'authentification par mot de passe
+      fullLabel: "Se connecter avec l'email et mot de passe" // Texte en français pour l'email
     }
   ],
-  tosUrl: '<your-terms-of-service-url>',
-  privacyPolicyUrl: '<your-privacy-policy-url>',
+  tosUrl: '<your-terms-of-service-url>', // URL des termes de service
+  privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
 };
 
 const ui = new firebaseui.auth.AuthUI(auth);
