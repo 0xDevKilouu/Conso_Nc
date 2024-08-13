@@ -1,4 +1,4 @@
-import { auth, signInWithEmailAndPassword, updateProfile, updatePassword } from "firebase/auth";
+import { auth, getRedirectResult, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, updatePassword } from "firebase/auth";
 import { ui, uiConfig } from '../firebaseConfig';
 
 let isUpdateFormVisible = false;
@@ -128,7 +128,7 @@ const attachEventListeners = () => {
 };
 
 const handleAuthStateChange = () => {
-  auth.onAuthStateChanged((user) => {
+  onAuthStateChanged(auth, (user) => {
     if (user) {
       // Si l'utilisateur est connecté, afficher la page de compte
       window.location.hash = 'account';
