@@ -1,6 +1,9 @@
 import { auth, ui, uiConfig, googleProvider } from '../firebaseConfig';
 import { getRedirectResult, signInWithRedirect, updateProfile, updatePassword } from "firebase/auth";
 
+// Définit la langue en français
+auth.languageCode = 'fr'; 
+
 let isUpdateFormVisible = false;
 
 const toggleUpdateForm = () => {
@@ -25,14 +28,14 @@ const renderUserInfo = (user) => `
 
 const renderAuthUI = () => `
   <div id="account-container">
-    <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
   </div>
 `;
 
 const renderAccountPage = (user) => `
   <div id="account">
-    ${user ? renderUserInfo(user) : '<h2>Compte</h2>' + renderAuthUI()}
+    <h2>${user ? 'Compte' : 'Connexion'}</h2>
+    ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
 `;
 
@@ -40,7 +43,7 @@ const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const googleSigninButton = document.getElementById('google-signin-button'); // Ajout de cette ligne
+  const googleSigninButton = document.getElementById('google-signin-button');
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -53,7 +56,7 @@ const attachEventListeners = () => {
     });
   }
 
-  if (googleSigninButton) { // Vérification si le bouton existe
+  if (googleSigninButton) {
     googleSigninButton.addEventListener('click', () => {
       signInWithRedirect(auth, googleProvider);
     });
@@ -96,7 +99,26 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        ui.start('#firebaseui-auth-container', uiConfig);
+        ui.start('#firebaseui-auth-container', {
+          ...uiConfig,
+          signInOptions: [
+            {
+              provider: googleProvider.PROVIDER_ID,
+              fullLabel: "Se connecter avec Google", // Texte du bouton Google en français
+            },
+            'password',
+          ],
+          tosUrl: '<your-terms-of-service-url>', // URL des termes de service
+          privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
+          callbacks: {
+            uiShown: () => {
+              const nextButton = document.querySelector('.firebaseui-id-submit');
+              if (nextButton) {
+                nextButton.innerText = 'Suivant'; // Changement du texte du bouton en français
+              }
+            },
+          },
+        });
       }
     }
   });

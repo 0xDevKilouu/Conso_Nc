@@ -5,7 +5,7 @@ import * as firebaseui from 'firebaseui';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Configuration Fireb
+// Configuration Firebase
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -19,24 +19,38 @@ const firebaseConfig = {
 // Initialiser Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+auth.languageCode = 'fr'; // Définit la langue en français
+
 const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
 // Configurer FirebaseUI
 const uiConfig = {
-  signInSuccessUrl: '/',
+  signInSuccessUrl: '/', // Redirection après connexion
   signInOptions: [
-    GoogleAuthProvider.PROVIDER_ID,
-    EmailAuthProvider.PROVIDER_ID,
+    {
+      provider: GoogleAuthProvider.PROVIDER_ID,
+      fullLabel: "Se connecter avec Google", // Texte en français pour le bouton Google
+    },
+    {
+      provider: EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: false, // Ne pas exiger de nom d'affichage
+    },
   ],
+  tosUrl: '<your-terms-of-service-url>', // URL des termes de service
+  privacyPolicyUrl: '<your-privacy-policy-url>', // URL de la politique de confidentialité
   callbacks: {
     signInSuccessWithAuthResult: (authResult, redirectUrl) => {
-      console.log('Sign-in successful!');
+      console.log('Connexion réussie !');
       return true;
     },
     uiShown: () => {
-      console.log('FirebaseUI shown!');
+      console.log('Interface FirebaseUI affichée !');
+      const nextButton = document.querySelector('.firebaseui-id-submit');
+      if (nextButton) {
+        nextButton.innerText = 'Suivant'; // Changer le texte du bouton en français
+      }
     }
   }
 };
