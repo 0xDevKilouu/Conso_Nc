@@ -8,40 +8,38 @@ const toggleUpdateForm = () => {
   handleAuthStateChange();
 };
 
-const renderUserInfo = (user) => `
+const renderUserInfo = (user) => 
   <div id="user-info">
     <p>Bienvenue, ${user.displayName || user.email}</p>
     <button id="update-profile-button">Mettre à jour son profil</button>
-    ${isUpdateFormVisible ? `
+    ${isUpdateFormVisible ? 
       <form id="update-profile-form">
         <input type="text" id="new-display-name" placeholder="Nouveau nom" value="${user.displayName || ''}" />
         <input type="password" id="new-password" placeholder="Nouveau mot de passe" />
         <button type="submit">Enregistrer</button>
       </form>
-    ` : ''}
+     : ''}
     <button id="logout-button">Déconnexion</button>
   </div>
-`;
+;
 
-const renderAuthUI = () => `
+const renderAuthUI = () => 
   <div id="account-container">
     <h2>Connexion</h2>
     <div id="firebaseui-auth-container"></div>
-    <button id="google-signin-button">Se connecter avec Google</button> <!-- Bouton Google Sign-In -->
   </div>
-`;
+;
 
-const renderAccountPage = (user) => `
+const renderAccountPage = (user) => 
   <div id="account">
     ${user ? renderUserInfo(user) : '<h2>Compte</h2>' + renderAuthUI()}
   </div>
-`;
+;
 
 const attachEventListeners = () => {
   const logoutButton = document.getElementById('logout-button');
   const updateProfileButton = document.getElementById('update-profile-button');
   const updateProfileForm = document.getElementById('update-profile-form');
-  const googleSigninButton = document.getElementById('google-signin-button'); // Ajout de cette ligne
 
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -54,7 +52,7 @@ const attachEventListeners = () => {
     });
   }
 
-  if (googleSigninButton) { // Vérification si le bouton existe
+  if (googleSigninButton) {
     googleSigninButton.addEventListener('click', () => {
       signInWithRedirect(auth, googleProvider);
     });
