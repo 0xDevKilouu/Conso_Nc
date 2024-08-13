@@ -36,7 +36,6 @@ const renderLoginForm = () => `
 const renderAuthUI = () => `
   <div id="account-container">
     <div id="firebaseui-auth-container"></div>
-    ${renderLoginForm()}
     <p id="already-have-account">
       Déjà un compte ? <a href="#" id="login-link">Se connecter</a>
     </p>
@@ -120,7 +119,7 @@ const attachEventListeners = () => {
   if (loginLink) {
     loginLink.addEventListener('click', (e) => {
       e.preventDefault();
-      // Affiche le formulaire de connexion manuel
+      // Affiche le formulaire de connexion manuel au lieu de FirebaseUI
       document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
       attachEventListeners(); // Réattache les événements au nouveau formulaire
     });
@@ -138,8 +137,7 @@ const handleAuthStateChange = () => {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
       if (!user) {
-        document.getElementById('firebaseui-auth-container').innerHTML = renderLoginForm();
-        attachEventListeners(); // Réattache les événements au nouveau formulaire
+        ui.start('#firebaseui-auth-container', uiConfig);
       }
     }
   });
