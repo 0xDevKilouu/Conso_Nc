@@ -36,7 +36,7 @@ const uiConfig = {
     {
       provider: EmailAuthProvider.PROVIDER_ID,
       signInMethod: EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD,  // Utiliser l'authentification par mot de passe
-      fullLabel: "Se connecter avec l'email et mot de passe" // Texte en français pour l'email
+      fullLabel: "S'inscrire avec votre email" // Texte en français pour l'email
     }
   ],
   tosUrl: '<your-terms-of-service-url>', // URL des termes de service
