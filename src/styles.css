@@ -141,6 +141,24 @@ body {
   width: 80px; /* Expansion lors du survol pour un effet interactif */
 }
 
+/* Optimisation pour le centrage de l'indicateur */
+.list:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+
+.list:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1 + (6px * 2)));
+}
+
+.list:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2 + (6px * 4) + 1px));
+}
+
+.list:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3 + (6px * 6) + 2px));
+}
+
+
 /* Contenu principal */
 #content {
   width: 100%;
