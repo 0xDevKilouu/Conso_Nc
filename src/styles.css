@@ -844,83 +844,73 @@ body {
   }
 }
 
-/* Nutri-Score Color Scheme */
-:root {
-  --nutriscore-green: #4CAF50;
-  --nutriscore-yellow: #FFEB3B;
-  --nutriscore-orange: #FF9800;
-  --nutriscore-red: #F44336;
+/* Nutri-Score inspired general style */
+body {
+    background-color: #f4f4f4; /* Default light background, not too aggressive */
 }
 
-/* Promo Card Enhancements with Nutri-Score Colors */
-.promo-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #ffffff;
-  padding: 10px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
-  transition: transform 0.3s ease;
-  border-left: 8px solid var(--nutriscore-green); /* Default to green */
+/* Ensure the navbar remains consistent */
+.navigation {
+    width: 100%;
+    max-width: 360px;
+    height: 70px;
+    background: var(--primary-white);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 20px;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-.promo-item:nth-child(2) {
-  border-left-color: var(--nutriscore-yellow);
+/* Correct text fitting within promo cards */
+.promo-details h3,
+.promo-details p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.promo-item:nth-child(3) {
-  border-left-color: var(--nutriscore-orange);
+/* Ensure the PWA has a slight Nutri-Score feel, but subtle */
+.card, #promo, #content {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-.promo-item:nth-child(4) {
-  border-left-color: var(--nutriscore-red);
-}
-
-.promo-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsiveness Enhancements */
+/* Responsive improvements */
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .card, #promo {
-    padding: 15px;
-  }
-
-  .promo-header, .bubble-title {
-    font-size: 1.6rem;
-  }
+    .card, #promo, #content {
+        padding: 15px;
+        margin: 10px 0;
+    }
 }
 
 @media (max-width: 480px) {
-  .navigation {
-    max-width: 100%;
-    height: 60px;
-    padding: 0 10px;
-  }
+    .navigation {
+        max-width: 100%;
+        height: 60px;
+        padding: 0 10px;
+    }
 
-  .list {
-    width: 60px;
-    height: 60px;
-  }
+    .list {
+        width: 60px;
+        height: 60px;
+    }
 
-  .icon ion-icon {
-    font-size: 1.8rem;
-  }
+    .icon ion-icon {
+        font-size: 1.8rem;
+    }
 
-  .text {
-    font-size: 1.2rem;
-  }
+    .text {
+        font-size: 1.2rem;
+    }
 
-  .start-scan-btn {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
+    .start-scan-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
 }
