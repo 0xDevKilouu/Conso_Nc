@@ -45,17 +45,18 @@ body {
 }
 
 .navigation {
-  width: 100%;
-  max-width: 360px;
+  width: 80%; /* Assure un bon centrage sur toutes les tailles d'écran */
+  max-width: 360px; /* Limite la taille maximale pour les petits écrans */
+  margin: 0 auto; /* Centrage horizontal */
   height: 70px;
   background: var(--primary-white);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Uniformiser l'espace entre les éléments */
   align-items: center;
   border-radius: 10px;
-  padding: 0 20px;
+  padding: 0 10px; /* Ajuste le padding pour réduire les marges */
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
@@ -130,7 +131,7 @@ body {
   height: 70px;
   top: -50%;
   border-radius: 50%;
-  border: 6px solid var(--bg-default);
+  border: 3px solid var(--primary-white); /* Remplacement du contour noir par un contour blanc plus fin */
   background: var(--primary-red);
   transition: 0.3s;
   z-index: 0;
@@ -144,6 +145,7 @@ body {
   width: 20px;
   height: 20px;
   background: transparent;
+  box-shadow: none; /* Supprimer l'ombre noire */
 }
 
 .indicator:after {
@@ -158,20 +160,21 @@ body {
   border-top-right-radius: 20px;
 }
 
+/* Optimisation pour le centrage de l'indicateur */
 .list:nth-child(1).active ~ .indicator {
   transform: translateX(calc(70px * 0));
 }
 
 .list:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(70px * 1 + (6px * 2)));
+  transform: translateX(calc(70px * 1));
 }
 
 .list:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(70px * 2 + (6px * 4) + 1px));
+  transform: translateX(calc(70px * 2));
 }
 
 .list:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(70px * 3 + (6px * 6) + 2px));
+  transform: translateX(calc(70px * 3));
 }
 
 /* Contenu principal */
