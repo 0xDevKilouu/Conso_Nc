@@ -70,8 +70,8 @@ body {
 }
 
 .list {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   position: relative;
   z-index: 1;
 }
@@ -88,10 +88,6 @@ body {
   width: 100%;
 }
 
-.list a:hover {
-  text-decoration: none;
-}
-
 .icon {
   position: relative;
   display: block;
@@ -102,7 +98,7 @@ body {
 }
 
 .icon ion-icon {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .text {
@@ -116,66 +112,43 @@ body {
   z-index: 1;
 }
 
-.list.active a .icon {
+.list.active .icon {
   color: var(--primary-white);
   transform: translateY(-32px);
 }
 
-.list.active a .text {
+.list.active .text {
   opacity: 1;
   transform: translateY(10px);
 }
 
 .indicator {
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   top: -50%;
   border-radius: 50%;
-  border: 3px solid var(--primary-white); /* Remplacement du contour noir par un contour blanc plus fin */
+  border: 2px solid var(--primary-white); /* Remplacement du contour noir par un contour blanc plus fin */
   background: var(--primary-red);
   transition: 0.3s;
   z-index: 0;
 }
 
-.indicator:before,
-.indicator:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  box-shadow: none; /* Supprimer l'ombre noire */
-}
-
-.indicator:after {
-  right: -22px;
-  box-shadow: -1px -10px 0 0 var(--bg-default);
-  border-top-left-radius: 20px;
-}
-
-.indicator:before {
-  left: -22px;
-  box-shadow: 1px -10px 0 0 var(--bg-default);
-  border-top-right-radius: 20px;
-}
-
 /* Optimisation pour le centrage de l'indicateur */
 .list:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(70px * 0));
+  transform: translateX(calc(60px * 0));
 }
 
 .list:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(70px * 1));
+  transform: translateX(calc(60px * 1));
 }
 
 .list:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(70px * 2));
+  transform: translateX(calc(60px * 2));
 }
 
 .list:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(70px * 3));
+  transform: translateX(calc(60px * 3));
 }
 
 /* Contenu principal */
@@ -866,30 +839,35 @@ body {
     background-color: #ffffff;
 }
 
-/* Responsive improvements */
+/* Styles Responsives */
 @media (max-width: 768px) {
-    .card, #promo, #content {
-        padding: 15px;
-        margin: 10px 0;
-    }
+  .list {
+    width: 50px;
+    height: 50px;
+  }
+
+  .indicator {
+    width: 50px;
+    height: 50px;
+    top: -40%;
+    border: 2px solid var(--primary-white);
+  }
+
+  .icon ion-icon {
+    font-size: 1.8rem;
+  }
+
+  .text {
+    font-size: 1.2rem;
+  }
 }
 
-@media (max-width: 480px) {
-    .list {
-        width: 60px;
-        height: 60px;
-    }
-
-    .icon ion-icon {
-        font-size: 1.8rem;
-    }
-
-    .text {
-        font-size: 1.2rem;
-    }
-
-    .start-scan-btn {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
+@media (min-width: 1024px) {
+  .navigation {
+    max-width: none;
+    width: 80%;
+    justify-content: space-around;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
