@@ -44,19 +44,20 @@ body {
   height: 100vh;
 }
 
+/* Centrage de la navigation */
 .navigation {
-  width: 80%; /* Assure un bon centrage sur toutes les tailles d'écran */
-  max-width: 360px; /* Limite la taille maximale pour les petits écrans */
+  width: 100%;
+  max-width: 480px; /* Ajustement pour correspondre aux petits écrans */
   margin: 0 auto; /* Centrage horizontal */
   height: 70px;
   background: var(--primary-white);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: space-between; /* Uniformiser l'espace entre les éléments */
+  justify-content: space-evenly; /* Espace uniforme entre les éléments */
   align-items: center;
   border-radius: 10px;
-  padding: 0 10px; /* Ajuste le padding pour réduire les marges */
+  padding: 0 10px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
@@ -818,8 +819,6 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-
-
 
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
