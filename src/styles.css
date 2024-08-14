@@ -59,7 +59,7 @@ body {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 15px; /* Coins plus arrondis pour un look moderne */
-  padding: 0 20px; /* Espacement accru pour plus de confort */
+  padding: 0 10px; /* Ajustement de l'espacement */
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
@@ -92,15 +92,8 @@ body {
 
 .icon {
   position: relative;
-  display: block;
-  line-height: 75px;
-  text-align: center;
-  transition: 0.5s;
-  color: var(--bg-default);
-}
-
-.icon {
-  font-size: 2.5rem; /* Icônes légèrement plus grandes */
+  font-size: 2.5rem;
+  line-height: 70px; /* Centrer l'icône verticalement */
   transition: all 0.3s ease-in-out;
 }
 
@@ -125,11 +118,14 @@ body {
   transform: translateY(10px);
 }
 
+/* Indicateur (cercle rouge) */
 .indicator {
   position: absolute;
-  width: 70px; /* Légèrement plus large pour un meilleur ciblage */
+  width: 70px;
   height: 70px;
-  top: -50%;
+  top: -35px; /* Centrer verticalement par rapport à l'élément actif */
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 50%;
   border: 2px solid var(--primary-white);
   background: var(--primary-red);
@@ -143,19 +139,19 @@ body {
 
 /* Déplacement de l'indicateur */
 .list:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(70px * 0));
+  transform: translateX(calc(25% * 0 + 12.5% - 35px));
 }
 
 .list:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(70px * 1 + (6px * 2)));
+  transform: translateX(calc(25% * 1 + 12.5% - 35px));
 }
 
 .list:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(70px * 2 + (6px * 4) + 1px));
+  transform: translateX(calc(25% * 2 + 12.5% - 35px));
 }
 
 .list:nth-child(4).active ~ .indicator {
-  transform: translateX(calc(70px * 3 + (6px * 6) + 2px));
+  transform: translateX(calc(25% * 3 + 12.5% - 35px));
 }
 
 
