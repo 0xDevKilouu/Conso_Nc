@@ -47,17 +47,16 @@ body {
 /* Centrage de la navigation */
 .navigation {
   width: 100%;
-  max-width: 480px; /* Ajustement pour correspondre aux petits écrans */
-  margin: 0 auto; /* Centrage horizontal */
+  max-width: 360px;
   height: 70px;
   background: var(--primary-white);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: space-evenly; /* Espace uniforme entre les éléments */
+  justify-content: center;
   align-items: center;
   border-radius: 10px;
-  padding: 0 10px;
+  padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
