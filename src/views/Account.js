@@ -33,6 +33,20 @@ const renderAuthUI = () => `
   </div>
 `;
 
+const renderLoginModal = () => `
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2>Connexion</h2>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Mot de passe" required />
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+  </div>
+`;
+
 const renderAccountPage = (user) => `
   <div id="account">
     <h2>${user ? 'Compte' : 'Connexion'}</h2>
@@ -91,7 +105,42 @@ const attachEventListeners = () => {
   if (loginLink) {
     loginLink.addEventListener('click', (e) => {
       e.preventDefault();
-      ui.start('#firebaseui-auth-container', uiConfig);
+      
+      // Ajouter la modale au DOM
+      document.getElementById('content').insertAdjacentHTML('beforeend', renderLoginModal());
+      
+      // Afficher la modale
+      const modal = document.getElementById('login-modal');
+      modal.style.display = 'block';
+      
+      // Fermer la modale lorsque l'utilisateur clique sur le "x"
+      const closeModal = document.getElementById('close-modal');
+      closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        modal.remove(); // Supprime la modale du DOM pour éviter l'accumulation
+      });
+
+      // Gestion de la soumission du formulaire de connexion
+      const loginForm = document.getElementById('login-form');
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        // Authentification avec Firebase
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert('Connexion réussie');
+            modal.style.display = 'none';
+            modal.remove(); // Supprime la modale après la connexion
+            handleAuthStateChange(); // Réafficher la page de compte après connexion
+          })
+          .catch((error) => {
+            console.error('Erreur de connexion:', error);
+            alert('Erreur de connexion: ' + error.message);
+          });
+      });
     });
   }
 };
