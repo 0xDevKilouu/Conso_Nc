@@ -47,13 +47,14 @@ body {
 /* Centrage de la navigation */
 .navigation {
   width: 100%;
-  max-width: 360px;
+  max-width: 360px; /* Ajustement pour correspondre aux petits écrans */
+  margin: 0 auto; /* Centrage horizontal */
   height: 70px;
   background: var(--primary-white);
   position: fixed;
   bottom: 0;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Espace uniforme entre les éléments */
   align-items: center;
   border-radius: 10px;
   padding: 0 20px;
