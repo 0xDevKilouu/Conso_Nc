@@ -115,12 +115,12 @@ body {
   z-index: 1;
 }
 
-.list.active .icon {
+.list.active a .icon {
   color: var(--primary-white);
-  transform: translateY(-32px) scale(1.1); /* Ajout d'une légère mise à l'échelle pour un feedback visuel */
+  transform: translateY(-32px);
 }
 
-.list.active .text {
+.list.active a .text {
   opacity: 1;
   transform: translateY(10px);
 }
