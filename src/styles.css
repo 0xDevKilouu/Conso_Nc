@@ -176,6 +176,60 @@ body {
 }
 
 
+/* Style général pour la page Home */
+#home h2 {
+  color: var(--primary-white); /* Utilisation de la couleur principale */
+  margin-bottom: 20px;
+}
+
+#home p {
+  color: var(--primary-white);
+  margin-bottom: 20px;
+}
+
+/* Style pour le workflow explicatif */
+.workflow {
+  display: flex;
+  justify-content: space-around; /* Espacement équilibré entre les étapes */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  margin: 10px;
+}
+
+.step img {
+  max-width: 80px; /* Limite la taille de l'image */
+  margin-bottom: 10px;
+}
+
+.step h3 {
+  font-size: 1.8rem;
+  color: var(--primary-red); /* Couleur rouge primaire pour les titres des étapes */
+  margin-bottom: 5px;
+}
+
+.step p {
+  font-size: 1.4rem;
+  color: var(--primary-white);
+}
+
+/* Style pour la liste de recommandations */
+.recommendation-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.recommendation-list li {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  color: var(--primary-white);
+}
+
 
 /* Contenu principal */
 #content {
@@ -389,9 +443,9 @@ body {
   transform: scale(1.05);
 }
 
-/* Styles pour les cartes */
+/* Améliorations visuelles pour les cartes */
 .card {
-  background-color: white; /* Arrière-plan blanc */
+  background-color: var(--primary-white); /* Arrière-plan blanc */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -401,7 +455,7 @@ body {
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
 }
 
 .card img {
@@ -412,12 +466,12 @@ body {
 }
 
 .card h2 {
-  font-size: 22px;
+  font-size: 2.2rem;
   margin-bottom: 10px;
 }
 
 .card p {
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.5;
   margin-bottom: 10px;
 }
