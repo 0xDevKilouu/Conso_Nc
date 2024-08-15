@@ -99,9 +99,8 @@ body {
   color: var(--bg-default);
 }
 
-.icon {
-  font-size: 2.5rem; /* Icônes légèrement plus grandes */
-  transition: all 0.3s ease-in-out;
+.icon ion-icon {
+  font-size: 2.2rem;
 }
 
 .text {
