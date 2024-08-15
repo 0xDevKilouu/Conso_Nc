@@ -42,6 +42,26 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding-top: 60px; /* Ajustement pour l'espace sous l'en-tête */
+}
+
+/* En-tête fixe */
+#header {
+  background-color: var(--primary-red); /* Rouge primaire pour l'en-tête */
+  color: var(--primary-white); /* Texte blanc */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001; /* Au-dessus de la navigation */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 2.4rem;
 }
 
 /* Centrage de la navigation */
@@ -62,8 +82,7 @@ body {
   padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  /* Ajouter une bordure noire solide pour éviter la transparence */
-  border: solid 2px var(--bg-default);
+  border: solid 2px var(--bg-default); /* Bordure noire pour éviter la transparence */
 }
 
 .listWrap {
@@ -136,8 +155,7 @@ body {
   background: var(--primary-red);
   transition: 0.3s;
   z-index: 0;
-  /* Ajouter une bordure noire solide pour éviter la transparence */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Bordure noire pour éviter la transparence */
 }
 
 .indicator:before,
@@ -178,7 +196,6 @@ body {
 .list:nth-child(4).active ~ .indicator {
   transform: translateX(calc(70px * 3 + (6px * 6) + 2px));
 }
-
 
 /* Style général pour la page Home */
 #home h2 {
@@ -233,7 +250,6 @@ body {
   font-size: 1.4rem;
   color: var(--primary-white);
 }
-
 
 /* Contenu principal */
 #content {
@@ -327,7 +343,7 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 80%;
-  height: 50vh; /* Hauteur pour une meilleur visibilité du scannerFrame */
+  height: 50vh; /* Hauteur pour une meilleure visibilité du scannerFrame */
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
@@ -343,25 +359,25 @@ body {
   top: 0;
   left: 0;
   width: 100%; /* largeur du scanner */
-  height: 100%; /* hauteur scanenr */
-  z-index: 1; /* La vidéo sera dans le champdu scanner */
+  height: 100%; /* hauteur scanner */
+  z-index: 1; /* La vidéo sera dans le champ du scanner */
   overflow: hidden;
 }
 
 /* Style pour la vidéo à l'intérieur du conteneur */
 #video {
   width: 100%; /* largeur du container vidéo */
-  height: 100%; /* hauteur du container vidoé */
-  object-fit: cover; /* couvrire tous le champ */
+  height: 100%; /* hauteur du container vidéo */
+  object-fit: cover; /* couvrir tout le champ */
 }
 
 /* Style pour les coins du scanner */
 .corner {
-  width: 20px; /* Taille pour les coin du scanner */
-  height: 20px; /* Taille pour les coin du scanner */
+  width: 20px; /* Taille pour les coins du scanner */
+  height: 20px; /* Taille pour les coins du scanner */
   position: absolute;
   border: 2px solid #4CAF50; /* Couleur verte pour les coins */
-  z-index: 3; /* assure que les coin sont vien sur la vidéo */
+  z-index: 3; /* assure que les coins soient bien sur la vidéo */
 }
 
 .corner.top-left {
@@ -401,7 +417,7 @@ body {
   height: 3px;
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
   animation: scan 2s linear infinite;
-  z-index: 3; /* assure que la ligne rouge du scanner soit bien centré */
+  z-index: 3; /* assure que la ligne rouge du scanner soit bien centrée */
 }
 
 @keyframes scan {
@@ -416,7 +432,7 @@ body {
 .start-scan-btn {
   background-color: #4CAF50;
   color: white;
-  padding: 12px 20px; /* Padding pour le boutojn */
+  padding: 12px 20px; /* Padding pour le bouton */
   font-size: 16px;
   margin: 20px 0;
   border: none;
@@ -643,9 +659,7 @@ body {
   margin-left: auto;
 }
 
-
-
-/* Améliorations pour la section Firebase U */
+/* Améliorations pour la section Firebase UI */
 #firebaseui-auth-container {
   width: 100%;
   max-width: 400px;
@@ -682,7 +696,6 @@ body {
   width: 20px;
   margin-right: 10px;
 }
-
 
 /* Styles pour le formulaire de connexion */
 #login-form {
@@ -729,8 +742,6 @@ body {
   font-size: 14px;
   margin-top: 10px;
 }
-
-
 
 /* Styles pour la section du compte utilisateur */
 #account {
@@ -876,8 +887,6 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-
-
 
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
