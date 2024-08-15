@@ -39,6 +39,7 @@ body {
   flex: 1;
 }
 
+
 .center-content {
   display: flex;
   flex-direction: column;
@@ -50,8 +51,8 @@ body {
 
 /* En-tête fixe */
 #header {
-  background-color: var(--primary-red); 
-  color: var(--primary-white); 
+  background-color: var(--primary-red); /* Rouge primaire pour l'en-tête */
+  color: var(--primary-white); /* Texte blanc */
   text-align: center;
   padding: 10px 0;
   position: fixed;
