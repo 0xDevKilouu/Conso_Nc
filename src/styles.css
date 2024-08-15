@@ -32,7 +32,8 @@ body {
 #app {
   overflow-y: auto; /* Activer le scroll vertical */
   height: 100vh;    /* Assurer que l'app prend toute la hauteur de la fenêtre */
-  width: 100%;      /* Assurer que l'app prend toute la largeur de la fenêtre */
+  width: 100vw;     /* Assurer que l'app prend toute la largeur de la fenêtre */
+  max-width: 100%;  /* Empêche de dépasser la largeur de la fenêtre */
   padding: 20px;
   box-sizing: border-box;
   flex: 1;
