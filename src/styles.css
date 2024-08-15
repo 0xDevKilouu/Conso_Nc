@@ -27,14 +27,15 @@ body {
   background: var(--bg-default);
   color: #000;
   overflow: hidden; /* Désactiver le scroll global */
+  margin: 0; /* Ajout de cette ligne pour enlever toute marge par défaut */
 }
 
 #app {
   overflow-y: auto; /* Activer le scroll vertical */
-  height: 100vh;    /* Assurer que l'app prend toute la hauteur de la fenêtre */
-  width: 100vw;     /* Assurer que l'app prend toute la largeur de la fenêtre */
-  max-width: 100%;  /* Empêche de dépasser la largeur de la fenêtre */
-  padding: 20px;
+  height: 100vh;    
+  width: 100vw;     
+  max-width: 100%;  
+  padding: 0; /* Assurez-vous qu'il n'y a pas de padding qui pourrait provoquer un défilement */
   box-sizing: border-box;
   flex: 1;
 }
@@ -50,16 +51,17 @@ body {
 
 /* En-tête fixe */
 #header {
-  background-color: var(--primary-red); /* Rouge primaire pour l'en-tête */
-  color: var(--primary-white); /* Texte blanc */
+  background-color: var(--primary-red);
+  color: var(--primary-white);
   text-align: center;
   padding: 10px 0;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1001; /* Au-dessus de la navigation */
+  z-index: 1001;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0; /* Assurez-vous qu'il n'y a pas de marge */
 }
 
 #header h1 {
@@ -266,6 +268,7 @@ body {
   box-sizing: border-box;
   text-align: left;
   overflow-y: auto; 
+  margin-top: 0; /* Éliminez la marge supérieure si elle existe */
 }
 
 #content h2 {
