@@ -202,8 +202,8 @@ body {
 
 /* Style général pour la page Home */
 #home h2 {
-  color: var(--primary-white); /* Utilisation de la couleur principale */
   margin-bottom: 20px;
+  color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
 }
 
 #home p {
