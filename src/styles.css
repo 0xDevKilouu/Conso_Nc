@@ -45,7 +45,7 @@ body {
   flex-direction: column;
   align-items: flex-start; /* Alignement en haut */
   justify-content: flex-start; /* Ajustement pour commencer au début */
-  padding-top: 60px; /* Ajustement pour l'espace sous l'en-tête */
+  padding-top: 40px; /* Ajustement pour l'espace sous l'en-tête */
 }
 
 /* En-tête fixe */
@@ -60,6 +60,7 @@ body {
   width: 100%;
   z-index: 1001; /* Au-dessus de la navigation */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20%;
 }
 
 #header h1 {
@@ -204,6 +205,7 @@ body {
 #home h2 {
   margin-bottom: 20px;
   color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
+  text-align: center; /* Centre le texte à l'intérieur */
 }
 
 #home p {
@@ -214,7 +216,7 @@ body {
 /* Style pour le workflow explicatif */
 .workflow {
   display: flex;
-  justify-content: space-around; /* Espacement équilibré entre les étapes */
+  justify-content: space-around center; /* Espacement équilibré entre les étapes */
   margin-top: 20px;
   flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
