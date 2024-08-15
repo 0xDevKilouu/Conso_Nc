@@ -493,13 +493,14 @@ body {
 .card h2 {
   font-size: 2.2rem;
   margin-bottom: 10px;
+  color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
 }
 
 .card p {
   font-size: 1.6rem;
   line-height: 1.5;
   margin-bottom: 10px;
-  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
+  color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
 }
 
 .card ul {
