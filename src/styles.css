@@ -27,7 +27,6 @@ body {
   background: var(--bg-default);
   color: #000;
   overflow-x: hidden; /* Limiter le scroll horizontal */
-  overflow-y: auto; /* Activer le scroll vertical */
 }
 
 #app {
