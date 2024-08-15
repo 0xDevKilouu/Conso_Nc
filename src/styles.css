@@ -127,18 +127,36 @@ body {
 
 .indicator {
   position: absolute;
-  width: 70px; /* Légèrement plus large pour un meilleur ciblage */
+  width: 70px;
   height: 70px;
   top: -50%;
   border-radius: 50%;
-  border: 2px solid var(--primary-white);
+  border: 6px solid var(--bg-default);
   background: var(--primary-red);
-  transition: transform 0.3s ease, width 0.3s ease; /* Animation plus fluide */
+  transition: 0.3s;
   z-index: 0;
 }
 
-.indicator:hover {
-  width: 80px; /* Expansion lors du survol pour un effet interactif */
+.indicator:before,
+.indicator:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+}
+
+.indicator:after {
+  right: -22px;
+  box-shadow: -1px -10px 0 0 var(--bg-default);
+  border-top-left-radius: 20px;
+}
+
+.indicator:before {
+  left: -22px;
+  box-shadow: 1px -10px 0 0 var(--bg-default);
+  border-top-right-radius: 20px;
 }
 
 /* Déplacement de l'indicateur */
