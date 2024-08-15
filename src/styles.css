@@ -469,6 +469,7 @@ body {
 /* Améliorations visuelles pour les cartes */
 .card {
   background-color: var(--primary-white); /* Arrière-plan blanc */
+  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -486,6 +487,7 @@ body {
   height: auto;
   border-radius: 15px;
   margin-bottom: 20px;
+  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
 }
 
 .card h2 {
@@ -497,6 +499,7 @@ body {
   font-size: 1.6rem;
   line-height: 1.5;
   margin-bottom: 10px;
+  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
 }
 
 .card ul {
