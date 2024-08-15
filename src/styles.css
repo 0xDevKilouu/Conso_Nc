@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
-html, body {
+html {
   font-size: 62.5%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Empêche le défilement du navigateur */
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
@@ -26,19 +23,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
   background: var(--bg-default);
   color: #000;
 }
 
 #app {
+  text-align: center;
   width: 100%;
-  max-width: 360px; /* Alignement de la largeur avec la navbar */
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
   padding: 20px;
   box-sizing: border-box;
-  overflow-y: auto; /* Permettre le défilement dans la PWA uniquement */
+  flex: 1;
 }
 
 .center-content {
@@ -46,22 +41,21 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
   padding-top: 60px; /* Ajustement pour l'espace sous l'en-tête */
 }
 
 /* En-tête fixe */
 #header {
-  background-color: var(--primary-red);
-  color: var(--primary-white);
+  background-color: var(--primary-red); /* Rouge primaire pour l'en-tête */
+  color: var(--primary-white); /* Texte blanc */
   text-align: center;
   padding: 10px 0;
   position: fixed;
   top: 0;
-  left: 50%;
+  left: 0;
   width: 100%;
-  max-width: 360px;
-  transform: translateX(-50%);
-  z-index: 1001;
+  z-index: 1001; /* Au-dessus de la navigation */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -84,11 +78,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 15px; /* Coins arrondis */
   padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  border: solid 2px var(--bg-default);
+  border: solid 2px var(--bg-default); /* Bordure noire pour éviter la transparence */
 }
 
 .listWrap {
@@ -161,7 +155,7 @@ body {
   background: var(--primary-red);
   transition: 0.3s;
   z-index: 0;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Bordure noire pour éviter la transparence */
 }
 
 .indicator:before,
@@ -205,7 +199,7 @@ body {
 
 /* Style général pour la page Home */
 #home h2 {
-  color: var(--primary-white);
+  color: var(--primary-white); /* Utilisation de la couleur principale */
   margin-bottom: 20px;
 }
 
@@ -217,9 +211,9 @@ body {
 /* Style pour le workflow explicatif */
 .workflow {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around; /* Espacement équilibré entre les étapes */
   margin-top: 20px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
 
 .step {
@@ -229,13 +223,13 @@ body {
 }
 
 .step img {
-  max-width: 80px;
+  max-width: 80px; /* Limite la taille de l'image */
   margin-bottom: 10px;
 }
 
 .step h3 {
   font-size: 1.8rem;
-  color: var(--primary-red);
+  color: var(--primary-red); /* Couleur rouge primaire pour les titres des étapes */
   margin-bottom: 5px;
 }
 
@@ -261,14 +255,14 @@ body {
 #content {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 20px auto; 
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
   text-align: left;
-  overflow-y: auto;
+  overflow-y: auto; 
 }
 
 #content h2 {
@@ -280,14 +274,14 @@ body {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 10px;
-  color: #000;
+  color: #000; 
 }
 
 #content img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 10px 0;
+  margin: 10px 0; 
   border-radius: 8px;
 }
 
@@ -325,10 +319,10 @@ body {
 
 .product-info img {
   max-width: 100%;
-  height: auto;
-  margin: 10px 0;
+  height: auto; /* Assure que les images ne soient pas coupées */
+  margin: 10px 0; /* Ajuster la marge pour espacer correctement les images */
   border-radius: 8px;
-  object-fit: contain;
+  object-fit: contain; /* Contenir l'image sans découpage */
 }
 
 .product-info ul {
@@ -349,13 +343,13 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 80%;
-  height: 50vh;
+  height: 50vh; /* Hauteur pour une meilleure visibilité du scannerFrame */
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4CAF50; /* Bordure verte pour contraste */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  overflow: hidden; /* Clip de la video */
   position: relative;
 }
 
@@ -364,26 +358,26 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 100%; /* largeur du scanner */
+  height: 100%; /* hauteur scanner */
+  z-index: 1; /* La vidéo sera dans le champ du scanner */
   overflow: hidden;
 }
 
 /* Style pour la vidéo à l'intérieur du conteneur */
 #video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; /* largeur du container vidéo */
+  height: 100%; /* hauteur du container vidéo */
+  object-fit: cover; /* couvrir tout le champ */
 }
 
 /* Style pour les coins du scanner */
 .corner {
-  width: 20px;
-  height: 20px;
+  width: 20px; /* Taille pour les coins du scanner */
+  height: 20px; /* Taille pour les coins du scanner */
   position: absolute;
-  border: 2px solid #4CAF50;
-  z-index: 3;
+  border: 2px solid #4CAF50; /* Couleur verte pour les coins */
+  z-index: 3; /* assure que les coins soient bien sur la vidéo */
 }
 
 .corner.top-left {
@@ -423,7 +417,7 @@ body {
   height: 3px;
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
   animation: scan 2s linear infinite;
-  z-index: 3;
+  z-index: 3; /* assure que la ligne rouge du scanner soit bien centrée */
 }
 
 @keyframes scan {
@@ -438,7 +432,7 @@ body {
 .start-scan-btn {
   background-color: #4CAF50;
   color: white;
-  padding: 12px 20px;
+  padding: 12px 20px; /* Padding pour le bouton */
   font-size: 16px;
   margin: 20px 0;
   border: none;
@@ -471,17 +465,17 @@ body {
 
 /* Améliorations visuelles pour les cartes */
 .card {
-  background-color: var(--primary-white);
+  background-color: var(--primary-white); /* Arrière-plan blanc */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
-  color: #000;
+  color: #000; /* Texte noir */
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
 }
 
 .card img {
@@ -599,7 +593,7 @@ body {
   background-color: #ffffff;
   padding: 10px;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
 }
 
 .promo-product-image {
@@ -683,7 +677,7 @@ body {
   border-radius: 8px;
   background-color: var(--primary-red);
   color: var(--primary-white);
-  height: 50px;
+  height: 50px; /* Réduire la hauteur des boutons */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -698,7 +692,7 @@ body {
 }
 
 #firebaseui-auth-container .firebaseui-idp-button .firebaseui-idp-icon {
-  height: 20px;
+  height: 20px; /* Réduire la taille de l'icône Google */
   width: 20px;
   margin-right: 10px;
 }
@@ -850,15 +844,15 @@ body {
 
 /* Styles pour masquer le contenu derrière la modale */
 .modal {
-  display: none;
+  display: none; /* Masquée par défaut */
   position: fixed;
-  z-index: 1000;
+  z-index: 1000; /* Assure que la modale soit au-dessus de tout le reste */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Noir avec opacité pour masquer le fond */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -872,7 +866,7 @@ body {
   width: 100%;
   max-width: 400px;
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour l'effet pop-up */
   text-align: center;
 }
 
@@ -897,25 +891,25 @@ body {
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
   #scannerFrame {
-    height: 20vh;
+    height: 20vh; /* Réduire la hauteur du scanner sur les petits écrans */
   }
 }
 
 /* Media Queries pour iPhone avec barre de navigation en bas */
 @media only screen and (min-height: 812px) and (max-width: 768px) {
   .navbar {
-    bottom: constant(safe-area-inset-bottom);
-    bottom: env(safe-area-inset-bottom);
+    bottom: constant(safe-area-inset-bottom); /* constante Pour iPhone avec barre de navigation en bas */
+    bottom: env(safe-area-inset-bottom); /* env Pour iPhone avec barre de navigation en bas */
   }
 }
 
 /* Styles pour les écrans d'ordinateur */
 @media (min-width: 1024px) {
   .navigation {
-    max-width: none;
-    width: 80%;
-    justify-content: space-around;
+    max-width: none; /* Annule la limitation de largeur */
+    width: 80%; /* Largeur de la barre de navigation sur écran large */
+    justify-content: space-around; /* Répartit l'espace autour des éléments */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centre horizontalement */
   }
 }
