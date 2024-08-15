@@ -26,11 +26,13 @@ body {
   min-height: 100vh;
   background: var(--bg-default);
   color: #000;
+  overflow: hidden; /* Désactiver le scroll global */
 }
 
 #app {
-  text-align: center;
-  width: 100%;
+  overflow-y: auto; /* Activer le scroll vertical */
+  height: 100vh;    /* Assurer que l'app prend toute la hauteur de la fenêtre */
+  width: 100%;      /* Assurer que l'app prend toute la largeur de la fenêtre */
   padding: 20px;
   box-sizing: border-box;
   flex: 1;
