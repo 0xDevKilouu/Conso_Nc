@@ -31,6 +31,8 @@ body {
 
 #app {
   overflow-y: auto; /* Activer le scroll vertical */
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
   min-height: 100vh; /* Prendre au moins toute la hauteur de la fenêtre */
   width: 100vw; /* Assurer que l'app prend toute la largeur de la fenêtre */
   max-width: 100%; /* Empêcher de dépasser la largeur de la fenêtre */
@@ -43,8 +45,8 @@ body {
 .center-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alignement en haut */
-  justify-content: flex-start; /* Ajustement pour commencer au début */
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement */
   padding-top: 40px; /* Ajustement pour l'espace sous l'en-tête */
 }
 
@@ -60,7 +62,6 @@ body {
   width: 100%;
   z-index: 1001; /* Au-dessus de la navigation */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 20%;
 }
 
 #header h1 {
@@ -216,7 +217,7 @@ body {
 /* Style pour le workflow explicatif */
 .workflow {
   display: flex;
-  justify-content: space-around center; /* Espacement équilibré entre les étapes */
+  justify-content: center; /* Espacement équilibré entre les étapes */
   margin-top: 20px;
   flex-wrap: wrap; /* Permet de s'adapter aux petits écrans */
 }
@@ -471,12 +472,13 @@ body {
 /* Améliorations visuelles pour les cartes */
 .card {
   background-color: var(--primary-white); /* Arrière-plan blanc */
-  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
+  color: var(--bg-default); /* Couleur noire */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
+  text-align: center; /* Centre le texte à l'intérieur de la carte */
   color: #000; /* Texte noir */
 }
 
@@ -489,7 +491,7 @@ body {
   height: auto;
   border-radius: 15px;
   margin-bottom: 20px;
-  color: var(--bg-default); /* Couleur noire ou autre couleur visible */
+  color: var(--bg-default); /* Couleur noire  */
 }
 
 .card h2 {
