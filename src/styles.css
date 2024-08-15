@@ -53,15 +53,17 @@ body {
   background: var(--primary-white);
   position: fixed;
   bottom: 0;
-  transform: translateX(-50%);
   left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px; /* Coins plus arrondis pour un look moderne */
-  padding: 0 20px; /* Espacement accru pour plus de confort */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  /* Ajouter une bordure noire solide pour éviter la transparence */
+  border: solid 2px var(--bg-default);
 }
 
 .listWrap {
@@ -134,6 +136,8 @@ body {
   background: var(--primary-red);
   transition: 0.3s;
   z-index: 0;
+  /* Ajouter une bordure noire solide pour éviter la transparence */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .indicator:before,
