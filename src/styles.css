@@ -26,14 +26,15 @@ body {
   min-height: 100vh;
   background: var(--bg-default);
   color: #000;
-  overflow: hidden; /* Désactiver le scroll global */
+  overflow-x: hidden; /* Limiter le scroll horizontal */
+  overflow-y: auto; /* Activer le scroll vertical */
 }
 
 #app {
   overflow-y: auto; /* Activer le scroll vertical */
-  height: 100vh;    /* Assurer que l'app prend toute la hauteur de la fenêtre */
-  width: 100vw;     /* Assurer que l'app prend toute la largeur de la fenêtre */
-  max-width: 100%;  /* Empêche de dépasser la largeur de la fenêtre */
+  min-height: 100vh; /* Prendre au moins toute la hauteur de la fenêtre */
+  width: 100vw; /* Assurer que l'app prend toute la largeur de la fenêtre */
+  max-width: 100%; /* Empêcher de dépasser la largeur de la fenêtre */
   padding: 20px;
   box-sizing: border-box;
   flex: 1;
@@ -43,9 +44,8 @@ body {
 .center-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: flex-start; /* Alignement en haut */
+  justify-content: flex-start; /* Ajustement pour commencer au début */
   padding-top: 60px; /* Ajustement pour l'espace sous l'en-tête */
 }
 
