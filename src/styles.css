@@ -357,7 +357,7 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 100%;
-  max-width: 80%;
+  max-width: 100%; /* Ensure it takes full width */
   height: 50vh;
   margin: auto 0; /* Center vertically */
   box-sizing: border-box;
@@ -810,11 +810,11 @@ body {
   justify-content: center; /* Center content vertically */
   align-items: center;
   background-color: var(--primary-white);
-  padding: 20px;
+  padding: 0; /* No padding on the sides */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 100%; /* Take full width */
   margin: auto; /* Center in the available space */
   text-align: center;
 }
@@ -857,9 +857,9 @@ body {
   justify-content: space-between; /* Space out the content */
   align-items: center;
   height: calc(100vh - 140px); /* Adjust for header and footer */
-  padding: 20px;
+  padding: 0; /* No padding on the sides */
   width: 100%;
-  max-width: 600px;
+  max-width: 100%; /* Take full width */
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
