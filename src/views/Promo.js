@@ -16,6 +16,8 @@ const getPromoItems = async () => {
   }
 };
 
+// Commenter la fonction de création du token de paiement
+/*
 const createFormToken = async (amount, orderId, email) => {
   const response = await fetch('https://epaync.nc/api-payment/V4/Charge/CreatePayment', {
     method: 'POST',
@@ -34,6 +36,7 @@ const createFormToken = async (amount, orderId, email) => {
   const data = await response.json();
   return data.answer.formToken;
 };
+*/
 
 const renderPromoForm = () => `
   <div class="promo-form-container hidden">
@@ -123,11 +126,14 @@ const attachPromoEvents = () => {
         const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
         const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
 
+        // Commenter la partie relative au paiement
+        /*
         const formToken = await createFormToken(1000, 'promoOrder-' + new Date().getTime(), 'sample@example.com');
 
         document.getElementById('payment-form-container').innerHTML = `
           <div class="kr-embedded" kr-form-token="${formToken}"></div>
         `;
+        */
 
         sessionStorage.setItem('promoData', JSON.stringify({
           name: productName,
@@ -141,7 +147,7 @@ const attachPromoEvents = () => {
           createdAt: new Date()
         }));
       } catch (error) {
-        console.error('Erreur lors de la création du formToken ou de l\'upload des images:', error);
+        console.error('Erreur lors de l\'upload des images:', error); // Mis à jour le message d'erreur
         alert('Une erreur est survenue. Veuillez réessayer.');
       }
     });
