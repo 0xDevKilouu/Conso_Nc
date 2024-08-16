@@ -3,8 +3,8 @@
 html {
   font-size: 62.5%;
   height: 100%;
-  margin: 5;
-  padding: 5;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -26,13 +26,13 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Ensure content is spaced correctly */
   align-items: center;
   background: var(--bg-default);
-  color: #000;      
+  color: #000;
   min-height: 100vh;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px; /* Add consistent padding */
+  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -358,16 +358,16 @@ body {
 #scannerFrame {
   width: 100%;
   max-width: 80%;
-  height: 50vh; /* Adjusted height to make better use of vertical space */
-  margin: 0 auto;
+  height: 50vh;
+  margin: auto 0; /* Center vertically */
   box-sizing: border-box;
   border-radius: 15px;
   border: 2px solid #4CAF50;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   position: relative;
-  background: #333; /* Fallback background in case the video doesn’t load */
-  flex-shrink: 0;
+  background: #333;
+  flex-grow: 1; /* Ensure it grows to fill available space */
 }
 
 /* Style pour le conteneur de la vidéo */
@@ -466,7 +466,7 @@ body {
 /* Container for the buttons */
 #scannerControls {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Center the buttons */
   width: 100%;
   max-width: 300px;
   margin-top: 20px;
@@ -804,8 +804,10 @@ body {
 
 /* Styles pour le formulaire de connexion */
 #login-form {
+  flex-grow: 1; /* Ensure it grows to fill available space */
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Center content vertically */
   align-items: center;
   background-color: var(--primary-white);
   padding: 20px;
@@ -813,7 +815,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  margin: 20px auto;
+  margin: auto; /* Center in the available space */
   text-align: center;
 }
 
@@ -852,17 +854,16 @@ body {
 #account {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; /* Space out the content */
   align-items: center;
-  flex-grow: 1; /* Ensure it grows to fill available space */
+  height: calc(100vh - 140px); /* Adjust for header and footer */
+  padding: 20px;
   width: 100%;
   max-width: 600px;
-  padding: 20px;
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  text-align: left;
   overflow-y: auto;
 }
 
