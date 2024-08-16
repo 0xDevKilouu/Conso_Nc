@@ -670,6 +670,46 @@ body {
   margin-left: auto;
 }
 
+/* Style pour le formulaire d'ajout de promotion */
+.promo-form-container {
+  display: block; /* Assurez-vous qu'il soit affiché lorsqu'il n'est pas caché */
+  background-color: var(--primary-white); /* Assurez-vous qu'il soit bien visible */
+  padding: 20px; /* Ajouter un padding pour l'espacement interne */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre pour qu'il se détache */
+  border-radius: 8px; /* Adoucit les coins */
+  margin-top: 20px; /* Espacement au-dessus pour qu'il ne soit pas collé au reste du contenu */
+  max-width: 600px; /* Largeur maximale pour éviter qu'il s'étale trop */
+  width: 100%; /* S'adapte à la largeur de l'élément parent */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+  z-index: 10; /* S'assure qu'il soit au-dessus des autres éléments */
+}
+
+.promo-form-container input,
+.promo-form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Inclut le padding dans la largeur */
+}
+
+.promo-form-container button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-red);
+  color: var(--primary-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.promo-form-container button:hover {
+  background-color: #e33a3d;
+}
+
+
 /* Améliorations pour la section Firebase UI */
 #firebaseui-auth-container {
   width: 100%;
