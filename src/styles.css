@@ -349,7 +349,7 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 80%;
-  height: 50vh;
+  height: 40vh; /* Adjusted height to ensure it fits well */
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
@@ -357,6 +357,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   position: relative;
+  top: 20vh; /* Adjust this to ensure the scanner is centered vertically */
 }
 
 /* Style pour le conteneur de la vidéo */
@@ -455,7 +456,7 @@ body {
 /* Container for the buttons */
 #scannerControls {
   position: absolute;
-  bottom: -30px;
+  top: 105%; /* Positioned just below the scanner frame */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
