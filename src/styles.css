@@ -22,33 +22,36 @@ html {
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background: var(--bg-default);
   color: #000;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden; /* Limiter le scroll horizontal */
 }
 
 #app {
-  overflow-y: auto; /* Activer le scroll vertical */
-  align-items: center; /* Centre horizontalement */
-  justify-content: center; /* Centre verticalement */
-  min-height: 100vh; /* Prendre au moins toute la hauteur de la fenêtre */
-  width: 100vw; /* Assurer que l'app prend toute la largeur de la fenêtre */
-  max-width: 100%; /* Empêcher de dépasser la largeur de la fenêtre */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  flex: 1;
 }
 
 
 .center-content {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centre horizontalement */
-  justify-content: center; /* Centre verticalement */
-  padding-top: 40px; /* Ajustement pour l'espace sous l'en-tête */
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding-top: 20px; /* Ajustement pour l'espace sous l'en-tête */
 }
 
 /* En-tête fixe */
