@@ -75,23 +75,22 @@ body {
 
 /* Centrage de la navigation */
 .navigation {
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-  height: 70px;
-  background: var(--primary-white);
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
+  max-width: 360px;
+  height: 70px;
+  background: var(--primary-white);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px; /* Coins arrondis */
+  border-radius: 15px;
   padding: 0 20px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  border: solid 2px var(--bg-default); /* Bordure noire pour éviter la transparence */
+  border: solid 2px var(--bg-default);
 }
 
 .listWrap {
@@ -352,8 +351,9 @@ body {
 
 /* Style pour le conteneur du scanner */
 #scannerFrame {
-  width: 80%;
-  height: 40vh; /* Adjusted height to ensure it fits well */
+  width: 100%;
+  max-width: 80%;
+  height: 50vh; /* Adjusted height to make better use of vertical space */
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
@@ -361,7 +361,8 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   position: relative;
-  top: 20vh; /* Adjust this to ensure the scanner is centered vertically */
+  background: #333; /* Fallback background in case the video doesn’t load */
+  flex-shrink: 0;
 }
 
 /* Style pour le conteneur de la vidéo */
@@ -369,26 +370,26 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* largeur du scanner */
-  height: 100%; /* hauteur scanner */
-  z-index: 1; /* La vidéo sera dans le champ du scanner */
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   overflow: hidden;
 }
 
 /* Style pour la vidéo à l'intérieur du conteneur */
 #video {
-  width: 100%; /* largeur du container vidéo */
-  height: 100%; /* hauteur du container vidéo */
-  object-fit: cover; /* couvrir tout le champ */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Style pour les coins du scanner */
 .corner {
-  width: 20px; /* Taille pour les coins du scanner */
-  height: 20px; /* Taille pour les coins du scanner */
+  width: 20px;
+  height: 20px;
   position: absolute;
-  border: 2px solid #4CAF50; /* Couleur verte pour les coins */
-  z-index: 3; /* assure que les coins soient bien sur la vidéo */
+  border: 2px solid #4CAF50;
+  z-index: 3;
 }
 
 .corner.top-left {
@@ -428,7 +429,7 @@ body {
   height: 3px;
   background: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0));
   animation: scan 2s linear infinite;
-  z-index: 3; /* assure que la ligne rouge du scanner soit bien centrée */
+  z-index: 3;
 }
 
 @keyframes scan {
@@ -459,19 +460,16 @@ body {
 
 /* Container for the buttons */
 #scannerControls {
-  position: absolute;
-  top: 105%; /* Positioned just below the scanner frame */
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-around;
-  width: 80%;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
   z-index: 4;
 }
 
-/* Styling the control buttons */
 .control-button {
-  background-color: #2c2c2c; /* Dark background */
+  background-color: #2c2c2c;
   color: white;
   border: none;
   border-radius: 50%;
@@ -993,7 +991,7 @@ body {
 /* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
   #scannerFrame {
-    height: 20vh; /* Réduire la hauteur du scanner sur les petits écrans */
+    height: 30vh; /* Réduire la hauteur du scanner sur les petits écrans */
   }
 }
 
