@@ -349,13 +349,13 @@ body {
 /* Style pour le conteneur du scanner */
 #scannerFrame {
   width: 80%;
-  height: 50vh; /* Hauteur pour une meilleure visibilité du scannerFrame */
+  height: 50vh;
   margin: 0 auto;
   box-sizing: border-box;
   border-radius: 15px;
-  border: 2px solid #4CAF50; /* Bordure verte pour contraste */
+  border: 2px solid #4CAF50;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden; /* Clip de la video */
+  overflow: hidden;
   position: relative;
 }
 
@@ -455,43 +455,45 @@ body {
 /* Container for the buttons */
 #scannerControls {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 4;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  justify-content: space-around;
+  width: 80%;
+  z-index: 4;
 }
 
 /* Styling the control buttons */
 .control-button {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+  background-color: #2c2c2c; /* Dark background */
+  color: white;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.control-button span.icon-keyboard::before {
+  content: '⌨'; /* Keyboard Icon */
+}
+
+.control-button span.icon-close::before {
+  content: '✕'; /* Close Icon */
+}
+
+.control-button span.icon-flash::before {
+  content: '⚡'; /* Flash Icon */
 }
 
 .control-button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-/* Positioning the scanner controls */
-#closeScanner {
-  background-color: #ff4c4c; /* Red background for close button */
-}
-
-#toggleFlash {
-  background-color: #ffc107; /* Yellow background for flash button */
-}
-
-#enterCode {
-  background-color: #007bff; /* Blue background for keyboard button */
+  background-color: #4c4c4c;
 }
 
 

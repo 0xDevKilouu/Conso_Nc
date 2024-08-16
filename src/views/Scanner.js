@@ -12,12 +12,6 @@ const Scanner = () => {
   return `
     <div id="scanner">
       <div id="scannerFrame">
-        <!-- Buttons for closing, flash, and keyboard -->
-        <div id="scannerControls">
-          <button id="closeScanner" class="control-button">✕</button>
-          <button id="toggleFlash" class="control-button">⚡</button>
-          <button id="enterCode" class="control-button">⌨</button>
-        </div>
         <!-- Coins du cadre du scanner -->
         <div class="corner top-left"></div>
         <div class="corner top-right"></div>
@@ -29,6 +23,12 @@ const Scanner = () => {
         <div id="video-container">
           <video id="video" autoplay playsinline></video>
         </div>
+      </div>
+      <!-- Buttons for closing, flash, and keyboard -->
+      <div id="scannerControls">
+          <button id="enterCode" class="control-button"><span class="icon-keyboard"></span></button>
+          <button id="closeScanner" class="control-button"><span class="icon-close"></span></button>
+          <button id="toggleFlash" class="control-button"><span class="icon-flash"></span></button>
       </div>
       <!-- Contenu des informations du produit -->
       <div id="content"></div>
