@@ -16,28 +16,6 @@ const getPromoItems = async () => {
   }
 };
 
-// Commenter la fonction de création du token de paiement
-/*
-const createFormToken = async (amount, orderId, email) => {
-  const response = await fetch('https://epaync.nc/api-payment/V4/Charge/CreatePayment', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Basic ' + btoa('52213364:testpassword_NUfojbKEuSRUXgt4vVlWVAmJ28dO2X4TtZrVM0U0sJN2G'),
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      amount: amount,
-      currency: 'XPF',
-      orderId: orderId,
-      customer: { email: email }
-    })
-  });
-
-  const data = await response.json();
-  return data.answer.formToken;
-};
-*/
-
 const renderPromoForm = () => `
   <div class="promo-form-container hidden">
     <h3>Ajouter une promotion</h3>
@@ -46,7 +24,7 @@ const renderPromoForm = () => `
       <textarea id="promo-details" name="promo-details" placeholder="Détails de la promotion" required></textarea>
       <input type="file" id="product-image" name="product-image" accept="image/*" required>
       <input type="file" id="company-logo" name="company-logo" accept="image/*" required>
-      <input type="text" id="promo-expiry" name="promo-expiry" placeholder="Date d'expiration" required>
+      <input type="date" id="promo-expiry" name="promo-expiry" placeholder="Date d'expiration" required>
       <input type="text" id="promo-location" name="promo-location" placeholder="Localisation (ex: Kenu-in DUMBEA Mall)" required>
       <input type="text" id="promo-contact" name="promo-contact" placeholder="Contact du promoteur" required>
       <button type="submit">Ajouter</button>
@@ -126,47 +104,33 @@ const attachPromoEvents = () => {
         const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
         const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
 
-        // Commenter la partie relative au paiement
-        /*
-        const formToken = await createFormToken(1000, 'promoOrder-' + new Date().getTime(), 'sample@example.com');
-
-        document.getElementById('payment-form-container').innerHTML = `
-          <div class="kr-embedded" kr-form-token="${formToken}"></div>
-        `;
-        */
-
         sessionStorage.setItem('promoData', JSON.stringify({
           name: productName,
           details: promoDetails,
           image: productImageUrl,
           companyLogo: companyLogoUrl,
-          expiry: promoExpiry,
+          expiry: new Date(promoExpiry),  // Stocker comme un objet Date
           location: promoLocation,
           contact: promoContact,
           createdBy: auth.currentUser.uid,
           createdAt: new Date()
         }));
+
+        // Finalisation de l'ajout de la promotion
+        const promoData = JSON.parse(sessionStorage.getItem('promoData'));
+        if (promoData) {
+          await addDoc(collection(firestore, 'promotions'), promoData);
+          alert('Promotion ajoutée avec succès!');
+          sessionStorage.removeItem('promoData');
+          form.reset();
+          document.getElementById('payment-form-container').innerHTML = '';
+        }
+
       } catch (error) {
-        console.error('Erreur lors de l\'upload des images:', error); // Mis à jour le message d'erreur
+        console.error('Erreur lors de l\'upload des images ou de l\'ajout de la promotion:', error);
         alert('Une erreur est survenue. Veuillez réessayer.');
       }
     });
-  }
-};
-
-const finalizePromotion = async () => {
-  const promoData = JSON.parse(sessionStorage.getItem('promoData'));
-  if (promoData) {
-    try {
-      await addDoc(collection(firestore, 'promotions'), promoData);
-      alert('Promotion ajoutée avec succès!');
-      sessionStorage.removeItem('promoData');
-      document.getElementById('promo-form').reset();
-      document.getElementById('payment-form-container').innerHTML = '';
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout de la promotion:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
-    }
   }
 };
 
