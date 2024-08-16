@@ -31,6 +31,7 @@ body {
   background: var(--bg-default);
   color: #000;
   min-height: 100vh;
+  padding-top: 10px;
   overflow: hidden;
 }
 
@@ -852,9 +853,16 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%; /* Ensure it uses full available height */
-  max-height: calc(100vh - 70px); /* Adjust for the header and footer */
-  overflow-y: auto; /* Scroll within the account section */
+  flex-grow: 1; /* Ensure it grows to fill available space */
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: var(--primary-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+  overflow-y: auto;
 }
 
 #account h2 {
