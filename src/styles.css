@@ -254,7 +254,7 @@ body {
 .recommendation-list li {
   margin-bottom: 10px;
   font-size: 1.4rem;
-  color: var(--primary-white);
+  color: #000; /* Texte noir */
 }
 
 /* Contenu principal */
