@@ -83,8 +83,8 @@ const checkAuthState = () => {
 const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
-  loadView(hash || 'home');
-  checkAuthState();
+  loadView(hash || 'home');  // Charge la vue actuelle ou 'home' par défaut
+  checkAuthState();  // Vérifie l'état d'authentification, mais sans redirection
 };
 
 document.addEventListener('DOMContentLoaded', () => {
