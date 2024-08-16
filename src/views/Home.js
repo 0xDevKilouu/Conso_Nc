@@ -19,7 +19,7 @@ const Home = () => {
           <p>Découvrez comment utiliser Conso Nc en trois étapes simples :</p>
           <div class="workflow">
             <div class="step">
-              <img src="https://via.placeholder.com/100" alt="Étape 1">
+              <img src="https://media.istockphoto.com/id/956026172/vector/barcode-product-distribution-icon-vector-illustration-on-isolated-transparent-background.jpg?s=612x612&w=0&k=20&c=itaaP75HeAaNpUinajzYekgdg6yEUfBGpAZgia6fcwQ=" alt="Étape 1">
               <h3>1. Scannez le produit</h3>
               <p>Utilisez l'appareil photo pour scanner le code-barres de votre produit.</p>
             </div>
