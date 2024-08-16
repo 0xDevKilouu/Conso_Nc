@@ -991,28 +991,25 @@ body {
   cursor: pointer;
 }
 
-/* Media Queries pour les petits écrans */
 @media only screen and (max-width: 600px) {
   #scannerFrame {
-    height: 30vh; /* Réduire la hauteur du scanner sur les petits écrans */
+    height: 30vh; /* Adjust height for smaller screens */
   }
 }
 
-/* Media Queries pour iPhone avec barre de navigation en bas */
 @media only screen and (min-height: 812px) and (max-width: 768px) {
-  .navbar {
-    bottom: constant(safe-area-inset-bottom); /* constante Pour iPhone avec barre de navigation en bas */
-    bottom: env(safe-area-inset-bottom); /* env Pour iPhone avec barre de navigation en bas */
+  .navigation {
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
   }
 }
 
-/* Styles pour les écrans d'ordinateur */
 @media (min-width: 1024px) {
   .navigation {
-    max-width: none; /* Annule la limitation de largeur */
-    width: 80%; /* Largeur de la barre de navigation sur écran large */
-    justify-content: space-around; /* Répartit l'espace autour des éléments */
+    max-width: none;
+    width: 80%;
+    justify-content: space-around;
     left: 50%;
-    transform: translateX(-50%); /* Centre horizontalement */
+    transform: translateX(-50%);
   }
 }
