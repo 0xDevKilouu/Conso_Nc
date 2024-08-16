@@ -12,6 +12,12 @@ const Scanner = () => {
   return `
     <div id="scanner">
       <div id="scannerFrame">
+        <!-- Buttons for closing, flash, and keyboard -->
+        <div id="scannerControls">
+          <button id="closeScanner" class="control-button">✕</button>
+          <button id="toggleFlash" class="control-button">⚡</button>
+          <button id="enterCode" class="control-button">⌨</button>
+        </div>
         <!-- Coins du cadre du scanner -->
         <div class="corner top-left"></div>
         <div class="corner top-right"></div>
@@ -35,6 +41,11 @@ export const initializeScanner = () => {
   scannerFrame = document.getElementById('scannerFrame');
   videoElement.style.display = 'none';
   scannerFrame.style.display = 'none';
+
+  // Attach event listeners for the new buttons
+  document.getElementById('closeScanner').addEventListener('click', () => stopScanning());
+  document.getElementById('toggleFlash').addEventListener('click', () => toggleFlash());
+  document.getElementById('enterCode').addEventListener('click', () => enterBarcodeManually());
 
   requestCameraAccess().then(() => {
     startScanning();
@@ -76,6 +87,29 @@ function startScanning() {
       stopScanning(false);  // n'éteind pas le stream vidéo
     }
   });
+}
+
+// Function to toggle the flash
+function toggleFlash() {
+  if (videoElement.srcObject) {
+    const track = videoElement.srcObject.getVideoTracks()[0];
+    const capabilities = track.getCapabilities();
+
+    if (capabilities.torch) {
+      const settings = track.getSettings();
+      track.applyConstraints({
+        advanced: [{ torch: !settings.torch }]
+      });
+    }
+  }
+}
+
+// Function to manually enter a barcode
+function enterBarcodeManually() {
+  const barcode = prompt('Entrez le code-barres:');
+  if (barcode) {
+    fetchProductInfo(barcode);
+  }
 }
 
 function stopScanning(stopStream = true) {
