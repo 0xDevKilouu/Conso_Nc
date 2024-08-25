@@ -18,12 +18,20 @@ const loadView = async (view) => {
   console.log(`Loading view: ${view}`);
   const content = document.getElementById('content');
 
+  // Ajout du header sur toutes les vues
+  const header = `
+    <header id="header">
+      <h1>Conso Nc</h1>
+    </header>
+  `;
+  content.innerHTML = header;
+
   if (routes[view]) {
     if (view === 'account') {
       handleAuthStateChange();
     } else {
       const viewContent = await routes[view]();
-      content.innerHTML = viewContent;
+      content.innerHTML += viewContent;  // Ajouter la vue après le header
       if (view === 'scanner') {
         initializeScanner();
       }
@@ -34,7 +42,27 @@ const loadView = async (view) => {
     }
   } else {
     const viewContent = await Home();
-    content.innerHTML = viewContent;
+    content.innerHTML += viewContent;
+  }
+
+  // Mise à jour de l'état actif de la barre de navigation
+  updateNavbarState(view);
+};
+
+const updateNavbarState = (view) => {
+  const listItems = document.querySelectorAll('.list');
+  listItems.forEach(item => item.classList.remove('active'));
+
+  const mapViewToButtonId = {
+    'home': 'homeButton',
+    'scanner': 'scanButton',
+    'promo': 'promoButton',
+    'account': 'accountButton'
+  };
+
+  const activeButton = document.getElementById(mapViewToButtonId[view]);
+  if (activeButton) {
+    activeButton.parentElement.classList.add('active');
   }
 };
 
@@ -62,12 +90,9 @@ const setupNavbar = () => {
     window.location.hash = 'account';
   });
 
-  const listItems = document.querySelectorAll('.list');
-  function activateLink() {
-    listItems.forEach(item => item.classList.remove('active'));
-    this.classList.add('active');
-  }
-  listItems.forEach(item => item.addEventListener('click', activateLink));
+  // Activer l'état correct lors de l'initialisation
+  const initialView = window.location.hash.substring(1) || 'home';
+  updateNavbarState(initialView);
 };
 
 const checkAuthState = () => {
