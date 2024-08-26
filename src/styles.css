@@ -30,11 +30,11 @@ body {
   align-items: center;
   background: var(--bg-default);
   color: #000;
-  min-height: 100vh; /* Assure que le body prend toute la hauteur de la fenêtre */
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-y: auto; /* Pour permettre le scroll si nécessaire */
+  overflow-y: auto; /* Maintien du scroll comme avant */
 }
 
 #app {
@@ -96,7 +96,6 @@ body {
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   border: solid 2px var(--bg-default);
-  margin-bottom: 0; /* Supprime toute marge */
 }
 
 .listWrap {
@@ -278,7 +277,7 @@ body {
   box-sizing: border-box;
   text-align: left;
   overflow-y: auto;
-  margin-bottom: 80px; /* Ajoute de l'espace en bas pour la navigation */
+  margin-bottom: 100px; /* Ajoute de l'espace en bas pour la navigation */
 }
 
 
