@@ -538,7 +538,7 @@ body {
   color: var(--bg-default); /* Couleur noire */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
   text-align: center; /* Centre le texte à l'intérieur de la carte */
