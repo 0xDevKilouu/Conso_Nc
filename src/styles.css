@@ -1050,12 +1050,19 @@ body {
     bottom: constant(safe-area-inset-bottom);
     bottom: env(safe-area-inset-bottom);
   }
+  body, #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
+
 
 @media (min-width: 1024px) {
   .navigation {
-    max-width: none;
-    width: 80%;
+    max-width: 900px; /* Fixe la largeur max pour les grands écrans */
+    width: 80%; /* Ajuste la largeur de la navigation */
     justify-content: space-around;
     left: 50%;
     transform: translateX(-50%);
