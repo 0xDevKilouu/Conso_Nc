@@ -213,7 +213,7 @@ body {
 
 /* Style général pour la page Home */
 #home h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
   text-align: center; /* Centre le texte à l'intérieur */
 }
