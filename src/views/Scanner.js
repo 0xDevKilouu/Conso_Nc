@@ -27,7 +27,6 @@ const Scanner = () => {
       <!-- Buttons for closing, flash, and keyboard -->
       <div id="scannerControls">
           <button id="enterCode" class="control-button"><span class="icon-keyboard"></span></button>
-          <button id="closeScanner" class="control-button"><span class="icon-close"></span></button>
           <button id="toggleFlash" class="control-button"><span class="icon-flash"></span></button>
       </div>
       <!-- Contenu des informations du produit -->
@@ -43,7 +42,6 @@ export const initializeScanner = () => {
   scannerFrame.style.display = 'none';
 
   // Attach event listeners for the new buttons
-  document.getElementById('closeScanner').addEventListener('click', () => stopScanning());
   document.getElementById('toggleFlash').addEventListener('click', () => toggleFlash());
   document.getElementById('enterCode').addEventListener('click', () => enterBarcodeManually());
 

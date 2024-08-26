@@ -475,11 +475,11 @@ body {
 /* Container for the buttons */
 #scannerControls {
   display: flex;
-  justify-content: center; /* Center the buttons */
+  justify-content: center; /* Centre les boutons horizontalement */
+  gap: 20px; /* Ajoute un espacement entre les boutons */
   width: 100%;
-  max-width: 300px;
-  margin-top: 20px;
-  z-index: 4;
+  max-width: 300px; /* Ajustez cette valeur selon vos besoins */
+  margin-top: 20px; /* Espace entre le scanner et les boutons */
 }
 
 .control-button {
