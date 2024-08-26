@@ -139,4 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
   script2.noModule = true;
   script2.src = 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js';
   document.head.appendChild(script2);
+
+  // Forcer le re-rendu de la barre de navigation
+  window.addEventListener('load', () => {
+    const navbar = document.querySelector('.navigation');
+    if (navbar) {
+      navbar.style.display = 'none';
+      navbar.offsetHeight; // trigger reflow
+      navbar.style.display = 'flex';
+    }
+  });
 });
