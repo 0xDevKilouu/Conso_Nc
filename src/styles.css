@@ -478,7 +478,7 @@ body {
   justify-content: center;
   gap: 20px;
   width: 100%;
-  position: absolute;
+  position: center;
   transform: translate(-30%, -10%); /* Ajuster vers le haut avec translateY */
 }
 
