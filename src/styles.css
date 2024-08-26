@@ -538,7 +538,7 @@ body {
   color: var(--bg-default); /* Couleur noire */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
+  padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.3s ease;
   text-align: center; /* Centre le texte à l'intérieur de la carte */
@@ -868,7 +868,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   height: calc(100vh - 140px);
-  padding: 60px 20px 20px 20px; /* Ajout d'un padding-top plus grand */
+  padding: 40px 20px 20px 20px; /* Ajout d'un padding-top plus grand */
   width: 100%;
   max-width: 100%;
   background-color: var(--primary-white);
