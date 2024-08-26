@@ -216,9 +216,9 @@ body {
 /* Style général pour la page Home */
 #home h2 {
   margin-bottom: 10px;
-  color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
-  text-align: center; /* Centre le texte à l'intérieur */
-  padding-top: 15px;
+  color: var(--bg-default);
+  text-align: center;
+  padding-top: 60px; /* Augmentation du padding pour espacer du header */
 }
 
 #home p {
@@ -273,9 +273,9 @@ body {
 #content {
   width: 100%;
   max-width: 600px;
-  margin: 20px auto; 
+  margin: 20px auto;
   padding: 20px;
-  padding-top: 30px; 
+  padding-top: 60px; /* Assurez-vous que ce padding soit suffisant pour décaler le contenu sous le header */
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -865,17 +865,17 @@ body {
 #account {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Ajusté pour aligner le contenu en haut */
+  justify-content: flex-start;
   align-items: center;
-  height: calc(100vh - 140px); /* Ajuster pour le header et la navigation */
-  padding: 20px 0; /* Ajout d'un padding vertical pour éviter le collage des éléments au bord */
+  height: calc(100vh - 140px);
+  padding: 60px 20px 20px 20px; /* Ajout d'un padding-top plus grand */
   width: 100%;
-  max-width: 100%; /* Utilisation complète de la largeur */
+  max-width: 100%;
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  overflow-y: auto; /* Permet le défilement si le contenu est trop long */
+  overflow-y: auto;
 }
 
 #account h2 {
