@@ -475,13 +475,12 @@ body {
 /* Container for the buttons */
 #scannerControls {
   display: flex;
-  justify-content: center; /* Centre les boutons horizontalement */
-  gap: 20px; /* Ajoute un espacement entre les boutons */
+  justify-content: center;
+  gap: 20px;
   width: 100%;
-  margin-top: 20px; /* Espace entre le scanner et les boutons */
-  position: absolute; /* Ajouté pour positionner précisément les boutons */
+  position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Centre le conteneur sous le scanner */
+  transform: translate(-50%, -20%); /* Ajuster vers le haut avec translateY */
 }
 
 .control-button {
@@ -496,7 +495,6 @@ body {
   justify-content: center;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .control-button span.icon-keyboard::before {
