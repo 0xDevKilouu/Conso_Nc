@@ -868,23 +868,25 @@ body {
 #account {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center; /* Centre verticalement les éléments */
   align-items: center;
   height: calc(100vh - 140px);
-  padding: 40px 20px 20px 20px; /* Ajout d'un padding-top plus grand */
+  padding: 20px; /* Ajustement du padding pour éviter trop d'espace en haut */
   width: 100%;
-  max-width: 100%;
+  max-width: 400px; /* Limite la largeur pour garder un aspect centré */
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden; /* Désactive le défilement vertical */
 }
 
+/* Styles pour le titre de la section compte */
 #account h2 {
   font-size: 2.4rem; /* Ajusté pour être en accord avec le reste de la typographie */
   margin-bottom: 20px; /* Espacement supplémentaire pour séparer le titre du reste du contenu */
   color: var(--bg-default); /* Utilisation de la couleur par défaut pour le texte */
+  margin-top: 0; /* Retire le margin-top pour éviter le décalage du titre */
 }
 
 #user-info {
