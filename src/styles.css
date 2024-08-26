@@ -275,7 +275,7 @@ body {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  padding-top: 60px; /* Assurez-vous que ce padding soit suffisant pour décaler le contenu sous le header */
+  padding-top: 40px; /* Assurez-vous que ce padding soit suffisant pour décaler le contenu sous le header */
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
