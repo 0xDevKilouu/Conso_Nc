@@ -479,7 +479,6 @@ body {
   gap: 20px;
   width: 100%;
   position: absolute;
-  left: 50%;
   transform: translate(-30%, -10%); /* Ajuster vers le haut avec translateY */
 }
 
