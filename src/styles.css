@@ -478,8 +478,10 @@ body {
   justify-content: center;
   gap: 20px;
   width: 100%;
-  position: center;
-  transform: translate(-30%, -10%); /* Ajuster vers le haut avec translateY */
+  position: absolute; /* Utilisation d'une position absolue pour le centrage */
+  left: 50%; /* Centrage horizontal */
+  transform: translateX(-50%); /* Correction du décalage horizontal */
+  bottom: 20px; /* Ajuster cette valeur pour placer les boutons plus haut ou plus bas */
 }
 
 .control-button {
@@ -489,12 +491,13 @@ body {
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  display: flex; /* Modifié pour assurer le centrage des icônes à l'intérieur */
+  display: flex; /* Assure le centrage des icônes à l'intérieur des boutons */
   align-items: center;
   justify-content: center;
   font-size: 24px;
   cursor: pointer;
 }
+
 
 .control-button span.icon-keyboard::before {
   content: '⌨'; /* Keyboard Icon */
