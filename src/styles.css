@@ -216,6 +216,7 @@ body {
   margin-bottom: 10px;
   color: var(--bg-default); /* Couleur noire ou une autre couleur visible */
   text-align: center; /* Centre le texte à l'intérieur */
+  padding-top: 40px;
 }
 
 #home p {
