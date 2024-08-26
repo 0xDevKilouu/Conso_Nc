@@ -979,8 +979,8 @@ body {
 /* Indicateur de statut pour l'icône de compte */
 .status-indicator {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -10px; /* Ajuste la distance par rapport au haut */
+  right: -5px; /* Ajuste la distance par rapport au côté droit */
   font-size: 12px;
   line-height: 12px;
   border-radius: 50%;
