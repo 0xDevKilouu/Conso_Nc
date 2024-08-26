@@ -67,13 +67,11 @@ body {
   text-align: center;
   padding: 10px 0;
   position: fixed;
-  top: 10px; /* Ajoute un petit espace au-dessus du header */
-  left: 50%;
-  transform: translateX(-50%); /* Centre horizontalement le header */
-  width: 90%; /* Rend le header un peu plus petit que la largeur totale */
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1001; /* Au-dessus de la navigation */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 20px; /* Ajoute des coins arrondis */
 }
 
 #header h1 {
