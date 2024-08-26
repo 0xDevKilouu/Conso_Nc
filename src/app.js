@@ -95,22 +95,27 @@ const setupNavbar = () => {
   updateNavbarState(initialView);
 };
 
+let authStateChecked = false; // Nouveau drapeau pour éviter la duplication
+
 const checkAuthState = () => {
-  auth.onAuthStateChanged(user => {
-    const accountButtonIcon = document.querySelector('#accountButton .icon');
-    
-    if (user) {
-      console.log('User is logged in:', user);
-      if (accountButtonIcon) {
-        accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: green;">●</span>`;
+  if (!authStateChecked) { // Vérifier si l'état a déjà été vérifié
+    auth.onAuthStateChanged(user => {
+      const accountButtonIcon = document.querySelector('#accountButton .icon');
+      
+      if (user) {
+        console.log('User is logged in:', user);
+        if (accountButtonIcon) {
+          accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: green;">●</span>`;
+        }
+      } else {
+        console.log('User is not logged in');
+        if (accountButtonIcon) {
+          accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: red;">●</span>`;
+        }
       }
-    } else {
-      console.log('User is not logged in');
-      if (accountButtonIcon) {
-        accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: red;">●</span>`;
-      }
-    }
-  });
+    });
+    authStateChecked = true; // Marquer comme vérifié
+  }
 };
 
 const initApp = () => {

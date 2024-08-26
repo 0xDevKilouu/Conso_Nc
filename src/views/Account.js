@@ -49,6 +49,9 @@ const renderLoginModal = () => `
 
 const renderAccountPage = (user) => `
   <div id="account">
+    <header id="header">
+      <h1>Conso Nc</h1>
+    </header>
     <h2>${user ? 'Compte' : 'Connexion'}</h2>
     ${user ? renderUserInfo(user) : renderAuthUI()}
   </div>
