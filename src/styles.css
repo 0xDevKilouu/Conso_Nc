@@ -859,49 +859,56 @@ body {
 #account {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space out the content */
+  justify-content: flex-start; /* Ajusté pour aligner le contenu en haut */
   align-items: center;
-  height: calc(100vh - 140px); /* Adjust for header and footer */
-  padding: 0; /* No padding on the sides */
+  height: calc(100vh - 140px); /* Ajuster pour le header et la navigation */
+  padding: 20px 0; /* Ajout d'un padding vertical pour éviter le collage des éléments au bord */
   width: 100%;
-  max-width: 100%; /* Take full width */
+  max-width: 100%; /* Utilisation complète de la largeur */
   background-color: var(--primary-white);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y: auto; /* Permet le défilement si le contenu est trop long */
 }
 
 #account h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 2.4rem; /* Ajusté pour être en accord avec le reste de la typographie */
+  margin-bottom: 20px; /* Espacement supplémentaire pour séparer le titre du reste du contenu */
+  color: var(--bg-default); /* Utilisation de la couleur par défaut pour le texte */
 }
 
 #user-info {
   text-align: center;
+  width: 100%; /* S'assure que l'information utilisateur occupe toute la largeur disponible */
+  padding: 0 20px; /* Ajout d'un padding latéral pour éviter que le texte ne touche les bords */
 }
 
 #user-info p {
-  font-size: 18px;
+  font-size: 1.8rem; /* Conversion en rem pour une meilleure accessibilité */
   font-weight: 500;
   color: var(--bg-default);
   margin-bottom: 20px;
 }
 
-#update-profile-button {
+#update-profile-button,
+#logout-button {
   background-color: var(--primary-red);
   color: var(--primary-white);
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 1.6rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 20px;
+  width: 80%; /* Uniformisation de la largeur des boutons */
+  max-width: 300px; /* Limite maximale pour éviter des boutons trop larges sur les grands écrans */
+  margin-bottom: 20px; /* Espacement entre les boutons */
 }
 
-#update-profile-button:hover {
-  background-color: #e33a3d;
+#update-profile-button:hover,
+#logout-button:hover {
+  background-color: #e33a3d; /* Même couleur de survol pour uniformiser le style */
 }
 
 #update-profile-form {
@@ -909,13 +916,17 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%; /* S'assure que le formulaire occupe toute la largeur disponible */
+  max-width: 400px; /* Largeur maximale pour une meilleure lisibilité */
+  padding: 0 20px; /* Ajout d'un padding latéral pour un meilleur confort visuel */
+  box-sizing: border-box; /* Assure que le padding est inclus dans la largeur totale */
 }
 
 #update-profile-form input {
-  width: 80%;
+  width: 100%; /* Utilisation de toute la largeur disponible */
   padding: 10px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 1.6rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-sizing: border-box;
@@ -925,22 +936,24 @@ body {
   background-color: var(--primary-red);
   color: var(--primary-white);
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 1.6rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%; /* S'étend sur toute la largeur du formulaire */
+  max-width: 300px; /* Limite la largeur pour éviter des boutons trop larges */
 }
 
 #update-profile-form button:hover {
-  background-color: #e33a3d;
+  background-color: #e33a3d; /* Harmonisation avec les autres boutons */
 }
 
 #logout-button {
   background-color: var(--primary-red);
   color: var(--primary-white);
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 1.6rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -955,6 +968,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%; /* S'assure que le conteneur occupe toute la largeur disponible */
+  max-width: 400px; /* Largeur maximale pour une meilleure lisibilité */
+  padding: 20px; /* Ajout d'un padding pour éviter que le contenu ne touche les bords */
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+}
+
+/* Indicateur de statut pour l'icône de compte */
+.status-indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid var(--primary-white);
 }
 
 /* Styles pour masquer le contenu derrière la modale */
