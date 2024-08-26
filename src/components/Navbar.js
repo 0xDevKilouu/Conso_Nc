@@ -32,6 +32,7 @@ const Navbar = () => {
           <a href="javascript:void(0);" id="accountButton">
             <i class="icon">
               <ion-icon name="person-outline"></ion-icon>
+              <!-- Indicateur de statut sera ajouté ici dynamiquement -->
             </i>
             <span class="text">Compte</span>
           </a>

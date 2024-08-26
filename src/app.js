@@ -97,10 +97,18 @@ const setupNavbar = () => {
 
 const checkAuthState = () => {
   auth.onAuthStateChanged(user => {
+    const accountButtonIcon = document.querySelector('#accountButton .icon');
+    
     if (user) {
       console.log('User is logged in:', user);
+      if (accountButtonIcon) {
+        accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: green;">●</span>`;
+      }
     } else {
       console.log('User is not logged in');
+      if (accountButtonIcon) {
+        accountButtonIcon.innerHTML += `<span class="status-indicator" style="color: red;">●</span>`;
+      }
     }
   });
 };
@@ -109,7 +117,7 @@ const initApp = () => {
   setupNavbar();
   const hash = window.location.hash.substring(1);
   loadView(hash || 'home');  // Charge la vue actuelle ou 'home' par défaut
-  checkAuthState();  // Vérifie l'état d'authentification, mais sans redirection
+  checkAuthState();  // Vérifie l'état d'authentification et met à jour le statut
 };
 
 document.addEventListener('DOMContentLoaded', () => {

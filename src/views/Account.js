@@ -147,11 +147,6 @@ const attachEventListeners = () => {
 
 const handleAuthStateChange = () => {
   auth.onAuthStateChanged((user) => {
-    if (user) {
-      // Si l'utilisateur est connecté, afficher la page de compte
-      window.location.hash = 'account';
-    }
-
     if (window.location.hash.substring(1) === 'account') {
       document.getElementById('content').innerHTML = renderAccountPage(user);
       attachEventListeners();
