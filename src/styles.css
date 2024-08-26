@@ -34,20 +34,21 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-y: auto; /* Maintien du scroll comme avant */
+  overflow-y: none; /* Restaure la gestion de l'overflow */
 }
 
 #app {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alignement en haut */
+  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   max-width: 100%;
-  padding-top: 50px; /* Garde l'espace pour le header */
+  padding-top: 50px;
+  padding-bottom: 80px;
   box-sizing: border-box;
-  overflow-y: auto; /* Pour permettre le scroll si nécessaire */
+  overflow-y: auto; /* Restaure l'overflow auto */
 }
 
 .center-content {
@@ -277,7 +278,6 @@ body {
   box-sizing: border-box;
   text-align: left;
   overflow-y: auto;
-  margin-bottom: 100px; /* Ajoute de l'espace en bas pour la navigation */
 }
 
 
