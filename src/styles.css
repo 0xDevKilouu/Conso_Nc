@@ -722,8 +722,8 @@ body {
   font-weight: bold;
   text-align: left;
   white-space: nowrap; /* Empêcher le texte de sauter à la ligne */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Ajout d'une ellipse si le texte déborde */
+  overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
+  text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
 }
 
 .promo-description {
@@ -744,6 +744,7 @@ body {
   width: 40px;
   height: 40px;
   object-fit: contain;
+  border: 1px solid #e0e0e0; /* Bordure pour bien délimiter chaque logo */
   margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
 }
 
