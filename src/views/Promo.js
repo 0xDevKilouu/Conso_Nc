@@ -58,15 +58,18 @@ const Promo = async () => {
           <h3 class="promo-title">${item.name || 'Nom indisponible'}</h3>
           <p class="promo-description">${item.details || 'Détails indisponibles'}</p>
           <div class="promo-info">
-            <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
-            <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
+            <div>
+              <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
+              <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
+            </div>
+            <div class="promo-contact">${item.contact || 'Contact indisponible'}</div>
           </div>
-          <div class="promo-price">${item.contact || 'Contact indisponible'}</div>
         </div>
       </li>
     `).join('')}
   </ul>
 ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
+
 
   promoContainer.innerHTML = `
     <h2>Promotions</h2>
