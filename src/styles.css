@@ -722,7 +722,7 @@ body {
   margin-bottom: 8px;
   color: var(--primary-red);
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   width: 100%;
 }
 
@@ -750,8 +750,8 @@ body {
 
 /* Logo de la compagnie */
 .company-logo {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   border: 1px solid #e0e0e0;
   margin-right: 8px;
@@ -769,6 +769,7 @@ body {
   color: #000000; /* Couleur du prix ou contact en noir */
   margin-left: auto;
   text-align: right;
+  white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
 /* Styles pour le formulaire d'ajout de promotion */
