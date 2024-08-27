@@ -679,8 +679,8 @@ body {
 }
 
 .promo-product-image {
-  width: 120px;
-  height: 120px;
+  width: 100px; /* Taille réduite pour l'image */
+  height: 100px;
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 5px;
@@ -702,8 +702,6 @@ body {
   font-weight: bold;
   text-align: left;
   white-space: nowrap; /* Empêche le titre de passer à la ligne */
-  overflow: hidden; /* Cache le débordement si le texte est trop long */
-  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
 }
 
 .promo-details p {
