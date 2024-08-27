@@ -616,7 +616,7 @@ body {
 #promo {
   max-width: 100%; /* Utilise toute la largeur disponible */
   margin: 20px auto;
-  padding: 20px -1px; /* Réduction du padding à droite et à gauche à 0px */
+  padding: 20px; /* Réduction du padding à droite et à gauche à 0px */
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
