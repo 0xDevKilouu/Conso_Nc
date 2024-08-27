@@ -50,24 +50,26 @@ const Promo = async () => {
   promoContainer.innerHTML = '';
 
   const promoItemsHTML = promoItems.length > 0 ? `
-    <ul class="promo-list">
-      ${promoItems.map(item => `
-        <li class="promo-item">
+  <ul class="promo-list">
+    ${promoItems.map(item => `
+      <li class="promo-item">
+        <div class="promo-image-and-date">
           <img src="${item.image || 'default-image-url.jpg'}" alt="${item.name || 'Nom indisponible'}" class="promo-product-image">
-          <div class="promo-details">
-            <h3>${item.name || 'Nom indisponible'}</h3>
-            <p>${item.details || 'Détails indisponibles'}</p>
-            <div class="promo-info">
-              <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
-              <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
-              <div class="promo-expiry">${item.expiry ? new Date(item.expiry).toLocaleDateString() : 'Date inconnue'}</div>
-            </div>
-            <div class="promo-price">${item.contact || 'Contact indisponible'}</div>
+          <div class="promo-expiry">${item.expiry ? new Date(item.expiry).toLocaleDateString() : 'Date inconnue'}</div>
+        </div>
+        <div class="promo-details">
+          <h3>${item.name || 'Nom indisponible'}</h3>
+          <p>${item.details || 'Détails indisponibles'}</p>
+          <div class="promo-info">
+            <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
+            <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
           </div>
-        </li>
-      `).join('')}
-    </ul>
-  ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
+          <div class="promo-price">${item.contact || 'Contact indisponible'}</div>
+        </div>
+      </li>
+    `).join('')}
+  </ul>
+` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
 
   // Injecter le HTML dans le conteneur des promotions
   promoContainer.innerHTML = `
