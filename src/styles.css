@@ -677,11 +677,12 @@ body {
 }
 
 .promo-product-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  width: 120px;  /* Augmentez la taille si vous souhaitez une image plus grande */
+  height: 120px;
+  object-fit: cover;  /* Conserve les proportions et remplit l'espace */
   border-radius: 4px;
   margin-bottom: 5px;
+  background-color: #f0f0f0;  /* Couleur de fond au cas où l'image ne se charge pas */
 }
 
 .promo-details {
