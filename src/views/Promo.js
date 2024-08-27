@@ -53,14 +53,14 @@ const Promo = async () => {
         <div class="promo-image-and-date">
           <img src="${item.image || 'default-image-url.jpg'}" alt="${item.name || 'Nom indisponible'}" class="promo-product-image">
           <div class="promo-expiry">${item.expiry ? new Date(item.expiry).toLocaleDateString() : 'Date inconnue'}</div>
-          <div class="promo-info"> <!-- Déplacé ici -->
-            <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
-            <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
-          </div>
         </div>
         <div class="promo-details">
           <h3 class="promo-title">${item.name || 'Nom indisponible'}</h3>
           <p class="promo-description">${item.details || 'Détails indisponibles'}</p>
+          <div class="promo-info">
+            <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
+            <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
+          </div>
           <div class="promo-price">${item.contact || 'Contact indisponible'}</div>
         </div>
       </li>
