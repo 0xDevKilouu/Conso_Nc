@@ -614,7 +614,7 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 1000px;
+  max-width: 1200px; /* Augmenter la largeur maximale */
   margin: 20px auto;
   padding: 20px;
   background-color: var(--primary-white);
@@ -666,9 +666,9 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
-  padding: 10px;
-  width: 100%; /* Garde la largeur maximale */
-  max-width: 1200px; /* Augmente la largeur maximale */
+  padding: 15px;
+  width: calc(100% - 40px); /* Réduire la largeur pour l'ombre */
+  max-width: 100%; /* Éliminer la limite de largeur */
   margin-left: auto; /* Centrer l'élément */
   margin-right: auto; /* Centrer l'élément */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -708,6 +708,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
 }
 
 .company-logo {
