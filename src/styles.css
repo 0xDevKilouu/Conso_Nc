@@ -376,11 +376,10 @@ body {
   position: relative;
   background: #333;
   display: flex;
-  justify-content: flex-start; /* Alignement en haut */
-  align-items: center; /* Centrage horizontal */
+  justify-content: flex-start; /* Commencez en haut */
+  align-items: center; /* Centre le contenu horizontalement */
   flex-direction: column;
-  top: 0; /* S'assurer que le scanner commence en haut */
-  padding-top: 0; /* Pas de padding en haut */
+  padding-top: 0;
 }
 
 /* Style pour le conteneur de la vidéo */
