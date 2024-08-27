@@ -616,7 +616,7 @@ body {
 #promo {
   max-width: 100%; /* Utilise toute la largeur disponible */
   margin: 20px auto;
-  padding: 20px 2px; /* Réduction du padding à droite et à gauche à 5px */
+  padding: 20px 0px; /* Réduction du padding à droite et à gauche à 0px */
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
@@ -667,7 +667,6 @@ body {
   padding: 15px;
   width: 100%; /* Prend toute la largeur disponible */
   box-sizing: border-box; /* Inclut le padding dans la largeur */
-  margin: 0; /* Enlève la marge par défaut */
 }
 
 .promo-product-image {
