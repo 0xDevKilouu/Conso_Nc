@@ -711,8 +711,9 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  max-width: calc(100% - 140px);
+  justify-content: center; /* Aligner le texte verticalement au centre */
+  max-width: calc(100% - 140px); /* Garder l'espace à gauche pour l'image */
+  text-align: center; /* Centre le texte horizontalement */
 }
 
 .promo-title {
@@ -720,11 +721,13 @@ body {
   margin-bottom: 8px;
   color: var(--primary-red); /* Mettre le titre en rouge */
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   white-space: normal; /* Permettre au texte de se répartir sur plusieurs lignes si nécessaire */
   overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
   text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
   word-wrap: break-word; /* Forcer le texte à passer à la ligne si nécessaire */
+  margin-left: auto; /* Aligner le texte vers la gauche */
+  margin-right: auto; /* Aligner le texte vers la droite */
 }
 
 .promo-description {
