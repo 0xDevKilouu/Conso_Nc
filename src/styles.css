@@ -616,7 +616,7 @@ body {
 #promo {
   max-width: 100%; /* Utilise toute la largeur disponible */
   margin: 20px auto;
-  padding: 20px 5px; /* Réduction du padding à droite et à gauche à 5px */
+  padding: 20px 2px; /* Réduction du padding à droite et à gauche à 5px */
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
@@ -660,7 +660,7 @@ body {
 .promo-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px; /* Espace entre les promotions */
+  margin-bottom: 30px; /* Espace entre les promotions */
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
