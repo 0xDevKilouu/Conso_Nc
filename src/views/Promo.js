@@ -35,6 +35,13 @@ const renderPromoForm = () => `
 
 const Promo = async () => {
   const promoItems = await getPromoItems();
+
+  // Vider le conteneur des promotions avant de les recharger
+  const promoContainer = document.getElementById('promo');
+  if (promoContainer) {
+    promoContainer.innerHTML = '';
+  }
+
   const promoItemsHTML = promoItems.length > 0 ? `
     <ul class="promo-list">
       ${promoItems.map(item => `
@@ -55,31 +62,33 @@ const Promo = async () => {
     </ul>
   ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
 
-  return `
-    <div id="promo">
-      <h2>Promotions</h2>
-      <p>Vous retrouverez la liste de nos promotions actuelles</p>
-      ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
-      ${promoItemsHTML}
-      <div id="promo-form-wrapper" class="hidden"> <!-- Formulaire caché par défaut -->
-        ${renderPromoForm()}
-      </div>
+  // Injecter le HTML dans le conteneur des promotions
+  promoContainer.innerHTML = `
+    <h2>Promotions</h2>
+    <p>Vous retrouverez la liste de nos promotions actuelles</p>
+    ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
+    ${promoItemsHTML}
+    <div id="promo-form-wrapper" class="hidden"> <!-- Formulaire caché par défaut -->
+      ${renderPromoForm()}
     </div>
   `;
 };
 
 const attachPromoEvents = () => {
-  if (auth.currentUser) {
-    const addPromoButton = document.getElementById('add-promo-button');
-    const promoFormWrapper = document.getElementById('promo-form-wrapper');
-    if (addPromoButton && promoFormWrapper) {
+  const addPromoButton = document.getElementById('add-promo-button');
+  const promoFormWrapper = document.getElementById('promo-form-wrapper');
+  if (auth.currentUser && addPromoButton && promoFormWrapper) {
+    if (!addPromoButton.hasListener) {  // Vérifie si un listener existe déjà
       addPromoButton.addEventListener('click', () => {
         promoFormWrapper.classList.toggle('hidden');
       });
+      addPromoButton.hasListener = true; // Marque que l'événement est attaché
     }
 
-    document.getElementById('promo-form').addEventListener('submit', async (event) => {
-      event.preventDefault();
+    const promoForm = document.getElementById('promo-form');
+    if (!promoForm.hasListener) { // Vérifie si un listener existe déjà
+      promoForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
       const form = event.target;
       const productName = form['product-name'].value;
       const promoDetails = form['promo-details'].value;
@@ -131,6 +140,8 @@ const attachPromoEvents = () => {
         alert('Une erreur est survenue. Veuillez réessayer.');
       }
     });
+    promoForm.hasListener = true; // Marque que l'événement est attaché
+    }
   }
 };
 

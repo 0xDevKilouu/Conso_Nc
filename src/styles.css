@@ -667,16 +667,19 @@ body {
   border-radius: 4px;
   background-color: #ffffff;
   padding: 10px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre */
+  width: 100%; /* Garde la largeur maximale */
+  max-width: 1200px; /* Augmente la largeur maximale */
+  margin-left: auto; /* Centrer l'élément */
+  margin-right: auto; /* Centrer l'élément */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .promo-product-image {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Augmenter la taille de l'image */
+  height: 100px;
   object-fit: cover;
   border-radius: 4px;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .promo-details {
