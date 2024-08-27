@@ -659,7 +659,7 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* Aligner tous les éléments sur la même ligne */
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -674,23 +674,25 @@ body {
   flex-direction: column;
   align-items: flex-start;
   margin-right: 20px;
-  flex-shrink: 0; /* Empêche l'image de se rétrécir */
+  flex-shrink: 0;
+  width: 120px; /* Fixe la largeur de l'image pour l'uniformité */
 }
 
 .promo-product-image {
-  width: 120px; /* Taille uniforme pour toutes les images */
+  width: 120px;
   height: 120px;
-  object-fit: cover; /* Conserve les proportions et remplit l'espace */
+  object-fit: cover;
   border-radius: 4px;
   margin-bottom: 5px;
-  background-color: #f0f0f0; /* Fond en cas d'absence d'image */
+  background-color: #f0f0f0;
 }
 
 .promo-details {
-  flex-grow: 1; /* Permet au contenu de la droite d'utiliser tout l'espace restant */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: calc(100% - 140px); /* Assure que le texte à droite ne dépasse pas la largeur */
 }
 
 .promo-details h3 {
@@ -699,6 +701,9 @@ body {
   color: #d32f2f;
   font-weight: bold;
   text-align: left;
+  white-space: nowrap; /* Empêche le titre de passer à la ligne */
+  overflow: hidden; /* Cache le débordement si le texte est trop long */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
 }
 
 .promo-details p {
@@ -731,7 +736,9 @@ body {
 .promo-expiry {
   font-size: 14px;
   color: #777;
-  margin-left: 0; 
+  margin-left: 0;
+  margin-top: auto; /* Positionne la date en bas de l'image */
+  text-align: left;
 }
 
 .promo-price {
