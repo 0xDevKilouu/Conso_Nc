@@ -671,25 +671,26 @@ body {
 
 .promo-image-and-date {
   display: flex;
-  flex-direction: column; 
-  align-items: flex-start; 
-  margin-right: 20px; 
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 20px;
+  flex-shrink: 0; /* Empêche l'image de se rétrécir */
 }
 
 .promo-product-image {
-  width: 120px;  /* Augmentez la taille si vous souhaitez une image plus grande */
+  width: 120px; /* Taille uniforme pour toutes les images */
   height: 120px;
-  object-fit: cover;  /* Conserve les proportions et remplit l'espace */
+  object-fit: cover; /* Conserve les proportions et remplit l'espace */
   border-radius: 4px;
   margin-bottom: 5px;
-  background-color: #f0f0f0;  /* Couleur de fond au cas où l'image ne se charge pas */
+  background-color: #f0f0f0; /* Fond en cas d'absence d'image */
 }
 
 .promo-details {
+  flex-grow: 1; /* Permet au contenu de la droite d'utiliser tout l'espace restant */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
 }
 
 .promo-details h3 {
