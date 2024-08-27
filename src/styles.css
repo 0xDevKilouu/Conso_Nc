@@ -666,8 +666,7 @@ body {
 /* Un item de promotion */
 .promo-item {
   display: flex;
-  flex-direction: column; /* Change to column to stack title and image */
-  align-items: flex-start;
+  flex-direction: column; /* Colonne pour commencer avec le titre */
   margin-bottom: 15px;
   padding: 10px;
   background-color: #f9f9f9;
@@ -677,11 +676,11 @@ body {
   width: 100%;
 }
 
+/* Container pour l'image et la date */
 .promo-image-and-date {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 10px; /* Adjust top margin to make space for title */
   flex-shrink: 0;
   width: 120px;
   position: relative;
@@ -708,25 +707,29 @@ body {
   border-radius: 0 0 4px 4px;
 }
 
+/* Détails du produit */
 .promo-details {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 100%;
-  text-align: left;
-  margin-top: 10px; /* Add margin to separate from the title */
+  margin-left: 20px;
 }
 
+/* Titre de la promotion */
 .promo-title {
   font-size: 18px;
   margin-bottom: 8px;
   color: var(--primary-red);
   font-weight: bold;
   text-align: left;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
+  width: 100%;
+}
+
+/* Container pour l'image et les détails */
+.promo-content {
+  display: flex;
+  justify-content: space-between; /* Espace entre image et détails */
   width: 100%;
 }
 
@@ -737,26 +740,27 @@ body {
   text-align: left;
 }
 
+/* Informations de la promo */
 .promo-info {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between; /* Espace entre logo et numéro de téléphone */
   align-items: center;
   margin-top: 10px;
 }
 
+/* Logo de la compagnie */
 .company-logo {
   width: 40px;
   height: 40px;
   object-fit: contain;
   border: 1px solid #e0e0e0;
   margin-right: 8px;
-  margin-top: 5px; /* Adjust margin to move closer to the product image */
 }
 
+/* Lieu de la compagnie */
 .promo-location {
   font-size: 14px;
   color: #777777;
-  margin-left: 5px;
 }
 
 .promo-price {
