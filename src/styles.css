@@ -721,9 +721,10 @@ body {
   color: var(--primary-red); /* Mettre le titre en rouge */
   font-weight: bold;
   text-align: left;
-  white-space: nowrap; /* Empêcher le texte de sauter à la ligne */
+  white-space: normal; /* Permettre au texte de se répartir sur plusieurs lignes si nécessaire */
   overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
   text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
+  word-wrap: break-word; /* Forcer le texte à passer à la ligne si nécessaire */
 }
 
 .promo-description {
