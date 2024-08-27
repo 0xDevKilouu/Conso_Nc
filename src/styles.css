@@ -614,12 +614,10 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 1200px; /* Augmenter la largeur maximale */
+  max-width: 100%; /* Utilise toute la largeur disponible */
   margin: 20px auto;
-  padding: 20px;
+  padding: 20px 10px; /* Padding de 20px en haut/bas et 10px à droite/gauche */
   background-color: var(--primary-white);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
   box-sizing: border-box;
   color: var(--bg-default);
   position: relative;
@@ -667,11 +665,9 @@ body {
   border-radius: 4px;
   background-color: #ffffff;
   padding: 15px;
-  width: calc(100% - 40px); /* Réduire la largeur pour l'ombre */
-  max-width: 100%; /* Éliminer la limite de largeur */
-  margin-left: auto; /* Centrer l'élément */
-  margin-right: auto; /* Centrer l'élément */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Prend toute la largeur disponible */
+  box-sizing: border-box; /* Inclut le padding dans la largeur */
+  margin: 0; /* Enlève la marge par défaut */
 }
 
 .promo-product-image {
@@ -740,16 +736,15 @@ body {
 
 /* Style pour le formulaire d'ajout de promotion */
 .promo-form-container {
-  display: block; /* Assurez-vous qu'il soit affiché lorsqu'il n'est pas caché */
-  background-color: var(--primary-white); /* Assurez-vous qu'il soit bien visible */
-  padding: 20px; /* Ajouter un padding pour l'espacement interne */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre pour qu'il se détache */
-  border-radius: 8px; /* Adoucit les coins */
-  margin-top: 20px; /* Espacement au-dessus pour qu'il ne soit pas collé au reste du contenu */
-  max-width: 600px; /* Largeur maximale pour éviter qu'il s'étale trop */
-  width: 100%; /* S'adapte à la largeur de l'élément parent */
-  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
-  z-index: 10; /* S'assure qu'il soit au-dessus des autres éléments */
+  display: block;
+  background-color: var(--primary-white);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
 }
 
 .promo-form-container input,
@@ -759,7 +754,7 @@ body {
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box; /* Inclut le padding dans la largeur */
+  box-sizing: border-box;
 }
 
 .promo-form-container button {
