@@ -666,7 +666,6 @@ body {
 /* Un item de promotion */
 .promo-item {
   display: flex;
-  flex-direction: column; /* Change de la disposition en colonne */
   align-items: center;
   margin-bottom: 20px;
   padding: 15px;
@@ -675,19 +674,20 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   width: 100%;
-  text-align: center; /* Centre le texte dans le conteneur */
 }
 
 .promo-image-and-date {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centre les éléments */
-  margin-bottom: 10px; /* Ajoute un espace entre l'image et le texte */
-  width: 100%; /* Prendre toute la largeur disponible */
+  align-items: flex-start;
+  margin-right: 20px;
+  flex-shrink: 0;
+  width: 120px;
+  position: relative;
 }
 
 .promo-product-image {
-  width: 100px;
+  width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 4px;
@@ -698,14 +698,21 @@ body {
 .promo-expiry {
   font-size: 12px;
   color: #ff0000;
-  text-align: center; /* Centre le texte de la date */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: left;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 2px 5px;
-  border-radius: 4px;
+  border-radius: 0 0 4px 4px;
 }
 
 .promo-details {
-  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: calc(100% - 140px);
 }
 
 .promo-title {
@@ -713,8 +720,10 @@ body {
   margin-bottom: 8px;
   color: var(--primary-red); /* Mettre le titre en rouge */
   font-weight: bold;
-  text-align: center; /* Centre le titre dans son conteneur */
+  text-align: left;
   white-space: normal; /* Permettre au texte de se répartir sur plusieurs lignes si nécessaire */
+  overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
+  text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
   word-wrap: break-word; /* Forcer le texte à passer à la ligne si nécessaire */
 }
 
@@ -722,12 +731,12 @@ body {
   font-size: 14px;
   margin-bottom: 10px;
   color: #555555;
-  text-align: center; /* Centre la description */
+  text-align: left;
 }
 
 .promo-info {
   display: flex;
-  justify-content: center; /* Centre les éléments de l'information de la promotion */
+  justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
 }
@@ -737,20 +746,21 @@ body {
   height: 40px;
   object-fit: contain;
   border: 1px solid #e0e0e0; /* Bordure pour bien délimiter chaque logo */
-  margin-right: 8px; /* Espacement entre le logo et le texte */
+  margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
 }
 
 .promo-location {
   font-size: 14px;
   color: #777777;
+  margin-left: 5px;
 }
 
 .promo-price {
   font-size: 16px;
   font-weight: bold;
   color: #000000; /* Couleur du prix ou contact en noir */
-  margin-left: 10px;
-  text-align: left;
+  margin-left: auto;
+  text-align: right;
 }
 
 /* Styles pour le formulaire d'ajout de promotion */
