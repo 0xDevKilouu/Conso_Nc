@@ -659,7 +659,7 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: flex-start; /* Aligner les éléments au début pour permettre à la date de s'ajuster sous l'image */
+  align-items: flex-start;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -669,14 +669,19 @@ body {
   box-sizing: border-box;
 }
 
+.promo-image-and-date {
+  display: flex;
+  flex-direction: column; /* Arrange l'image et la date en colonne */
+  align-items: flex-start; /* Aligne les éléments à gauche */
+  margin-right: 20px; /* Espace entre l'image et les détails de la promo */
+}
+
 .promo-product-image {
   width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 4px;
-  margin-right: 20px;
-  display: flex;
-  flex-direction: column; /* Permet de placer la date en dessous de l'image */
+  margin-bottom: 5px; /* Espace entre l'image et la date */
 }
 
 .promo-details {
@@ -724,9 +729,7 @@ body {
 .promo-expiry {
   font-size: 14px;
   color: #777;
-  margin-top: 10px; /* Ajouter un léger espace entre l'image et la date */
   margin-left: 0; /* Assure que la date soit bien alignée sous l'image */
-  align-self: flex-start; /* Aligner la date à gauche sous l'image */
 }
 
 .promo-price {
