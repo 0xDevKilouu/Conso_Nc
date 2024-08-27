@@ -612,11 +612,11 @@ body {
   display: none;
 }
 
-/* Styles pour la section promo */
+/* Styles for the promo section */
 #promo {
-  max-width: 100%; 
+  max-width: 100%;
   margin: 20px auto;
-  padding: 20px 0px; 
+  padding: 20px 0px;
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
@@ -659,7 +659,7 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: center; /* Aligner tous les éléments sur la même ligne */
+  align-items: flex-start; /* Align items to start for better control */
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -675,11 +675,12 @@ body {
   align-items: flex-start;
   margin-right: 20px;
   flex-shrink: 0;
-  width: 120px; /* Fixe la largeur de l'image pour l'uniformité */
+  width: 120px; /* Fix the image width for uniformity */
+  position: relative; /* Ensure date can be positioned correctly */
 }
 
 .promo-product-image {
-  width: 110px; /* Taille réduite pour l'image */
+  width: 110px; /* Reduced size for the image */
   height: 100px;
   object-fit: cover;
   border-radius: 4px;
@@ -692,7 +693,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: calc(100% - 140px); /* Assure que le texte à droite ne dépasse pas la largeur */
+  max-width: calc(100% - 140px); /* Ensure text on the right doesn't exceed width */
 }
 
 .promo-details h3 {
@@ -701,6 +702,9 @@ body {
   color: #d32f2f;
   font-weight: bold;
   text-align: left;
+  white-space: nowrap; /* Prevent title from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if the text overflows */
 }
 
 .promo-details p {
@@ -714,7 +718,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .company-logo {
@@ -733,9 +737,11 @@ body {
 .promo-expiry {
   font-size: 14px;
   color: #777;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   margin-left: 0;
   margin-top: auto;
-  align-self: flex-end; /* Positionne la date en bas à gauche */
   text-align: left;
 }
 
@@ -747,7 +753,7 @@ body {
   margin-left: auto;
 }
 
-/* Style pour le formulaire d'ajout de promotion */
+/* Styles for the add promo form */
 .promo-form-container {
   display: block;
   background-color: var(--primary-white);
