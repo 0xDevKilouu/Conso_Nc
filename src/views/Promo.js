@@ -36,11 +36,18 @@ const renderPromoForm = () => `
 const Promo = async () => {
   const promoItems = await getPromoItems();
 
-  // Vider le conteneur des promotions avant de les recharger
-  const promoContainer = document.getElementById('promo');
-  if (promoContainer) {
-    promoContainer.innerHTML = '';
+  // Vérifiez que l'élément existe avant de le manipuler
+  let promoContainer = document.getElementById('promo');
+  
+  if (!promoContainer) {
+    // Si le conteneur n'existe pas encore, créez-le
+    promoContainer = document.createElement('div');
+    promoContainer.id = 'promo';
+    document.getElementById('content').appendChild(promoContainer);
   }
+
+  // Vider le conteneur des promotions avant de les recharger
+  promoContainer.innerHTML = '';
 
   const promoItemsHTML = promoItems.length > 0 ? `
     <ul class="promo-list">
@@ -89,58 +96,58 @@ const attachPromoEvents = () => {
     if (!promoForm.hasListener) { // Vérifie si un listener existe déjà
       promoForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-      const form = event.target;
-      const productName = form['product-name'].value;
-      const promoDetails = form['promo-details'].value;
-      const productImage = form['product-image'].files[0];
-      const companyLogo = form['company-logo'].files[0];
-      const promoExpiry = form['promo-expiry'].value;
-      const promoLocation = form['promo-location'].value;
-      const promoContact = form['promo-contact'].value;
+        const form = event.target;
+        const productName = form['product-name'].value;
+        const promoDetails = form['promo-details'].value;
+        const productImage = form['product-image'].files[0];
+        const companyLogo = form['company-logo'].files[0];
+        const promoExpiry = form['promo-expiry'].value;
+        const promoLocation = form['promo-location'].value;
+        const promoContact = form['promo-contact'].value;
 
-      if (!productName || !promoDetails || !productImage || !companyLogo || !promoExpiry || !promoLocation || !promoContact) {
-        alert('Tous les champs sont obligatoires.');
-        return;
-      }
-
-      try {
-        const productImageRef = ref(storage, `product-images/${productImage.name}`);
-        const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
-
-        const productImageSnapshot = await uploadBytes(productImageRef, productImage);
-        const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
-
-        const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
-        const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
-
-        sessionStorage.setItem('promoData', JSON.stringify({
-          name: productName,
-          details: promoDetails,
-          image: productImageUrl,
-          companyLogo: companyLogoUrl,
-          expiry: new Date(promoExpiry),  // Stocker comme un objet Date
-          location: promoLocation,
-          contact: promoContact,
-          createdBy: auth.currentUser.uid,
-          createdAt: new Date()
-        }));
-
-        // Finalisation de l'ajout de la promotion
-        const promoData = JSON.parse(sessionStorage.getItem('promoData'));
-        if (promoData) {
-          await addDoc(collection(firestore, 'promotions'), promoData);
-          alert('Promotion ajoutée avec succès!');
-          sessionStorage.removeItem('promoData');
-          form.reset();
-          document.getElementById('payment-form-container').innerHTML = '';
+        if (!productName || !promoDetails || !productImage || !companyLogo || !promoExpiry || !promoLocation || !promoContact) {
+          alert('Tous les champs sont obligatoires.');
+          return;
         }
 
-      } catch (error) {
-        console.error('Erreur lors de l\'upload des images ou de l\'ajout de la promotion:', error);
-        alert('Une erreur est survenue. Veuillez réessayer.');
-      }
-    });
-    promoForm.hasListener = true; // Marque que l'événement est attaché
+        try {
+          const productImageRef = ref(storage, `product-images/${productImage.name}`);
+          const companyLogoRef = ref(storage, `company-logos/${companyLogo.name}`);
+
+          const productImageSnapshot = await uploadBytes(productImageRef, productImage);
+          const companyLogoSnapshot = await uploadBytes(companyLogoRef, companyLogo);
+
+          const productImageUrl = await getDownloadURL(productImageSnapshot.ref);
+          const companyLogoUrl = await getDownloadURL(companyLogoSnapshot.ref);
+
+          sessionStorage.setItem('promoData', JSON.stringify({
+            name: productName,
+            details: promoDetails,
+            image: productImageUrl,
+            companyLogo: companyLogoUrl,
+            expiry: new Date(promoExpiry),  // Stocker comme un objet Date
+            location: promoLocation,
+            contact: promoContact,
+            createdBy: auth.currentUser.uid,
+            createdAt: new Date()
+          }));
+
+          // Finalisation de l'ajout de la promotion
+          const promoData = JSON.parse(sessionStorage.getItem('promoData'));
+          if (promoData) {
+            await addDoc(collection(firestore, 'promotions'), promoData);
+            alert('Promotion ajoutée avec succès!');
+            sessionStorage.removeItem('promoData');
+            form.reset();
+            document.getElementById('payment-form-container').innerHTML = '';
+          }
+
+        } catch (error) {
+          console.error('Erreur lors de l\'upload des images ou de l\'ajout de la promotion:', error);
+          alert('Une erreur est survenue. Veuillez réessayer.');
+        }
+      });
+      promoForm.hasListener = true; // Marque que l'événement est attaché
     }
   }
 };
