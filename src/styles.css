@@ -666,9 +666,9 @@ body {
 /* Un item de promotion */
 .promo-item {
   display: flex;
-  flex-direction: column; /* Colonne pour commencer avec le titre */
-  margin-bottom: 15px;
-  padding: 10px;
+  align-items: flex-start; /* Align items at the start */
+  margin-bottom: 15px; /* Reduce the bottom margin */
+  padding: 10px; /* Reduce padding */
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -676,11 +676,11 @@ body {
   width: 100%;
 }
 
-/* Container pour l'image et la date */
 .promo-image-and-date {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 20px;
   flex-shrink: 0;
   width: 120px;
   position: relative;
@@ -707,30 +707,26 @@ body {
   border-radius: 0 0 4px 4px;
 }
 
-/* Détails du produit */
 .promo-details {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-left: 20px;
+  justify-content: center; /* Aligner le texte verticalement au centre */
+  max-width: calc(100% - 140px); /* Garder l'espace à gauche pour l'image */
+  text-align: center; /* Centre le texte horizontalement */
 }
 
-/* Titre de la promotion */
 .promo-title {
   font-size: 18px;
   margin-bottom: 8px;
-  color: var(--primary-red);
+  color: var(--primary-red); /* Keep the title red */
   font-weight: bold;
-  text-align: center;
-  width: 100%;
-}
-
-/* Container pour l'image et les détails */
-.promo-content {
-  display: flex;
-  justify-content: space-between; /* Espace entre image et détails */
-  width: 100%;
+  text-align: left; /* Align the title to the left */
+  white-space: normal; /* Allow text to wrap */
+  overflow: visible; /* Allow text to expand */
+  text-overflow: unset; /* Do not truncate the text */
+  margin-left: 0; /* Align text to the left */
+  margin-right: 0; /* Remove right margin */
 }
 
 .promo-description {
@@ -740,27 +736,25 @@ body {
   text-align: left;
 }
 
-/* Informations de la promo */
 .promo-info {
   display: flex;
-  justify-content: space-between; /* Espace entre logo et numéro de téléphone */
+  justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
 }
 
-/* Logo de la compagnie */
 .company-logo {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  border: 1px solid #e0e0e0;
-  margin-right: 8px;
+  border: 1px solid #e0e0e0; /* Bordure pour bien délimiter chaque logo */
+  margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
 }
 
-/* Lieu de la compagnie */
 .promo-location {
   font-size: 14px;
   color: #777777;
+  margin-left: 5px;
 }
 
 .promo-price {
@@ -769,7 +763,6 @@ body {
   color: #000000; /* Couleur du prix ou contact en noir */
   margin-left: auto;
   text-align: right;
-  white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
 /* Styles pour le formulaire d'ajout de promotion */
