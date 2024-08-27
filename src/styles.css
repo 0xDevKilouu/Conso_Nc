@@ -612,61 +612,67 @@ body {
   display: none;
 }
 
-/* Styles for the promo section */
+/* Styles pour la section promo */
 #promo {
   max-width: 100%;
   margin: 20px auto;
-  padding: 20px 0px;
+  padding: 20px 10px; /* Réduction du padding latéral pour plus de place */
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
   position: relative;
+  border-radius: 8px; /* Ajout d'un arrondi pour un look plus moderne */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
 }
 
 #promo h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Espacement réduit pour une meilleure compacité */
   text-align: center;
+  color: var(--primary-red); /* Couleur du titre pour correspondre au thème */
 }
 
 #promo p {
   font-size: 16px;
   margin-bottom: 20px;
   text-align: center;
+  color: #777777; /* Couleur plus douce pour les textes d'information */
 }
 
 #add-promo-button {
   display: block;
   margin: 20px auto;
-  padding: 10px 20px;
+  padding: 12px 25px;
   background-color: var(--primary-red);
   color: var(--primary-white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s;
 }
 
 #add-promo-button:hover {
-  background-color: #e33a3d;
+  background-color: #b72a2a;
 }
 
+/* Liste des promotions */
 .promo-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Un item de promotion */
 .promo-item {
   display: flex;
-  align-items: flex-start; /* Align items to start for better control */
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #ffffff;
+  align-items: center;
+  margin-bottom: 20px;
   padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .promo-image-and-date {
@@ -675,17 +681,29 @@ body {
   align-items: flex-start;
   margin-right: 20px;
   flex-shrink: 0;
-  width: 120px; /* Fix the image width for uniformity */
-  position: relative; /* Ensure date can be positioned correctly */
+  width: 120px;
+  position: relative;
 }
 
 .promo-product-image {
-  width: 110px; /* Reduced size for the image */
-  height: 100px;
+  width: 100%; /* Ajustement pour que l'image prenne toute la largeur possible */
+  height: auto;
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 5px;
   background-color: #f0f0f0;
+}
+
+.promo-expiry {
+  font-size: 12px;
+  color: #ff0000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc légèrement transparent */
+  padding: 2px 5px; /* Ajout de padding pour mieux afficher la date */
+  border-radius: 0 0 4px 4px; /* Arrondi en bas seulement */
 }
 
 .promo-details {
@@ -693,24 +711,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: calc(100% - 140px); /* Ensure text on the right doesn't exceed width */
+  max-width: calc(100% - 140px);
 }
 
-.promo-details h3 {
+.promo-title {
   font-size: 18px;
-  margin-bottom: 5px;
-  color: #d32f2f;
+  margin-bottom: 8px; /* Ajout d'espace sous le titre */
+  color: #333333;
   font-weight: bold;
   text-align: left;
-  white-space: nowrap; /* Prevent title from wrapping */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis if the text overflows */
+  white-space: normal; /* Permettre au texte de prendre plusieurs lignes si nécessaire */
+  overflow: visible; /* Ne pas cacher le texte */
 }
 
-.promo-details p {
+.promo-description {
   font-size: 14px;
-  margin-bottom: 5px;
-  color: #333;
+  margin-bottom: 10px;
+  color: #555555;
   text-align: left;
 }
 
@@ -718,39 +735,28 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .company-logo {
-  width: 30px;
-  height: 30px;
+  width: 40px; /* Augmentation de la taille du logo pour plus de visibilité */
+  height: 40px;
   object-fit: contain;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .promo-location {
   font-size: 14px;
-  color: #555;
+  color: #777777;
   margin-left: 10px;
-}
-
-.promo-expiry {
-  font-size: 14px;
-  color: #777;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-left: 0;
-  margin-top: auto;
-  text-align: left;
 }
 
 .promo-price {
   font-size: 16px;
   font-weight: bold;
-  color: #000;
-  text-align: right;
+  color: #d32f2f;
   margin-left: auto;
+  text-align: right;
 }
 
 /* Styles for the add promo form */

@@ -36,17 +36,14 @@ const renderPromoForm = () => `
 const Promo = async () => {
   const promoItems = await getPromoItems();
 
-  // Vérifiez que l'élément existe avant de le manipuler
   let promoContainer = document.getElementById('promo');
   
   if (!promoContainer) {
-    // Si le conteneur n'existe pas encore, créez-le
     promoContainer = document.createElement('div');
     promoContainer.id = 'promo';
     document.getElementById('content').appendChild(promoContainer);
   }
 
-  // Vider le conteneur des promotions avant de les recharger
   promoContainer.innerHTML = '';
 
   const promoItemsHTML = promoItems.length > 0 ? `
@@ -58,8 +55,8 @@ const Promo = async () => {
           <div class="promo-expiry">${item.expiry ? new Date(item.expiry).toLocaleDateString() : 'Date inconnue'}</div>
         </div>
         <div class="promo-details">
-          <h3>${item.name || 'Nom indisponible'}</h3>
-          <p>${item.details || 'Détails indisponibles'}</p>
+          <h3 class="promo-title">${item.name || 'Nom indisponible'}</h3>
+          <p class="promo-description">${item.details || 'Détails indisponibles'}</p>
           <div class="promo-info">
             <img src="${item.companyLogo || 'default-logo-url.jpg'}" alt="Logo de la société" class="company-logo">
             <div class="promo-location">${item.location || 'Localisation indisponible'}</div>
@@ -71,13 +68,12 @@ const Promo = async () => {
   </ul>
 ` : `<p>Aucune promotion disponible pour le moment. Soyez le premier à ajouter une promotion !</p>`;
 
-  // Injecter le HTML dans le conteneur des promotions
   promoContainer.innerHTML = `
     <h2>Promotions</h2>
     <p>Vous retrouverez la liste de nos promotions actuelles</p>
     ${auth.currentUser ? `<button id="add-promo-button" class="btn btn-primary">Ajouter une promo</button>` : `<p>Connectez-vous pour ajouter des promotions.</p>`}
     ${promoItemsHTML}
-    <div id="promo-form-wrapper" class="hidden"> <!-- Formulaire caché par défaut -->
+    <div id="promo-form-wrapper" class="hidden">
       ${renderPromoForm()}
     </div>
   `;
