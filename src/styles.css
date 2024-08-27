@@ -738,24 +738,23 @@ body {
 
 .promo-info {
   display: flex;
-  flex-direction: column; /* Colonne pour empiler le logo et la localisation */
-  align-items: center; /* Centre le logo et la localisation horizontalement */
+  justify-content: flex-start;
+  align-items: center;
   margin-top: 10px;
-  width: 100%; /* Prend toute la largeur disponible sous l'image */
 }
 
 .company-logo {
-  width: 30px; 
-  height: 30px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 5px; /* Espace entre le logo et la localisation */
+  border: 1px solid #e0e0e0; /* Bordure pour bien délimiter chaque logo */
+  margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
 }
 
 .promo-location {
-  font-size: 12px;
+  font-size: 14px;
   color: #777777;
-  text-align: center; /* Centrer le texte sous le logo */
+  margin-left: 5px;
 }
 
 .promo-price {
