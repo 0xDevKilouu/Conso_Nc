@@ -670,11 +670,13 @@ body {
 }
 
 .promo-product-image {
-  width: 100px; /* Augmenter la taille de l'image */
+  width: 100px;
   height: 100px;
   object-fit: cover;
   border-radius: 4px;
   margin-right: 20px;
+  display: flex;
+  flex-direction: column; /* Permet de placer la date en dessous de l'image */
 }
 
 .promo-details {
@@ -722,8 +724,9 @@ body {
 .promo-expiry {
   font-size: 14px;
   color: #777;
-  margin-top: 5px; /* Ajouter un léger espace au-dessus de la date */
-  margin-left: 0; /* Aligner la date à gauche sous l'image */
+  margin-top: 10px; /* Ajouter un léger espace entre l'image et la date */
+  margin-left: 0; /* Assure que la date soit bien alignée sous l'image */
+  align-self: flex-start; /* Aligner la date à gauche sous l'image */
 }
 
 .promo-price {
