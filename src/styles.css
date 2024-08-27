@@ -614,15 +614,15 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 90%; /* Augmentation de la largeur des promotions */
-  margin: 20px auto;
-  padding: 20px 10px;
+  max-width: 100%; /* Prendre toute la largeur disponible */
+  margin: 0; /* Supprimer toute marge */
+  padding: 20px 0; /* Réduction du padding latéral pour plus de place */
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
   position: relative;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 #promo h2 {
@@ -673,6 +673,7 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
 
 .promo-image-and-date {
