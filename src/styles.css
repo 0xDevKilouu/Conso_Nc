@@ -738,10 +738,16 @@ body {
 
 .promo-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
   flex-wrap: wrap; /* Permet au contenu de se répartir sur plusieurs lignes si nécessaire */
+}
+
+.promo-info > div {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .company-logo {
@@ -750,6 +756,7 @@ body {
   object-fit: contain;
   border: 1px solid #e0e0e0; /* Bordure pour bien délimiter chaque logo */
   margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
+  margin-left: 0;
 }
 
 .promo-location {
