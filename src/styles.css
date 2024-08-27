@@ -374,8 +374,8 @@ body {
   position: relative;
   background: #333;
   display: flex;
-  justify-content: center; /* Centrage horizontal */
-  align-items: center; /* Centrage vertical */
+  justify-content: flex-start; /* Alignement en haut */
+  align-items: center; /* Centrage horizontal */
   flex-grow: 1;
 }
 
@@ -477,6 +477,7 @@ body {
   gap: 20px;
   width: 100%;
   position: absolute; /* Utilisation d'une position absolue pour le centrage */
+  top: 20px; /* Positionnement en haut */
   left: 50%; /* Centrage horizontal */
   transform: translateX(-50%); /* Correction du décalage horizontal */
   bottom: 20px; /* Ajuster cette valeur pour placer les boutons plus haut ou plus bas */
