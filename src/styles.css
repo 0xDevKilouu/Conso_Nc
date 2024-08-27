@@ -614,29 +614,29 @@ body {
 
 /* Styles pour la section promo */
 #promo {
-  max-width: 100%;
+  max-width: 90%; /* Augmentation de la largeur des promotions */
   margin: 20px auto;
-  padding: 20px 10px; /* Réduction du padding latéral pour plus de place */
+  padding: 20px 10px;
   background-color: var(--primary-white);
   box-sizing: border-box;
   color: var(--bg-default);
   position: relative;
-  border-radius: 8px; /* Ajout d'un arrondi pour un look plus moderne */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #promo h2 {
   font-size: 24px;
-  margin-bottom: 15px; /* Espacement réduit pour une meilleure compacité */
+  margin-bottom: 15px;
   text-align: center;
-  color: var(--primary-red); /* Couleur du titre pour correspondre au thème */
+  color: var(--primary-red);
 }
 
 #promo p {
   font-size: 16px;
   margin-bottom: 20px;
   text-align: center;
-  color: #777777; /* Couleur plus douce pour les textes d'information */
+  color: #777777;
 }
 
 #add-promo-button {
@@ -686,7 +686,7 @@ body {
 }
 
 .promo-product-image {
-  width: 100%; /* Ajustement pour que l'image prenne toute la largeur possible */
+  width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 4px;
@@ -701,9 +701,9 @@ body {
   bottom: 0;
   left: 0;
   text-align: left;
-  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc légèrement transparent */
-  padding: 2px 5px; /* Ajout de padding pour mieux afficher la date */
-  border-radius: 0 0 4px 4px; /* Arrondi en bas seulement */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px 5px;
+  border-radius: 0 0 4px 4px;
 }
 
 .promo-details {
@@ -716,12 +716,13 @@ body {
 
 .promo-title {
   font-size: 18px;
-  margin-bottom: 8px; /* Ajout d'espace sous le titre */
-  color: #333333;
+  margin-bottom: 8px;
+  color: var(--primary-red); /* Mettre le titre en rouge */
   font-weight: bold;
   text-align: left;
-  white-space: normal; /* Permettre au texte de prendre plusieurs lignes si nécessaire */
-  overflow: visible; /* Ne pas cacher le texte */
+  white-space: nowrap; /* Empêcher le texte de sauter à la ligne */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajout d'une ellipse si le texte déborde */
 }
 
 .promo-description {
@@ -739,27 +740,27 @@ body {
 }
 
 .company-logo {
-  width: 40px; /* Augmentation de la taille du logo pour plus de visibilité */
+  width: 40px;
   height: 40px;
   object-fit: contain;
-  margin-right: 15px;
+  margin-right: 8px; /* Réduction de l'espace pour rapprocher le logo vers la gauche */
 }
 
 .promo-location {
   font-size: 14px;
   color: #777777;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .promo-price {
   font-size: 16px;
   font-weight: bold;
-  color: #d32f2f;
+  color: #000000; /* Couleur du prix ou contact en noir */
   margin-left: auto;
   text-align: right;
 }
 
-/* Styles for the add promo form */
+/* Styles pour le formulaire d'ajout de promotion */
 .promo-form-container {
   display: block;
   background-color: var(--primary-white);
