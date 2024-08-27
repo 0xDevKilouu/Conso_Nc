@@ -666,9 +666,9 @@ body {
 /* Un item de promotion */
 .promo-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 15px;
+  align-items: flex-start; /* Align items at the start */
+  margin-bottom: 15px; /* Reduce the bottom margin */
+  padding: 10px; /* Reduce padding */
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -719,19 +719,19 @@ body {
 .promo-title {
   font-size: 18px;
   margin-bottom: 8px;
-  color: var(--primary-red); /* Mettre le titre en rouge */
+  color: var(--primary-red); /* Keep the title red */
   font-weight: bold;
-  text-align: center;
-  white-space: normal; /* Permettre au texte de se répartir sur plusieurs lignes si nécessaire */
-  overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
-  text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
-  margin-left: auto; /* Aligner le texte vers la gauche */
-  margin-right: auto; /* Aligner le texte vers la droite */
+  text-align: left; /* Align the title to the left */
+  white-space: normal; /* Allow text to wrap */
+  overflow: visible; /* Allow text to expand */
+  text-overflow: unset; /* Do not truncate the text */
+  margin-left: 0; /* Align text to the left */
+  margin-right: 0; /* Remove right margin */
 }
 
 .promo-description {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 5px; /* Reduce bottom margin */
   color: #555555;
   text-align: left;
 }
