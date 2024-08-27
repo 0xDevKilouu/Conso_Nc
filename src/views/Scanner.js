@@ -46,6 +46,7 @@ export const initializeScanner = () => {
   document.getElementById('enterCode').addEventListener('click', () => enterBarcodeManually());
 
   requestCameraAccess().then(() => {
+    showScannerUI();
     startScanning();
   }).catch((error) => {
     console.error('Error accessing camera:', error);
