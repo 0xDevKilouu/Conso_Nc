@@ -741,6 +741,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  flex-wrap: wrap; /* Permet au contenu de se répartir sur plusieurs lignes si nécessaire */
 }
 
 .company-logo {
@@ -772,6 +773,9 @@ body {
   color: #000000;
   text-align: right;
   white-space: nowrap; /* Évite les retours à la ligne */
+  max-width: 50%; /* Limite la largeur pour les petits écrans */
+  overflow: hidden; /* Masque le texte débordant */
+  text-overflow: ellipsis; /* Ajoute "..." si le texte dépasse */
   margin-left: auto;
 }
 
@@ -1096,9 +1100,26 @@ body {
     font-size: 16px; /* Réduire légèrement la taille de la police pour mieux s'adapter aux petits écrans */
   }
 
+  .promo-info {
+    flex-direction: column; /* Disposition en colonne pour éviter les débordements */
+    align-items: flex-start;
+  }
+
+  .promo-contact {
+    max-width: 100%; /* Assurez-vous que le texte du contact utilise toute la largeur disponible */
+    margin-left: 0;
+    margin-top: 5px; /* Ajoutez une petite marge supérieure pour espacer des autres éléments */
+    text-align: left; /* Alignement du texte à gauche */
+  }
+
   .company-logo {
     width: 35px;
     height: 35px; /* Réduire légèrement la taille du logo sur les petits écrans */
+  }
+
+  .promo-location {
+    font-size: 12px; /* Réduction de la taille du texte pour la localisation */
+    margin-left: 0; /* Supprime le margin-left pour plus de flexibilité */
   }
 }
 
