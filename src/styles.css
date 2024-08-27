@@ -725,7 +725,6 @@ body {
   white-space: normal; /* Permettre au texte de se répartir sur plusieurs lignes si nécessaire */
   overflow: visible; /* Laisser le texte occuper tout l'espace disponible */
   text-overflow: unset; /* Ne pas tronquer le texte avec des ellipses */
-  word-wrap: break-word; /* Forcer le texte à passer à la ligne si nécessaire */
   margin-left: auto; /* Aligner le texte vers la gauche */
   margin-right: auto; /* Aligner le texte vers la droite */
 }
