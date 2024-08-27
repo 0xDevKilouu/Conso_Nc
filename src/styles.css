@@ -679,7 +679,7 @@ body {
 }
 
 .promo-product-image {
-  width: 100px; /* Taille réduite pour l'image */
+  width: 110px; /* Taille réduite pour l'image */
   height: 100px;
   object-fit: cover;
   border-radius: 4px;
@@ -701,7 +701,6 @@ body {
   color: #d32f2f;
   font-weight: bold;
   text-align: left;
-  white-space: nowrap; /* Empêche le titre de passer à la ligne */
 }
 
 .promo-details p {
@@ -735,7 +734,8 @@ body {
   font-size: 14px;
   color: #777;
   margin-left: 0;
-  margin-top: auto; /* Positionne la date en bas de l'image */
+  margin-top: auto;
+  align-self: flex-end; /* Positionne la date en bas à gauche */
   text-align: left;
 }
 
