@@ -659,14 +659,14 @@ body {
 
 .promo-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px; /* Espace entre les promotions */
+  align-items: flex-start; /* Aligner les éléments au début pour permettre à la date de s'ajuster sous l'image */
+  margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #ffffff;
   padding: 15px;
-  width: 100%; /* Prend toute la largeur disponible */
-  box-sizing: border-box; /* Inclut le padding dans la largeur */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .promo-product-image {
@@ -722,7 +722,8 @@ body {
 .promo-expiry {
   font-size: 14px;
   color: #777;
-  margin-left: auto;
+  margin-top: 5px; /* Ajouter un léger espace au-dessus de la date */
+  margin-left: 0; /* Aligner la date à gauche sous l'image */
 }
 
 .promo-price {
